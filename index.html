@@ -248,8 +248,15 @@
             border-radius: 12px;
             background: rgba(255, 255, 255, 0.04);
             box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.06);
-            object-fit: contain;
             padding: 4px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .integration-logo svg {
+            width: 100%;
+            height: 100%;
         }
         .integration-title { color: white; font-weight: 700; font-size: 1rem; }
         .integration-copy { color: #cbd5e1; font-size: 0.9rem; line-height: 1.35; }
@@ -603,7 +610,13 @@
                     <div class="integration-track">
                         <div class="integration-card">
                             <div class="flex items-center gap-3 mb-2">
-                                <img src="https://storage.googleapis.com/takeout-screenshot-sas/9cf6f2c6-7d14-4439-ac8b-958040693095/54b7c777-f056-4ce1-b861-2f29cf8617ea_decoded.png" alt="Go High Level" class="integration-logo">
+                                <div class="integration-logo" role="img" aria-label="Go High Level logo">
+                                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <path fill="#fbbc04" d="M20 42V16l-8 8v18a8 8 0 1 0 8 0Z" />
+                                        <path fill="#4285f4" d="M36 48V10l-8 8v30a8 8 0 1 0 8 0Z" />
+                                        <path fill="#34a853" d="M52 40V20l-8 8v12a8 8 0 1 0 8 0Z" />
+                                    </svg>
+                                </div>
                                 <div class="integration-title">Go High Level</div>
                             </div>
                             <p class="integration-copy">Automatiza funnels y campañas inmobiliarias en minutos.</p>
@@ -666,14 +679,26 @@
                         </div>
                         <div class="integration-card">
                             <div class="flex items-center gap-3 mb-2">
-                                <img src="https://storage.googleapis.com/takeout-screenshot-sas/d988a311-1be3-4180-9a75-9732fbde7c79/445a1b72-01f9-4c2e-8576-7a09fc89b315_decoded.png" alt="Notion" class="integration-logo">
+                                <div class="integration-logo" role="img" aria-label="Notion logo">
+                                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <rect x="10" y="10" width="44" height="44" rx="6" fill="#0b0b0b" stroke="#f5f5f5" stroke-width="3" />
+                                        <path fill="#f5f5f5" d="M20 18h4l16 22V18h4v28h-4L24 24v22h-4Z" />
+                                    </svg>
+                                </div>
                                 <div class="integration-title">Notion</div>
                             </div>
                             <p class="integration-copy">Documentación y playbooks actualizados automáticamente.</p>
                         </div>
                         <div class="integration-card">
                             <div class="flex items-center gap-3 mb-2">
-                                <img src="https://storage.googleapis.com/takeout-screenshot-sas/07db9929-2e5d-4472-8118-76cf4fc8d8bb/9aa1d2a2-334a-4613-a448-b5f7e074cb0a_decoded.png" alt="Slack" class="integration-logo">
+                                <div class="integration-logo" role="img" aria-label="Slack logo">
+                                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <path fill="#36c5f0" d="M24 34a4 4 0 1 1 4-4h4v12a4 4 0 1 1-4 4v-12z" />
+                                        <path fill="#2eb67d" d="M30 24a4 4 0 1 1 4-4v4h12a4 4 0 1 1-4 4H30z" />
+                                        <path fill="#e01e5a" d="M30 28v-4h-4a4 4 0 1 1 4-4h12a4 4 0 1 1 0 8z" />
+                                        <path fill="#ecb22e" d="M34 30h-4v12a4 4 0 1 1-4 4v-4h12a4 4 0 1 1 0-8z" />
+                                    </svg>
+                                </div>
                                 <div class="integration-title">Slack</div>
                             </div>
                             <p class="integration-copy">Alertas y handoffs directos a tu equipo comercial.</p>
@@ -682,7 +707,13 @@
                         <!-- Duplicate set for seamless loop -->
                         <div class="integration-card">
                             <div class="flex items-center gap-3 mb-2">
-                                <img src="https://storage.googleapis.com/takeout-screenshot-sas/9cf6f2c6-7d14-4439-ac8b-958040693095/54b7c777-f056-4ce1-b861-2f29cf8617ea_decoded.png" alt="Go High Level" class="integration-logo">
+                                <div class="integration-logo" role="img" aria-label="Go High Level logo">
+                                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <path fill="#fbbc04" d="M20 42V16l-8 8v18a8 8 0 1 0 8 0Z" />
+                                        <path fill="#4285f4" d="M36 48V10l-8 8v30a8 8 0 1 0 8 0Z" />
+                                        <path fill="#34a853" d="M52 40V20l-8 8v12a8 8 0 1 0 8 0Z" />
+                                    </svg>
+                                </div>
                                 <div class="integration-title">Go High Level</div>
                             </div>
                             <p class="integration-copy">Automatiza funnels y campañas inmobiliarias en minutos.</p>
@@ -745,14 +776,26 @@
                         </div>
                         <div class="integration-card">
                             <div class="flex items-center gap-3 mb-2">
-                                <img src="https://storage.googleapis.com/takeout-screenshot-sas/d988a311-1be3-4180-9a75-9732fbde7c79/445a1b72-01f9-4c2e-8576-7a09fc89b315_decoded.png" alt="Notion" class="integration-logo">
+                                <div class="integration-logo" role="img" aria-label="Notion logo">
+                                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <rect x="10" y="10" width="44" height="44" rx="6" fill="#0b0b0b" stroke="#f5f5f5" stroke-width="3" />
+                                        <path fill="#f5f5f5" d="M20 18h4l16 22V18h4v28h-4L24 24v22h-4Z" />
+                                    </svg>
+                                </div>
                                 <div class="integration-title">Notion</div>
                             </div>
                             <p class="integration-copy">Documentación y playbooks actualizados automáticamente.</p>
                         </div>
                         <div class="integration-card">
                             <div class="flex items-center gap-3 mb-2">
-                                <img src="https://storage.googleapis.com/takeout-screenshot-sas/07db9929-2e5d-4472-8118-76cf4fc8d8bb/9aa1d2a2-334a-4613-a448-b5f7e074cb0a_decoded.png" alt="Slack" class="integration-logo">
+                                <div class="integration-logo" role="img" aria-label="Slack logo">
+                                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <path fill="#36c5f0" d="M24 34a4 4 0 1 1 4-4h4v12a4 4 0 1 1-4 4v-12z" />
+                                        <path fill="#2eb67d" d="M30 24a4 4 0 1 1 4-4v4h12a4 4 0 1 1-4 4H30z" />
+                                        <path fill="#e01e5a" d="M30 28v-4h-4a4 4 0 1 1 4-4h12a4 4 0 1 1 0 8z" />
+                                        <path fill="#ecb22e" d="M34 30h-4v12a4 4 0 1 1-4 4v-4h12a4 4 0 1 1 0-8z" />
+                                    </svg>
+                                </div>
                                 <div class="integration-title">Slack</div>
                             </div>
                             <p class="integration-copy">Alertas y handoffs directos a tu equipo comercial.</p>
