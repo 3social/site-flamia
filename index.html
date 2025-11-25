@@ -174,6 +174,82 @@
             100% { background-position: 220px 140px, -200px 120px, 140px 200px, 120px 40px, -80px 60px, 60px -40px, -100px 30px; }
         }
 
+        /* Solutions icon */
+        .solution-icon {
+            width: 76px;
+            height: 76px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 50% 38%, rgba(31, 41, 55, 0.95), rgba(5, 7, 11, 0.9));
+            box-shadow:
+                0 0 22px rgba(59, 130, 246, 0.32),
+                inset 0 0 18px rgba(255, 255, 255, 0.05);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            isolation: isolate;
+        }
+        .solution-icon::after {
+            content: "";
+            position: absolute;
+            inset: -12px;
+            border-radius: 999px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.18), transparent 55%);
+            opacity: 0.5;
+            z-index: -1;
+            filter: blur(12px);
+        }
+        .solution-icon svg {
+            width: 40px;
+            height: 40px;
+            stroke: #3b82f6;
+            stroke-width: 2.2;
+            fill: none;
+            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.45));
+        }
+
+        /* Integrations carousel */
+        .integration-marquee {
+            position: relative;
+            overflow: hidden;
+            mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+        }
+        .integration-track {
+            display: inline-flex;
+            gap: 1rem;
+            animation: marquee-left 36s linear infinite;
+            padding: 0.35rem 0;
+        }
+        .integration-track:hover { animation-play-state: paused; }
+        .integration-card {
+            min-width: 220px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            border-radius: 1rem;
+            padding: 1.1rem 1.2rem;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+        }
+        .integration-chip {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.22), rgba(59, 130, 246, 0.18));
+            color: #dbeafe;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.06), 0 6px 16px rgba(0, 0, 0, 0.22);
+        }
+        .integration-title { color: white; font-weight: 700; font-size: 1rem; }
+        .integration-copy { color: #cbd5e1; font-size: 0.9rem; line-height: 1.35; }
+
+        @keyframes marquee-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         @media (max-width: 767px) {
             h1 { font-size: 2.25rem; line-height: 1.2; }
             h2 { font-size: 1.9rem; }
@@ -385,42 +461,90 @@
                 </div>
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-green-500/50">
-                        <div class="h-16 flex items-center justify-center text-4xl">💬</div>
+                        <div class="solution-icon" aria-hidden="true">
+                            <svg viewBox="0 0 40 40" role="presentation">
+                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
+                                <path d="M8 18l12 6 12-6" />
+                                <path d="M8 24l12 6 12-6" />
+                            </svg>
+                        </div>
                         <h3 class="text-xl font-bold text-white text-center">Agente de Texto</h3>
                         <p class="text-gray-400 text-sm text-center">Respuesta inmediata en WhatsApp y SMS. Cualifica leads y agenda visitas 24/7.</p>
                     </div>
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-blue-500/50">
-                        <div class="h-16 flex items-center justify-center text-4xl">📞</div>
+                        <div class="solution-icon" aria-hidden="true">
+                            <svg viewBox="0 0 40 40" role="presentation">
+                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
+                                <path d="M8 18l12 6 12-6" />
+                                <path d="M8 24l12 6 12-6" />
+                            </svg>
+                        </div>
                         <h3 class="text-xl font-bold text-white text-center">Agente de Voz</h3>
                         <p class="text-gray-400 text-sm text-center">Llamadas telefónicas naturales para reactivar bases de datos y confirmar citas.</p>
                     </div>
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-indigo-500/50">
-                        <div class="h-16 flex items-center justify-center text-4xl">🌐</div>
+                        <div class="solution-icon" aria-hidden="true">
+                            <svg viewBox="0 0 40 40" role="presentation">
+                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
+                                <path d="M8 18l12 6 12-6" />
+                                <path d="M8 24l12 6 12-6" />
+                            </svg>
+                        </div>
                         <h3 class="text-xl font-bold text-white text-center">Agente Web</h3>
                         <p class="text-gray-400 text-sm text-center">Chatbot incrustado en tu sitio que guía al usuario y captura datos en tiempo real.</p>
                     </div>
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-pink-500/50">
-                        <div class="h-16 flex items-center justify-center text-4xl">📱</div>
+                        <div class="solution-icon" aria-hidden="true">
+                            <svg viewBox="0 0 40 40" role="presentation">
+                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
+                                <path d="M8 18l12 6 12-6" />
+                                <path d="M8 24l12 6 12-6" />
+                            </svg>
+                        </div>
                         <h3 class="text-xl font-bold text-white text-center">Social Media Agent</h3>
                         <p class="text-gray-400 text-sm text-center">Responde DMs y comentarios en Instagram/Facebook. Convierte seguidores en leads.</p>
                     </div>
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-purple-500/50">
-                        <div class="h-16 flex items-center justify-center text-4xl">👁️</div>
+                        <div class="solution-icon" aria-hidden="true">
+                            <svg viewBox="0 0 40 40" role="presentation">
+                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
+                                <path d="M8 18l12 6 12-6" />
+                                <path d="M8 24l12 6 12-6" />
+                            </svg>
+                        </div>
                         <h3 class="text-xl font-bold text-white text-center">Vision Valuation</h3>
                         <p class="text-gray-400 text-sm text-center">Valora propiedades analizando fotos. Detecta acabados, luz y estado de conservación.</p>
                     </div>
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-orange-500/50">
-                        <div class="h-16 flex items-center justify-center text-4xl">🔄</div>
+                        <div class="solution-icon" aria-hidden="true">
+                            <svg viewBox="0 0 40 40" role="presentation">
+                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
+                                <path d="M8 18l12 6 12-6" />
+                                <path d="M8 24l12 6 12-6" />
+                            </svg>
+                        </div>
                         <h3 class="text-xl font-bold text-white text-center">CRM Sync</h3>
                         <p class="text-gray-400 text-sm text-center">Sincronización bidireccional con CRMs de preferencia.</p>
                     </div>
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-cyan-500/50">
-                        <div class="h-16 flex items-center justify-center text-4xl">🗄️</div>
+                        <div class="solution-icon" aria-hidden="true">
+                            <svg viewBox="0 0 40 40" role="presentation">
+                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
+                                <path d="M8 18l12 6 12-6" />
+                                <path d="M8 24l12 6 12-6" />
+                            </svg>
+                        </div>
                         <h3 class="text-xl font-bold text-white text-center">Property DB Connect</h3>
                         <p class="text-gray-400 text-sm text-center">Conexión directa con MLS y bases de datos internas para cruce de oferta/demanda.</p>
                     </div>
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-yellow-500/50">
-                        <div class="h-16 flex items-center justify-center text-4xl">⚡</div>
+                        <div class="solution-icon" aria-hidden="true">
+                            <svg viewBox="0 0 40 40" role="presentation">
+                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
+                                <path d="M8 18l12 6 12-6" />
+                                <path d="M8 24l12 6 12-6" />
+                            </svg>
+                        </div>
                         <h3 class="text-xl font-bold text-white text-center">Integraciones API</h3>
                         <p class="text-gray-400 text-sm text-center">Acceso para desarrolladores. Integra nuestra inteligencia en tus propias apps.</p>
                     </div>
@@ -459,6 +583,176 @@
             </div>
         </section>
 
+        <!-- INTEGRATIONS -->
+        <section id="integrations" class="section-block bg-[#07070c]">
+            <div class="container mx-auto px-5 sm:px-6 space-y-8">
+                <div class="section-header">
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Integraciones</h2>
+                    <p class="text-gray-300 text-lg">Conecta tus agentes IA con las herramientas que ya usas.</p>
+                </div>
+                <div class="integration-marquee" aria-label="Integraciones disponibles">
+                    <div class="integration-track">
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">G</div>
+                                <div class="integration-title">Go High Level</div>
+                            </div>
+                            <p class="integration-copy">Automatiza funnels y campañas inmobiliarias en minutos.</p>
+                        </div>
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">G</div>
+                                <div class="integration-title">Google</div>
+                            </div>
+                            <p class="integration-copy">Datos, Ads y Workspace integrados con tus agentes IA.</p>
+                        </div>
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">n8</div>
+                                <div class="integration-title">n8n</div>
+                            </div>
+                            <p class="integration-copy">Orquesta flujos sin código con nodos personalizables.</p>
+                        </div>
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">M</div>
+                                <div class="integration-title">Make</div>
+                            </div>
+                            <p class="integration-copy">Escenarios visuales para sincronizar leads y notificaciones.</p>
+                        </div>
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">T</div>
+                                <div class="integration-title">Twilio</div>
+                            </div>
+                            <p class="integration-copy">Telefonía y mensajería confiable para tus agentes de voz.</p>
+                        </div>
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">R</div>
+                                <div class="integration-title">Retell</div>
+                            </div>
+                            <p class="integration-copy">Voces naturales con calidad de llamada empresarial.</p>
+                        </div>
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">WA</div>
+                                <div class="integration-title">WhatsApp</div>
+                            </div>
+                            <p class="integration-copy">Conversaciones cifradas y aprobadas por Meta.</p>
+                        </div>
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">R</div>
+                                <div class="integration-title">Redis</div>
+                            </div>
+                            <p class="integration-copy">Respuestas instantáneas con caches en tiempo real.</p>
+                        </div>
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">V</div>
+                                <div class="integration-title">Vapi</div>
+                            </div>
+                            <p class="integration-copy">Infraestructura de llamadas programables para IA.</p>
+                        </div>
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">N</div>
+                                <div class="integration-title">Notion</div>
+                            </div>
+                            <p class="integration-copy">Documentación y playbooks actualizados automáticamente.</p>
+                        </div>
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">S</div>
+                                <div class="integration-title">Slack</div>
+                            </div>
+                            <p class="integration-copy">Alertas y handoffs directos a tu equipo comercial.</p>
+                        </div>
+
+                        <!-- Duplicate set for seamless loop -->
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">G</div>
+                                <div class="integration-title">Go High Level</div>
+                            </div>
+                            <p class="integration-copy">Automatiza funnels y campañas inmobiliarias en minutos.</p>
+                        </div>
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">G</div>
+                                <div class="integration-title">Google</div>
+                            </div>
+                            <p class="integration-copy">Datos, Ads y Workspace integrados con tus agentes IA.</p>
+                        </div>
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">n8</div>
+                                <div class="integration-title">n8n</div>
+                            </div>
+                            <p class="integration-copy">Orquesta flujos sin código con nodos personalizables.</p>
+                        </div>
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">M</div>
+                                <div class="integration-title">Make</div>
+                            </div>
+                            <p class="integration-copy">Escenarios visuales para sincronizar leads y notificaciones.</p>
+                        </div>
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">T</div>
+                                <div class="integration-title">Twilio</div>
+                            </div>
+                            <p class="integration-copy">Telefonía y mensajería confiable para tus agentes de voz.</p>
+                        </div>
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">R</div>
+                                <div class="integration-title">Retell</div>
+                            </div>
+                            <p class="integration-copy">Voces naturales con calidad de llamada empresarial.</p>
+                        </div>
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">WA</div>
+                                <div class="integration-title">WhatsApp</div>
+                            </div>
+                            <p class="integration-copy">Conversaciones cifradas y aprobadas por Meta.</p>
+                        </div>
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">R</div>
+                                <div class="integration-title">Redis</div>
+                            </div>
+                            <p class="integration-copy">Respuestas instantáneas con caches en tiempo real.</p>
+                        </div>
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">V</div>
+                                <div class="integration-title">Vapi</div>
+                            </div>
+                            <p class="integration-copy">Infraestructura de llamadas programables para IA.</p>
+                        </div>
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">N</div>
+                                <div class="integration-title">Notion</div>
+                            </div>
+                            <p class="integration-copy">Documentación y playbooks actualizados automáticamente.</p>
+                        </div>
+                        <div class="integration-card">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="integration-chip">S</div>
+                                <div class="integration-title">Slack</div>
+                            </div>
+                            <p class="integration-copy">Alertas y handoffs directos a tu equipo comercial.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- CONTACT -->
         <section id="contact" class="section-block bg-gradient-to-t from-indigo-900/20 to-transparent">
             <div class="container mx-auto px-5 sm:px-6 text-center">
@@ -478,7 +772,7 @@
     </main>
 
     <footer class="border-t border-white/5 py-10 bg-[#050507]">
-        <div class="container mx-auto px-5 sm:px-6 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm gap-3">
+        <div class="container mx-auto px-5 sm:px-6 flex flex-col items-center justify-center text-center text-gray-500 text-sm gap-3">
             <div class="font-bold text-white text-lg">Flamia</div>
             <div>&copy; 2025 Flamia Group Inc.</div>
         </div>
