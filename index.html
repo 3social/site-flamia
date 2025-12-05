@@ -93,6 +93,24 @@
         .accent-gradient-text { background: linear-gradient(135deg, #34D399 0%, #10B981 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .danger-gradient-text { background: linear-gradient(135deg, #F87171 0%, #EF4444 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
+        .brand-mark {
+            width: 40px;
+            height: 40px;
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+        }
+
+        .brand-icon {
+            width: 26px;
+            height: 26px;
+            color: white;
+        }
+
         /* Chat typing indicator */
         .dot-flashing { position: relative; width: 6px; height: 6px; border-radius: 5px; background-color: #fff; animation: dot-flashing 1s infinite linear alternate; animation-delay: 0.5s; }
         .dot-flashing::before, .dot-flashing::after { content: ""; display: inline-block; position: absolute; top: 0; width: 6px; height: 6px; border-radius: 5px; background-color: #fff; }
@@ -281,7 +299,13 @@
     <header class="fixed top-0 z-40 w-full bg-[#050507]/85 backdrop-blur-xl border-b border-white/5" id="navbar">
         <nav class="container mx-auto px-5 sm:px-6 py-4 flex justify-between items-center">
             <a href="#home" class="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg">
-                <div class="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-bold">F</div>
+                <div class="brand-mark" aria-hidden="true">
+                    <svg class="brand-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 18h32" />
+                        <path d="M18 32h20" />
+                        <path d="M18 32c0 9.941 8.059 18 18 18h14" />
+                    </svg>
+                </div>
                 <div class="text-lg sm:text-xl font-bold tracking-tight text-white">Flamia</div>
             </a>
             <div class="hidden md:flex items-center space-x-8 text-sm font-semibold">
