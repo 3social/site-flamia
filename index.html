@@ -114,8 +114,8 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .accent-gradient-text { background: linear-gradient(135deg, #34D399 0%, #10B981 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .danger-gradient-text { background: linear-gradient(135deg, #F87171 0%, #EF4444 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .accent-gradient-text { background: linear-gradient(135deg, #34D399 0%, #10B981 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .danger-gradient-text { background: linear-gradient(135deg, #F87171 0%, #EF4444 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 
         .brand-mark {
             width: 40px;
@@ -167,8 +167,8 @@
         @keyframes float { 0% { transform: translateY(0); } 50% { transform: translateY(-6px); } 100% { transform: translateY(0); } }
 
         /* Range slider */
-        input[type=range] { -webkit-appearance: none; background: transparent; width: 100%; }
-        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 18px; width: 18px; border-radius: 50%; background: var(--primary); cursor: pointer; margin-top: -7px; box-shadow: 0 0 10px rgba(99, 102, 241, 0.45); }
+        input[type=range] { -webkit-appearance: none; appearance: none; background: transparent; width: 100%; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; height: 18px; width: 18px; border-radius: 50%; background: var(--primary); cursor: pointer; margin-top: -7px; box-shadow: 0 0 10px rgba(99, 102, 241, 0.45); }
         input[type=range]::-webkit-slider-runnable-track { height: 4px; cursor: pointer; background: #374151; border-radius: 2px; }
 
         /* Utility helpers */
