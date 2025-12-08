@@ -24,6 +24,29 @@
             overflow-x: hidden;
         }
 
+        body::before {
+            content: '';
+            position: fixed;
+            left: 50%;
+            top: 60%;
+            width: 120vmin;
+            height: 120vmin;
+            transform: translate(-50%, -50%) scale(1.03);
+            background: radial-gradient(circle at center,
+                    rgba(79, 70, 229, 0) 32%,
+                    rgba(79, 70, 229, 0.22) 48%,
+                    rgba(139, 92, 246, 0.18) 54%,
+                    rgba(59, 130, 246, 0.08) 62%,
+                    rgba(79, 70, 229, 0.04) 72%,
+                    rgba(79, 70, 229, 0) 82%);
+            opacity: 0.2;
+            filter: blur(70px);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            z-index: 0;
+            animation: ring-drift 55s linear infinite;
+        }
+
         .section-block {
             padding: 4rem 0;
         }
@@ -282,6 +305,12 @@
         @keyframes marquee-left {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
+        }
+
+        @keyframes ring-drift {
+            0% { transform: translate(-50%, -52%) scale(1.02); }
+            50% { transform: translate(-50%, -48%) scale(1.06); }
+            100% { transform: translate(-50%, -52%) scale(1.02); }
         }
 
         @media (max-width: 767px) {
