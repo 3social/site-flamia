@@ -1,5 +1,3 @@
-# site-flamia
-sitio web Flamia group
 # Flamia Group – AI Website (Chat + Voice Call)
 
 Landing page de **Flamia Group** con dos funcionalidades clave impulsadas por IA:
@@ -12,15 +10,16 @@ Landing page de **Flamia Group** con dos funcionalidades clave impulsadas por IA
 
 ---
 
-## 🧠 Arquitectura General
+##  Arquitectura General
 
 ### Frontend
-- HTML + TailwindCSS
-- JavaScript vanilla
-- Desarrollo local con:
+- HTML + TailwindCSS  
+- JavaScript vanilla  
+- Desarrollo local:
   ```bash
   python -m http.server 8000
-Integraciones:
+
+Integraciones
 
 Chat web → Webhook n8n
 
@@ -43,13 +42,19 @@ Voz: Vapi (orquestación) + Twilio (telefonía)
 🔗 Endpoints
 
 Base n8n:
+
 https://personaldev-n8n.aaqnec.easypanel.host
+
+
 Webhooks:
 
 Chat IA:
+
 /webhook/chatflamia
 
+
 Llamada de voz:
+
 /webhook/flamia-voice-call
 
 Flujos n8n
@@ -59,6 +64,7 @@ Webhook (chatflamia)
 → AI Agent
 → Formatear Respuesta
 → Responder al Frontend
+
 
 Respuesta esperada:
 
@@ -88,8 +94,10 @@ Respuesta ejemplo:
 {
   "success": true,
   "message": "Llamada iniciada. Nuestro agente IA te estará llamando en segundos."
+}
 
-  Variables de Entorno (EasyPanel)
+ 
+ Variables de Entorno (EasyPanel)
 OPENAI_KEY=sk-...
 VAPI_API_KEY=...
 N8N_DEFAULT_CORS=TRUE
