@@ -556,7 +556,10 @@
     const name  = document.getElementById("lead-name").value.trim();
     const phone = document.getElementById("lead-phone").value.trim();
     const email = document.getElementById("lead-email").value.trim();
-
+    const safePhone = document.getElementById("lead-phone")?.value?.trim() || "";
+  console.log("[VOICE] phone:", safePhone);
+  showCallOverlay(safePhone);
+  
     if (!isValidPhone(phone)) {
       alert("Por favor, ingresa un número de teléfono válido (idealmente con código de país, ej. +34…).");
       return;
@@ -1338,20 +1341,12 @@ return reply || "No recibí respuesta del asistente. ¿Podés repetir tu pregunt
             }, 800);
         }
 
-        const voiceForm = document.getElementById('voice-form');
-        const callOverlay = document.getElementById('call-overlay');
-        const displayPhone = document.getElementById('display-phone');
-        if(voiceForm) {
-            voiceForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const phone = document.getElementById('lead-phone').value;
-                const name = document.getElementById('lead-name').value;
-                displayPhone.innerText = phone;
-                callOverlay.classList.remove('hidden');
-                console.log(`Simulating call to ${name} at ${phone}`);
-            });
-        }
-        function resetCallForm() { callOverlay.classList.add('hidden'); }
+        document.addEventListener("DOMContentLoaded", () => {
+  const voiceForm = document.getElementById("voice-form");
+  if (voiceForm) {
+    voiceForm.addEventListener("submit", handleVoiceFormSubmit);
+  }
+});
 
         // --- FEATURE 2: CHATBOT FLAMIA (via n8n) ---
 
