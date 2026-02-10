@@ -551,19 +551,18 @@
   }
 
   async function handleVoiceFormSubmit(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    const name  = document.getElementById("lead-name").value.trim();
-    const phone = document.getElementById("lead-phone").value.trim();
-    const email = document.getElementById("lead-email").value.trim();
-    const safePhone = document.getElementById("lead-phone")?.value?.trim() || "";
-  console.log("[VOICE] phone:", safePhone);
-  showCallOverlay(safePhone);
-  
-    if (!isValidPhone(phone)) {
-      alert("Por favor, ingresa un número de teléfono válido (idealmente con código de país, ej. +34…).");
-      return;
-    }
+  const name  = document.getElementById("lead-name")?.value?.trim() || "";
+  const phone = document.getElementById("lead-phone")?.value?.trim() || "";
+  const email = document.getElementById("lead-email")?.value?.trim() || "";
+
+  console.log("[VOICE] phone:", phone);
+
+  if (!isValidPhone(phone)) {
+    alert("Por favor, ingresa un número de teléfono válido (idealmente con código de país, ej. +34…).");
+    return;
+  }
 
     // Mostramos overlay de “iniciando llamada”
     showCallOverlay(phone);
@@ -594,7 +593,7 @@
       console.log("Respuesta de backend de llamada:", data);
 
       // n8n devuelve { success: true, ... }
-if (!data.success !== true) {
+if (data.success !== true) {
   alert(data.message || "No se pudo iniciar la llamada. Intenta más tarde.");
   resetCallForm();
   return;
@@ -606,8 +605,10 @@ if (overlay) {
   const title = overlay.querySelector("h3");
   const info  = overlay.querySelector("p");
 
+  const to = data.to || phone || "..."; // fallback
+
   if (title) title.textContent = "Llamada iniciada";
-  if (info)  info.textContent = `Nuestro agente de voz está llamando al número ${data.to}.`;
+  if (info)  info.textContent = `Nuestro agente de voz está llamando al número ${to}.`;
 }
 
       // Aquí podrías actualizar el texto del overlay si quieres:
