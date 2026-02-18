@@ -1406,14 +1406,14 @@ function linkifyAndFormat(text = "") {
   // **bold**
   safe = safe.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
 
-  // 1) Markdown links: [label](https://url)
+  // Markdown links: [label](https://url)
   safe = safe.replace(
     /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
     `<a href="$2" target="_blank" rel="noopener noreferrer" class="underline text-indigo-300 hover:text-indigo-200">$1</a>`
   );
 
-  // 2) URLs sueltas (evita capturar ) ] , . al final)
-  const urlRegex = /(https?:\/\/[^\s<>"')\]]+[^\s<>"')\].,;:!?])/g;
+  // URLs sueltas (regex segura, NO captura comillas ni > ni ])
+  const urlRegex = /(https?:\/\/[^\s<>"')\]]+)/g;
   safe = safe.replace(urlRegex, (url) =>
     `<a href="${url}" target="_blank" rel="noopener noreferrer" class="underline text-indigo-300 hover:text-indigo-200">${url}</a>`
   );
