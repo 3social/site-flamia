@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
+    <style>
+  .pulse-arrow {
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
+    50% { transform: translateY(-6px) scale(1.05); opacity: 1; }
+  }
+</style>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1093,7 +1103,11 @@ if (overlay) {
 <section id="contact" class="section-block bg-gradient-to-t from-indigo-900/20 to-transparent relative">
   <div class="container mx-auto px-5 sm:px-6 text-center relative">
     
-    <h2 class="text-3xl md:text-5xl font-bold text-white mb-3">¿Listo para escalar?</h2>
+    <h2 class="text-3xl md:text-5xl font-bold text-white mb-3">¿Listo para escalar?</h2> <img 
+  src="/assets/arrow-chat.svg" 
+  class="pulse-arrow hidden md:block absolute -right-40 -bottom-28 w-48 opacity-90 pointer-events-none"
+  alt="Flecha hacia chat IA"
+/>
 
     <!-- Nuevo subtítulo -->
     <p class="text-indigo-300 text-sm md:text-base mb-8">
