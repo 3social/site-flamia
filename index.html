@@ -1090,27 +1090,54 @@ if (overlay) {
         </section>
 
         <!-- CONTACT -->
-        <section id="contact" class="section-block bg-gradient-to-t from-indigo-900/20 to-transparent">
-            <div class="container mx-auto px-5 sm:px-6 text-center">
-                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">¿Listo para escalar?</h2>
-                <div class="glass-card p-8 sm:p-10 max-w-2xl mx-auto">
-                    <form class="space-y-4 text-left">
-                        <div class="grid md:grid-cols-2 gap-4">
-                            <input type="text" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-indigo-500 focus:outline-none" placeholder="Nombre">
-                            <input type="text" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-indigo-500 focus:outline-none" placeholder="Agencia">
-                        </div>
-                        <input type="email" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-indigo-500 focus:outline-none" placeholder="Email Corporativo">
-                        <button type="button" onclick="openCalendar()" class="cta-button w-full py-4 rounded-lg text-white font-bold text-lg">Solicitar Auditoría IA</button>
-                    </form>
-                </div>
-            </div>
-        </section>
+<section id="contact" class="section-block bg-gradient-to-t from-indigo-900/20 to-transparent relative">
+  <div class="container mx-auto px-5 sm:px-6 text-center relative">
+    
+    <h2 class="text-3xl md:text-5xl font-bold text-white mb-3">¿Listo para escalar?</h2>
+
+    <!-- Nuevo subtítulo -->
+    <p class="text-indigo-300 text-sm md:text-base mb-8">
+      Eliminamos este formulario por un agente IA que responde como humano y te permite agendar de una vez.
+    </p>
+
+    <!-- Wrapper para overlay -->
+    <div class="relative max-w-2xl mx-auto">
+      
+      <!-- X roja -->
+      <div class="pointer-events-none absolute inset-0 z-20 flex items-center justify-center">
+        <span class="text-red-500 text-[180px] leading-none font-black opacity-20 rotate-12">✕</span>
+      </div>
+
+      <!-- Formulario (visual, no funcional) -->
+      <div class="glass-card p-8 sm:p-10 opacity-40 pointer-events-none">
+        <form class="space-y-4 text-left">
+          <div class="grid md:grid-cols-2 gap-4">
+            <input type="text" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white" placeholder="Nombre">
+            <input type="text" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white" placeholder="Agencia">
+          </div>
+          <input type="email" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white" placeholder="Email Corporativo">
+          <button type="button" class="cta-button w-full py-4 rounded-lg text-white font-bold text-lg">
+            Solicitar Auditoría IA
+          </button>
+        </form>
+      </div>
+
+      <!-- Flecha curva hacia el widget -->
+      <img 
+        src="/assets/arrow-chat.svg" 
+        alt="Flecha hacia chat" 
+        class="hidden md:block absolute -right-40 -bottom-28 w-48 opacity-90 rotate-6 pointer-events-none"
+      />
+    </div>
+  </div>
+</section>
+
     </main>
 
     <footer class="border-t border-white/5 py-10 bg-[#050507]">
         <div class="container mx-auto px-5 sm:px-6 flex flex-col items-center justify-center text-center text-gray-500 text-sm gap-3">
             <div class="font-bold text-white text-lg">Flamia</div>
-            <div>&copy; 2025 Flamia Group Inc.</div>
+            <div>&copy; 2026 Flamia Group Inc.</div>
         </div>
     </footer>
 
