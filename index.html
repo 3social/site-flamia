@@ -1265,89 +1265,11 @@ return reply || "No recibí respuesta del asistente. ¿Podés repetir tu pregunt
 
 
         function openCalendar() {
-            document.getElementById('calendar-modal').classList.remove('hidden');
-            renderCalendar();
+  const url = "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3j-rice2KsjhUQQO1xQKthJdek1KFWsZD5WjWxOZ4SCJ1aCMpDFWvNjCOsrtYlT2FG8bh9sBWy?gv=true";
+  window.open(url, "_blank", "noopener,noreferrer");
         }
 
-        function closeCalendar() {
-            document.getElementById('calendar-modal').classList.add('hidden');
-            document.getElementById('time-section').classList.add('hidden');
-            document.getElementById('booking-form').classList.add('hidden');
-            document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
-        }
-
-        function renderCalendar() {
-            const daysContainer = document.getElementById('calendar-days');
-            daysContainer.innerHTML = '';
-            for(let i=0; i<2; i++) daysContainer.innerHTML += `<div></div>`;
-            for(let i=1; i<=31; i++) {
-                const disabledClass = i < 15 ? 'disabled' : '';
-                const div = document.createElement('div');
-                div.className = `calendar-day p-2 rounded-lg text-sm font-medium text-gray-300 ${disabledClass}`;
-                div.innerText = i;
-                if(!disabledClass) div.onclick = () => selectDate(div, i);
-                daysContainer.appendChild(div);
-            }
-        }
-
-        function selectDate(element, day) {
-            selectedDayVal = day;
-            document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
-            element.classList.add('selected');
-            document.getElementById('selected-date-display').innerText = `Oct ${day}`;
-            document.getElementById('time-section').classList.remove('hidden');
-            renderTimeSlots();
-        }
-
-        function renderTimeSlots() {
-            const container = document.getElementById('time-slots');
-            container.innerHTML = '';
-            ['09:00','10:00','11:30','14:00','15:30','16:00'].forEach(time => {
-                const btn = document.createElement('button');
-                btn.className = 'time-slot border border-gray-600 rounded-md py-2 text-xs text-gray-300 hover:bg-indigo-900/30';
-                btn.innerText = time;
-                btn.onclick = () => selectTime(btn);
-                container.appendChild(btn);
-            });
-        }
-
-        function selectTime(element) {
-            selectedTimeVal = element.innerText;
-            document.querySelectorAll('.time-slot').forEach(t => t.classList.remove('selected'));
-            element.classList.add('selected');
-            document.getElementById('booking-form').classList.remove('hidden');
-        }
-
-        function confirmBooking() {
-            if (!selectedDayVal || !selectedTimeVal) {
-                console.error("Por favor selecciona un día y una hora.");
-                return;
-            }
-            const btn = document.querySelector('#booking-form button');
-            const originalText = btn.innerText;
-            btn.innerText = "Procesando...";
-            btn.disabled = true;
-            const year = "2025";
-            const month = "10";
-            const day = selectedDayVal.toString().padStart(2, '0');
-            const [hours, minutes] = selectedTimeVal.split(':');
-            const startTime = `${year}${month}${day}T${hours}${minutes}00`;
-            let endH = parseInt(hours, 10);
-            let endM = parseInt(minutes, 10) + 30;
-            if (endM >= 60) { endH++; endM -= 60; }
-            const endTime = `${year}${month}${day}T${endH.toString().padStart(2, '0')}${endM.toString().padStart(2, '0')}00`;
-            const title = encodeURIComponent("Consultoría IA - Flamia Group");
-            const details = encodeURIComponent("Sesión estratégica sobre automatización inmobiliaria con Flamia Group.");
-            const location = encodeURIComponent("Google Meet");
-            const gCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startTime}/${endTime}&details=${details}&location=${location}`;
-            setTimeout(() => {
-                window.open(gCalUrl, '_blank');
-                closeCalendar();
-                btn.innerText = originalText;
-                btn.disabled = false;
-            }, 800);
-        }
-
+       
         document.addEventListener("DOMContentLoaded", () => {
   const voiceForm = document.getElementById("voice-form");
   if (voiceForm) {
