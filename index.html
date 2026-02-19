@@ -1187,14 +1187,15 @@ if (overlay) {
 
 
    <script>
-  // -----------------------
-  //   CALENDARIO (si lo usas)
-  // -----------------------
-  let selectedDayVal = null;
-  let selectedTimeVal = null;
+  function openCalendar() {
+    // Tracking (opcional, solo si usas GA4)
+    // gtag('event', 'click_agendar_demo');
 
-  function openCalendar() { const url = "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3j-rice2KsjhUQQO1xQKthJdek1KFWsZD5WjWxOZ4SCJ1aCMpDFWvNjCOsrtYlT2FG8bh9sBWy?gv=true";
-    window.open(url, "_blank", "noopener,noreferrer");
+    window.open(
+      "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3j-rice2KsjhUQQO1xQKthJdek1KFWsZD5WjWxOZ4SCJ1aCMpDFWvNjCOsrtYlT2FG8bh9sBWy?gv=true",
+      "_blank",
+      "noopener,noreferrer"
+    );
   }
   
     // -----------------------
