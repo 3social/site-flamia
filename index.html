@@ -5,7 +5,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flamia - Ecosistema de IA para Real Estate</title>
-     
+
+    <!-- SEO básico -->
+    <meta name="description" content="Flamia despliega Agentes IA que califican leads, crean listings y gestionan citas 24/7 para tu agencia inmobiliaria. Escala sin contratar más personal.">
+    <meta name="keywords" content="IA inmobiliaria, agentes IA real estate, automatización inmobiliaria, CRM inteligente, leads inmobiliarios, chatbot inmobiliario, agente voz IA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://TU_DOMINIO.com/"><!-- ⚠️ Reemplaza con tu URL real -->
+
+    <!-- Open Graph (redes sociales) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Flamia">
+    <meta property="og:title" content="Flamia - Ecosistema de IA para Real Estate">
+    <meta property="og:description" content="Agentes IA que califican leads, crean listings y gestionan citas 24/7 para tu agencia inmobiliaria. Escala sin límites.">
+    <meta property="og:image" content="https://TU_DOMINIO.com/og-image.jpg"><!-- ⚠️ Crea imagen 1200×630px -->
+    <meta property="og:url" content="https://TU_DOMINIO.com/"><!-- ⚠️ Reemplaza con tu URL real -->
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Flamia - Ecosistema de IA para Real Estate">
+    <meta name="twitter:description" content="Agentes IA que califican leads, crean listings y gestionan citas 24/7 para tu agencia inmobiliaria.">
+    <meta name="twitter:image" content="https://TU_DOMINIO.com/og-image.jpg"><!-- ⚠️ Misma imagen OG 1200×630px -->
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <!-- Schema Markup: Organización -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Flamia",
+      "description": "Ecosistema de Agentes IA para agencias inmobiliarias. Automatiza leads, citas y listings 24/7.",
+      "url": "https://TU_DOMINIO.com",
+      "logo": "https://TU_DOMINIO.com/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "availableLanguage": "Spanish"
+      },
+      "legalName": "Flamia Group Inc."
+    }
+    </script>
+    <!-- Schema Markup: Producto SaaS -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Flamia",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "Suite de Agentes IA para agencias inmobiliarias: texto, voz, web y social media con integración CRM.",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "Flamia Group Inc."
+      }
+    }
+    </script>
+
      <style>
   .pulse-arrow {
     animation: pulse 1.8s ease-in-out infinite;
@@ -17,6 +79,8 @@
 </style>
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -333,6 +397,16 @@
             .flip-card { height: auto; }
             .flip-card-inner { transform: none !important; }
             .flip-card-back, .flip-card-front { position: relative; transform: none; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .pulse-arrow, .chat-float, .dot-flashing,
+            .dot-flashing::before, .dot-flashing::after,
+            .integration-track, .hero-galaxy, .galaxy-horizon,
+            body::before {
+                animation: none !important;
+                transition: none !important;
+            }
         }
     </style>
 </head>
@@ -1140,7 +1214,7 @@ if (overlay) {
       <!-- Flecha curva hacia el widget -->
       <img 
         src="/assets/arrow-chat.svg" 
-        alt="Flecha hacia chat" 
+        alt="Ir al chat con el agente IA de Flamia"
         class="hidden md:block absolute -right-40 -bottom-28 w-48 opacity-90 rotate-6 pointer-events-none"
       />
     </div>
@@ -1153,6 +1227,11 @@ if (overlay) {
         <div class="container mx-auto px-5 sm:px-6 flex flex-col items-center justify-center text-center text-gray-500 text-sm gap-3">
             <div class="font-bold text-white text-lg">Flamia</div>
             <div>&copy; 2026 Flamia Group Inc.</div>
+            <div class="flex gap-4 text-xs">
+                <a href="/privacy.html" class="underline hover:text-white">Privacy Policy</a>
+                <span>|</span>
+                <a href="/terms.html" class="underline hover:text-white">Terms of Service</a>
+            </div>
         </div>
     </footer>
 
@@ -1307,10 +1386,6 @@ return reply || "No recibí respuesta del asistente. ¿Podés repetir tu pregunt
     }
 
 
-        function openCalendar() {
-  const url = "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3j-rice2KsjhUQQO1xQKthJdek1KFWsZD5WjWxOZ4SCJ1aCMpDFWvNjCOsrtYlT2FG8bh9sBWy?gv=true";
-  window.open(url, "_blank", "noopener,noreferrer");
-        }
 
        
         document.addEventListener("DOMContentLoaded", () => {
@@ -1477,11 +1552,6 @@ function linkifyAndFormat(text = "") {
     </script>
     <div class="galaxy-horizon" aria-hidden="true"></div>
 
-    <footer class="text-center text-xs text-gray-500 py-8">
-  <a href="/privacy.html" class="underline hover:text-white mx-2">Privacy Policy</a>
-  |
-  <a href="/terms.html" class="underline hover:text-white mx-2">Terms of Service</a>
-</footer>
 
 </body>
 </html>
