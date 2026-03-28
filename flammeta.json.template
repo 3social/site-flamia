@@ -1,0 +1,43 @@
+{
+  "$schema": "https://flamia.dev/schemas/flammeta.json",
+  "agency": "FLAMIA",
+  "owner": "Mike",
+  "location": "Costa Rica (GMT-6)",
+  
+  "project": {
+    "name": "[PROJECT_NAME]",
+    "description": "[PROJECT_DESCRIPTION]",
+    "status": "[active|paused|completed]",
+    "context_file": "/mnt/c/Users/micha/OneDrive/Escritorio/files/SYSTEM_PROMPT.md"
+  },
+
+  "coding_standards": {
+    "language": "JavaScript/Node.js preferred, Python secondary",
+    "comments_language": "Spanish for business logic, English for technical",
+    "git_commits": "Semantic, in Spanish",
+    "formatting": "Prettier (JavaScript), Black (Python)",
+    "testing": "Unit tests required for critical paths"
+  },
+
+  "flamia_alignment": {
+    "applies_to_lead_flow": false,
+    "applies_to_crm": false,
+    "applies_to_automation": false,
+    "applies_to_voice": false,
+    "client_facing": false
+  },
+
+  "tech_stack": {
+    "runtime": "Node.js 18+",
+    "frameworks": [],
+    "databases": [],
+    "integrations": []
+  },
+
+  "key_contacts": {
+    "owner": "Mike",
+    "timezone": "GMT-6"
+  },
+
+  "last_updated": "2026-03-28"
+}

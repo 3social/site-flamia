@@ -16,8 +16,10 @@
   }
 </style>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com" defer></script>
     <style>
         :root {
             --bg: #050507;
@@ -44,20 +46,14 @@
             top: 60%;
             width: 120vmin;
             height: 120vmin;
-            transform: translate(-50%, -50%) scale(1.05);
+            transform: translate(-50%, -50%);
             background: radial-gradient(circle at center,
-                    rgba(79, 70, 229, 0) 30%,
-                    rgba(79, 70, 229, 0.32) 46%,
-                    rgba(139, 92, 246, 0.26) 53%,
-                    rgba(59, 130, 246, 0.18) 60%,
-                    rgba(79, 70, 229, 0.12) 72%,
-                    rgba(79, 70, 229, 0) 84%);
-            opacity: 0.25;
-            filter: blur(60px);
-            mix-blend-mode: screen;
+                    transparent 30%,
+                    rgba(79, 70, 229, 0.1) 50%,
+                    rgba(139, 92, 246, 0.06) 65%,
+                    transparent 80%);
             pointer-events: none;
             z-index: 0;
-            animation: ring-drift 55s linear infinite;
         }
 
         .section-block {
@@ -76,20 +72,17 @@
 
         /* Components */
         .glass-card {
-            background: var(--surface);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(20, 20, 28, 0.85);
             border: 1px solid var(--border);
             border-radius: 1.5rem;
-            transition: all 0.35s ease;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+            transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
             height: 100%;
         }
         .glass-card:hover {
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(28, 28, 40, 0.9);
             border-color: rgba(99, 102, 241, 0.3);
             transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
         }
 
         .cta-button {
@@ -161,7 +154,7 @@
         .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
         .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 1.25rem; padding: 1.75rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; text-align: center; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); }
         .flip-card-front { background: rgba(20, 20, 25, 0.9); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .flip-card-back { transform: rotateY(180deg); backdrop-filter: blur(12px); }
+        .flip-card-back { transform: rotateY(180deg); }
         .flip-card-back-speed { background: linear-gradient(145deg, rgba(34, 197, 94, 0.2), rgba(6, 95, 70, 0.1)); border: 1px solid rgba(74, 222, 128, 0.35); }
         .flip-card-back-filter { background: linear-gradient(145deg, rgba(79, 70, 229, 0.2), rgba(6, 182, 212, 0.1)); border: 1px solid rgba(99, 102, 241, 0.35); }
         .flip-card-back-automation { background: linear-gradient(145deg, rgba(96, 165, 250, 0.2), rgba(30, 64, 175, 0.1)); border: 1px solid rgba(147, 197, 253, 0.35); }
@@ -192,13 +185,10 @@
             inset: -10% 0 0 0;
             pointer-events: none;
             background-image:
-                radial-gradient(60% 40% at 20% 35%, rgba(124, 58, 237, 0.18), transparent 55%),
-                radial-gradient(50% 30% at 70% 25%, rgba(59, 130, 246, 0.08), transparent 60%),
-                radial-gradient(120% 90% at 50% 85%, rgba(15, 118, 110, 0.04), transparent 70%);
-            filter: blur(4px);
+                radial-gradient(60% 40% at 20% 35%, rgba(124, 58, 237, 0.12), transparent 55%),
+                radial-gradient(50% 30% at 70% 25%, rgba(59, 130, 246, 0.06), transparent 60%);
             mix-blend-mode: screen;
-            opacity: 0.08;
-            animation: galaxy-drift 720s linear infinite;
+            opacity: 0.12;
         }
 
         .galaxy-horizon {
@@ -210,22 +200,12 @@
             pointer-events: none;
             z-index: -1;
             background-image:
-                radial-gradient(50% 45% at 20% 30%, rgba(99, 102, 241, 0.2), transparent 55%),
-                radial-gradient(60% 50% at 75% 25%, rgba(139, 92, 246, 0.12), transparent 60%),
-                radial-gradient(90% 80% at 50% 80%, rgba(59, 130, 246, 0.09), transparent 70%),
-                radial-gradient(1px 1px at 10% 15%, rgba(255, 255, 255, 0.5), transparent 55%),
-                radial-gradient(1px 1px at 30% 45%, rgba(255, 255, 255, 0.35), transparent 55%),
-                radial-gradient(1px 1px at 55% 20%, rgba(255, 255, 255, 0.35), transparent 55%),
-                radial-gradient(1px 1px at 80% 40%, rgba(255, 255, 255, 0.4), transparent 55%);
+                radial-gradient(50% 45% at 20% 30%, rgba(99, 102, 241, 0.15), transparent 55%),
+                radial-gradient(60% 50% at 75% 25%, rgba(139, 92, 246, 0.08), transparent 60%),
+                radial-gradient(90% 80% at 50% 80%, rgba(59, 130, 246, 0.07), transparent 70%);
             background-repeat: no-repeat;
             mix-blend-mode: screen;
-            opacity: 0.07;
-            animation: galaxy-drift 680s linear infinite reverse;
-        }
-
-        @keyframes galaxy-drift {
-            0% { background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0; }
-            100% { background-position: 220px 140px, -200px 120px, 140px 200px, 120px 40px, -80px 60px, 60px -40px, -100px 30px; }
+            opacity: 0.1;
         }
 
         /* Solutions icon */
@@ -248,10 +228,9 @@
             position: absolute;
             inset: -12px;
             border-radius: 999px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.18), transparent 55%);
-            opacity: 0.5;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.12), transparent 55%);
+            opacity: 0.6;
             z-index: -1;
-            filter: blur(12px);
         }
         .solution-icon svg {
             width: 40px;
@@ -259,7 +238,6 @@
             stroke: #3b82f6;
             stroke-width: 2.2;
             fill: none;
-            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.45));
         }
 
         /* Integrations carousel */
@@ -320,11 +298,6 @@
             100% { transform: translateX(-50%); }
         }
 
-        @keyframes ring-drift {
-            0% { transform: translate(-50%, -52%) scale(1.02); }
-            50% { transform: translate(-50%, -48%) scale(1.06); }
-            100% { transform: translate(-50%, -52%) scale(1.02); }
-        }
 
         @media (max-width: 767px) {
             h1 { font-size: 2.25rem; line-height: 1.2; }
@@ -338,7 +311,7 @@
 </head>
 <body class="antialiased selection:bg-indigo-500 selection:text-white">
     <!-- HEADER -->
-    <header class="fixed top-0 z-40 w-full bg-[#050507]/85 backdrop-blur-xl border-b border-white/5" id="navbar">
+    <header class="fixed top-0 z-40 w-full bg-[#070709] border-b border-white/5" id="navbar">
         <nav class="container mx-auto px-5 sm:px-6 py-4 flex justify-between items-center">
             <a href="#home" class="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg">
                 <div class="brand-mark" aria-hidden="true">
@@ -373,7 +346,7 @@
     <main>
         <!-- HERO -->
         <section id="home" class="section-block pt-32 md:pt-44 relative overflow-hidden">
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[960px] h-[520px] bg-indigo-600/20 rounded-full blur-[120px] -z-10 opacity-50"></div>
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[960px] h-[520px] -z-10" style="background: radial-gradient(ellipse at center, rgba(79,70,229,0.22) 0%, transparent 70%); border-radius: 50%;"></div>
             <div class="hero-galaxy" aria-hidden="true"></div>
             <div class="container mx-auto px-5 sm:px-6 text-center max-w-5xl">
                 <div class="badge mb-5">✨ Powered by Flamia</div>
@@ -581,20 +554,24 @@
     // Mostramos overlay de “iniciando llamada”
     showCallOverlay(phone);
 
+    const callController = new AbortController();
+    const callTimeout = setTimeout(() => callController.abort(), 15000);
     try {
       const res = await fetch(FLAMIA_CALL_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
+        signal: callController.signal,
         body: JSON.stringify({
           name,
           phone,
           email,
-          source: "landing-flamia",     // opcional: para tracking
+          source: "landing-flamia",
           createdAt: new Date().toISOString()
         })
       });
+      clearTimeout(callTimeout);
 
       if (!res.ok) {
         console.error("Error HTTP desde backend de llamada:", res.status, res.statusText);
@@ -1266,17 +1243,21 @@ if (overlay) {
     // -----------------------
     
     async function callFlamiaAgent(prompt) {
+        const chatController = new AbortController();
+        const chatTimeout = setTimeout(() => chatController.abort(), 15000);
         try {
             const response = await fetch(FLAMIA_BACKEND_URL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
+                signal: chatController.signal,
                 body: JSON.stringify({
                     message: prompt,
                     sessionId: FLAMIA_SESSION_ID
                 })
             });
+            clearTimeout(chatTimeout);
 
             if (!response.ok) {
                 console.error("Error HTTP desde backend:", response.status, response.statusText);
@@ -1307,18 +1288,6 @@ return reply || "No recibí respuesta del asistente. ¿Podés repetir tu pregunt
     }
 
 
-        function openCalendar() {
-  const url = "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3j-rice2KsjhUQQO1xQKthJdek1KFWsZD5WjWxOZ4SCJ1aCMpDFWvNjCOsrtYlT2FG8bh9sBWy?gv=true";
-  window.open(url, "_blank", "noopener,noreferrer");
-        }
-
-       
-        document.addEventListener("DOMContentLoaded", () => {
-  const voiceForm = document.getElementById("voice-form");
-  if (voiceForm) {
-    voiceForm.addEventListener("submit", handleVoiceFormSubmit);
-  }
-});
 
         // --- FEATURE 2: CHATBOT FLAMIA (via n8n) ---
 
@@ -1429,19 +1398,21 @@ function linkifyAndFormat(text = "") {
         const animateCounters = () => {
             counters.forEach(counter => {
                 const target = +counter.getAttribute('data-target');
-                const speed = 200;
-                const updateCount = () => {
-                    const count = +counter.innerText.replace(/,/g, '');
-                    const inc = target / speed;
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + inc).toLocaleString('en-US');
-                        setTimeout(updateCount, 20);
+                const duration = 900;
+                const start = performance.now();
+                const tick = (now) => {
+                    const progress = Math.min((now - start) / duration, 1);
+                    const current = Math.floor(progress * target);
+                    counter.innerText = current.toLocaleString('en-US');
+                    if (progress < 1) {
+                        requestAnimationFrame(tick);
                     } else {
-                        if(target > 1000000) counter.innerText = (target / 1000000).toFixed(1) + "M";
-                        else counter.innerText = target.toLocaleString('en-US');
+                        counter.innerText = target > 1000000
+                            ? (target / 1000000).toFixed(1) + "M"
+                            : target.toLocaleString('en-US');
                     }
                 };
-                updateCount();
+                requestAnimationFrame(tick);
             });
         }
         let animated = false;
