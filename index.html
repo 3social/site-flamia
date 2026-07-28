@@ -635,7 +635,8 @@
       const res = await fetch(FLAMIA_CALL_URL, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+        "X-Flamia-Secret": "f41266ae-90fc-4166-ab07-094c9107361d"  
         },
         signal: callController.signal,
         body: JSON.stringify({
