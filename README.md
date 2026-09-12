@@ -8,7 +8,7 @@ Formulario que dispara una llamada automatica: el lead deja sus datos y recibe u
 
 ## Arquitectura General
 
-Frontend: HTML mas TailwindCSS, JavaScript vanilla, sitio estatico sin build step. Deploy automatico a produccion via GitHub Pages en cada push a main (ver seccion Deploy). Desarrollo local con python -m http.server 8000.
+Frontend: HTML mas TailwindCSS, JavaScript vanilla, sitio estatico sin build step. Se publica subiendo archivos a Hostinger (ver seccion Deploy). Desarrollo local con python -m http.server 8000.
 
 Integraciones: Chat web hacia Webhook n8n. Formulario de llamada hacia Webhook n8n.
 
@@ -18,7 +18,27 @@ IA: Chat con n8n AI Agent (OpenAI). Voz con Vapi (orquestacion) mas Twilio (tele
 
 ## Deploy
 
-El sitio se publica automaticamente mediante GitHub Pages en cada push a la rama main (workflow pages build and deployment, visible en la pestana Actions del repo). No hace falta subir archivos manualmente por FTP a ningun hosting: basta con commitear a main y en menos de un minuto el cambio queda live en el dominio.
+El sitio se publica **subiendo los archivos a Hostinger**, no por GitHub Pages.
+Verificado contra la API de Hostinger: `flamiagroup.com` es un vhost principal
+cuyo document root es `/home/u783834143/domains/flamiagroup.com/public_html`,
+y ahi viven los archivos que sirve el dominio. Commitear a `main` no publica
+nada por si solo: hay que subir los archivos.
+
+Del mismo `public_html` cuelgan otros dos sitios, que no se deben tocar al
+subir cambios de este:
+
+| Subdominio | Carpeta |
+| --- | --- |
+| `inmobiliaria.flamiagroup.com` | `public_html/inmobiliaria` |
+| `ghl.flamiagroup.com` | `public_html/build` |
+
+Por eso las reglas de `.htaccess` preservan el host al redirigir: una regla
+que apunte a un dominio fijo arrastraria el trafico de esos subdominios al
+dominio principal.
+
+En produccion hay ademas un `data-deletion.html` (pagina de solicitud de
+eliminacion de datos, requisito de la app de Meta) que **no esta en este
+repositorio**. Conviene versionarlo antes de que se pierda.
 
 ## Endpoints
 
