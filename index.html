@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es-CR" class="scroll-smooth">
    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agentes de IA para Inmobiliarias 24/7 | Flamia</title>
+    <title>IA para Inmobiliarias en Costa Rica | Agentes de Voz y WhatsApp | Flamia Group</title>
 
     <!-- SEO basico -->
-    <meta name="description" content="Agentes de IA que llaman a tus leads en 15 segundos, los califican y agendan visitas 24/7. Voz, WhatsApp y CRM para tu agencia inmobiliaria.">
+    <meta name="description" content="Potencia tu agencia inmobiliaria en Costa Rica con Inteligencia Artificial. Automatiza llamadas, cualifica leads por WhatsApp y conecta tu CRM en segundos.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="https://flamiagroup.com/">
     <meta name="author" content="Flamia Group Inc.">
@@ -20,21 +20,21 @@
     <!-- Open Graph (WhatsApp, LinkedIn, Facebook) -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Flamia">
-    <meta property="og:title" content="Agentes de IA para Inmobiliarias 24/7 | Flamia">
-    <meta property="og:description" content="Califican leads, agendan citas y llaman en 15 segundos. Trabajando 24/7 para tu agencia inmobiliaria.">
+    <meta property="og:title" content="IA para Inmobiliarias en Costa Rica | Agentes de Voz y WhatsApp | Flamia Group">
+    <meta property="og:description" content="Automatiza llamadas, cualifica leads por WhatsApp y conecta tu CRM en segundos. Agentes de IA para inmobiliarias en Costa Rica.">
     <meta property="og:image" content="https://flamiagroup.com/assets/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Flamia - Agentes de IA para agencias inmobiliarias">
+    <meta property="og:image:alt" content="Flamia Group - IA para inmobiliarias en Costa Rica">
     <meta property="og:url" content="https://flamiagroup.com/">
-    <meta property="og:locale" content="es_LA">
+    <meta property="og:locale" content="es_CR">
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Agentes de IA para Inmobiliarias 24/7 | Flamia">
-    <meta name="twitter:description" content="Califican leads, agendan citas y llaman en 15 segundos. Trabajando 24/7 para tu agencia inmobiliaria.">
+    <meta name="twitter:title" content="IA para Inmobiliarias en Costa Rica | Agentes de Voz y WhatsApp | Flamia Group">
+    <meta name="twitter:description" content="Automatiza llamadas, cualifica leads por WhatsApp y conecta tu CRM en segundos. Agentes de IA para inmobiliarias en Costa Rica.">
     <meta name="twitter:image" content="https://flamiagroup.com/assets/og-image.jpg">
-    <meta name="twitter:image:alt" content="Flamia - Agentes de IA para agencias inmobiliarias">
+    <meta name="twitter:image:alt" content="Flamia Group - IA para inmobiliarias en Costa Rica">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon.png">
@@ -53,12 +53,26 @@
       "@context": "https://schema.org",
       "@graph": [
         {
-          "@type": "Organization",
+          "@type": ["Organization", "ProfessionalService"],
           "@id": "https://flamiagroup.com/#organization",
-          "name": "Flamia",
+          "name": "Flamia Group",
+          "alternateName": "Flamia",
           "legalName": "Flamia Group Inc.",
           "url": "https://flamiagroup.com/",
-          "description": "Ecosistema de Agentes de IA para agencias inmobiliarias: califican leads, agendan citas y actualizan el CRM 24/7.",
+          "description": "Agencia de inteligencia artificial para inmobiliarias en Costa Rica: agentes de voz y WhatsApp que califican leads, agendan citas y sincronizan el CRM 24/7.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "CR"
+          },
+          "areaServed": [
+            { "@type": "Country", "name": "Costa Rica" },
+            { "@type": "City", "name": "San José" },
+            { "@type": "City", "name": "Heredia" }
+          ],
+          "serviceArea": {
+            "@type": "AdministrativeArea",
+            "name": "Costa Rica"
+          },
           "logo": {
             "@type": "ImageObject",
             "url": "https://flamiagroup.com/assets/logo.png",
@@ -66,11 +80,13 @@
             "height": 512
           },
           "image": "https://flamiagroup.com/assets/og-image.jpg",
-          "knowsLanguage": "es",
+          "knowsLanguage": ["es", "en"],
+          "makesOffer": { "@id": "https://flamiagroup.com/#service" },
           "contactPoint": {
             "@type": "ContactPoint",
             "contactType": "sales",
             "availableLanguage": ["Spanish", "English"],
+            "areaServed": "CR",
             "url": "https://flamiagroup.com/#contact"
           }
         },
@@ -96,8 +112,13 @@
         {
           "@type": "Service",
           "@id": "https://flamiagroup.com/#service",
-          "name": "Agentes de IA para agencias inmobiliarias",
+          "name": "Agentes de IA para agencias inmobiliarias en Costa Rica",
           "serviceType": "Automatizacion con inteligencia artificial para real estate",
+          "areaServed": [
+            { "@type": "Country", "name": "Costa Rica" },
+            { "@type": "City", "name": "San José" },
+            { "@type": "City", "name": "Heredia" }
+          ],
           "description": "Suite de agentes de IA que responden, califican y agendan por voz, WhatsApp, chat web y redes sociales, con sincronizacion al CRM.",
           "provider": { "@id": "https://flamiagroup.com/#organization" },
           "audience": {
@@ -148,6 +169,11 @@
               "@type": "Question",
               "name": "\u00bfPuedo probar el agente de voz antes de contratar?",
               "acceptedAnswer": { "@type": "Answer", "text": "Si. En la seccion Demo de Voz dejas tu nombre y telefono y Sofia, la agente de IA de real estate, te llama en segundos e intenta agendar una visita contigo, igual que lo haria con un lead real." }
+            },
+            {
+              "@type": "Question",
+              "name": "\u00bfTrabajan con inmobiliarias fuera de San Jose?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Si. Flamia Group da servicio a agencias de bienes raices en todo Costa Rica: San Jose, Heredia, Alajuela, Cartago, Guanacaste y la zona costera. La implementacion es remota y los agentes de IA trabajan sobre tu WhatsApp, tu telefonia y tu CRM, sin importar donde este tu oficina." }
             },
             {
               "@type": "Question",
@@ -556,11 +582,11 @@
             <div class="hero-galaxy" aria-hidden="true"></div>
             <div class="container mx-auto px-5 sm:px-6 text-center max-w-5xl">
                 <div class="badge mb-5">✨ Powered by Flamia</div>
-                <h1 class="font-black text-white text-4xl sm:text-5xl lg:text-6xl leading-tight tracking-tight mb-6">
-                    Tu Agencia Inmobiliaria,<br><span class="hero-gradient-text">Ahora con Superpoderes</span>.
+                <h1 class="font-black text-white text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-tight mb-6">
+                    Agencia de Inteligencia Artificial para Inmobiliarias en <span class="hero-gradient-text">Costa Rica</span>
                 </h1>
                 <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
-                    Flamia despliega una fuerza laboral digital de Agentes IA que califican leads, crean listings y gestionan citas 24/7. <span class="text-white font-semibold">Escala sin límites.</span>
+                    Flamia Group despliega una fuerza laboral digital de Agentes IA que califican leads, gestionan citas 24/7 y hacen automatización de WhatsApp para bienes raíces. <span class="text-white font-semibold">Software inmobiliario para agencias en San José, Heredia y todo Costa Rica.</span>
                 </p>
                 <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
                     <a href="#voice-demo" class="sparkle-button px-7 py-4 rounded-full text-base sm:text-lg shadow-lg w-full sm:w-auto flex items-center justify-center gap-2">
@@ -596,7 +622,7 @@
         <section id="pain-points" class="section-block bg-gradient-to-b from-[#050507] to-[#0A0A0F]">
             <div class="container mx-auto px-5 sm:px-6">
                 <div class="section-header">
-                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">¿Te suena familiar esta <span class="danger-gradient-text">Pesadilla</span>?</h2>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Los Principales <span class="danger-gradient-text">Desafíos</span> en la Gestión de Leads Inmobiliarios</h2>
                     <p class="text-gray-400 text-lg">El modelo tradicional está roto. Pasa el cursor (o toca) para ver cómo Flamia reescribe las reglas.</p>
                 </div>
                 <div class="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
@@ -606,14 +632,14 @@
                                 <div class="icon-4d-front">
                                     <svg class="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                 </div>
-                                <h3 class="text-2xl font-bold text-white">El "Ghosting" de Leads</h3>
+                                <h3 class="text-2xl font-bold text-white">El "Ghosting" de Leads por Respuesta Tardía</h3>
                                 <p class="text-gray-400 leading-relaxed">Compras leads, llamas 2 horas después y nadie contesta. Tu dinero se va a la basura y tu equipo se frustra llamando a buzones de voz.</p>
                             </div>
                             <div class="flip-card-back flip-card-back-speed">
                                 <div class="icon-4d-back icon-4d-back-green">
                                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5l6 6m0 0l-6 6m6-6h-18" /></svg>
                                 </div>
-                                <h3 class="text-2xl font-bold text-white">Respuesta en 5 Segundos</h3>
+                                <h4 class="text-2xl font-bold text-white">Respuesta en 5 Segundos</h4>
                                 <p class="text-gray-100 leading-relaxed">Nuestra IA contacta al lead en el instante en que se registra. La tasa de contacto sube del 20% al <strong>95%</strong>.</p>
                             </div>
                         </div>
@@ -624,14 +650,14 @@
                                 <div class="icon-4d-front">
                                     <svg class="w-8 h-8 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                 </div>
-                                <h3 class="text-2xl font-bold text-white">Turismo Inmobiliario</h3>
+                                <h3 class="text-2xl font-bold text-white">Pérdida de Tiempo con "Turismo Inmobiliario"</h3>
                                 <p class="text-gray-400 leading-relaxed">Agentes perdiendo tardes enteras enseñando casas a personas que "solo están mirando" o que no tienen pre-aprobación bancaria.</p>
                             </div>
                             <div class="flip-card-back flip-card-back-filter">
                                 <div class="icon-4d-back icon-4d-back-indigo">
                                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" /></svg>
                                 </div>
-                                <h3 class="text-2xl font-bold text-white">Filtro de Cualificación</h3>
+                                <h4 class="text-2xl font-bold text-white">Filtro de Cualificación</h4>
                                 <p class="text-gray-100 leading-relaxed">La IA entrevista al cliente antes de agendar: presupuesto, urgencia y crédito. Tu equipo solo visita con compradores <strong>reales</strong>.</p>
                             </div>
                         </div>
@@ -642,14 +668,14 @@
                                 <div class="icon-4d-front">
                                     <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" /></svg>
                                 </div>
-                                <h3 class="text-2xl font-bold text-white">Caos Administrativo</h3>
+                                <h3 class="text-2xl font-bold text-white">Caos Administrativo y Falta de Seguimiento en CRM</h3>
                                 <p class="text-gray-400 leading-relaxed">Excel desactualizados, notas en servilletas y seguimientos olvidados. El 60% de las ventas se pierden por falta de follow-up.</p>
                             </div>
                             <div class="flip-card-back flip-card-back-automation">
                                 <div class="icon-4d-back icon-4d-back-blue">
                                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
                                 </div>
-                                <h3 class="text-2xl font-bold text-white">CRM Autónomo</h3>
+                                <h4 class="text-2xl font-bold text-white">CRM Autónomo</h4>
                                 <p class="text-gray-100 leading-relaxed">La IA actualiza el CRM automáticamente tras cada conversación. Programa recordatorios y nutre al lead durante meses hasta que compre.</p>
                             </div>
                         </div>
@@ -663,10 +689,10 @@
             <div class="container mx-auto px-5 sm:px-6 grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
                 <div class="space-y-4">
                     <div class="badge">📞 Llamada en Vivo</div>
-                    <h2 class="text-3xl md:text-5xl font-bold text-white">Tu Lead recibe una llamada <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400">en segundos</span>.</h2>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white">Respuesta Inmediata y Cualificación Automática <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400">en Segundos</span></h2>
                     <p class="text-gray-300 text-lg">Experimenta la velocidad de Flamia. Ingresa tus datos como si fueras un cliente potencial y nuestro Agente de Voz te llamará inmediatamente para cualificar tu interés.</p>
                     <div class="p-6 bg-white/5 border border-dashed border-white/10 rounded-2xl space-y-2">
-                        <h4 class="text-white font-semibold">¿Qué sucederá?</h4>
+                        <h3 class="text-white font-semibold text-lg">¿Cómo funciona el Agente de Voz IA de Flamia Group?</h3>
                         <ul class="text-sm text-gray-400 space-y-3">
                             <li class="flex items-center gap-2"><span class="w-2 h-2 bg-green-500 rounded-full"></span>Tu teléfono sonará en aproximadamente 15 segundos.</li>
                             <li class="flex items-center gap-2"><span class="w-2 h-2 bg-green-500 rounded-full"></span>Hablarás con "Sofia", nuestra agente IA de Real Estate.</li>
@@ -679,11 +705,13 @@
                         <div class="w-20 h-20 rounded-full bg-indigo-600 flex items-center justify-center mb-6 pulse-ring">
                             <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                         </div>
-                        <h3 class="text-2xl font-bold text-white mb-2">Iniciando Llamada...</h3>
+                        <div class="text-2xl font-bold text-white mb-2">Iniciando Llamada...</div>
                         <p class="text-indigo-300 mb-6">Conectando Agente IA con <span id="display-phone" class="font-mono text-white">...</span></p>
                         <p class="text-xs text-gray-500">Por favor, mantén tu línea libre.</p>
                         <button onclick="resetCallForm()" class="mt-8 text-sm text-gray-500 hover:text-white underline">Cancelar / Probar otro número</button>
                     </div>
+                    <h3 class="text-xl font-bold text-white mb-1">Simulación de Llamada Automática a Compradores</h3>
+                    <p class="text-sm text-gray-400 mb-6">Deja tus datos como si fueras un lead y recibe la llamada real.</p>
                     <form id="voice-form" class="space-y-5">
                         <div>
                             <label class="block text-xs font-medium text-gray-400 mb-1 uppercase">Nombre Completo</label>
@@ -696,7 +724,7 @@
                             <label class="block text-xs font-medium text-gray-400 mb-1 uppercase">Número de Teléfono</label>
                             <div class="relative">
                                 <span class="absolute left-4 top-3.5 text-gray-500">📱</span>
-                                <input type="tel" id="lead-phone" required class="w-full bg-[#1A1A24] border border-gray-700 rounded-lg pl-10 pr-4 py-3 text-white focus:border-indigo-500 focus:outline-none" placeholder="+34 600 000 000">
+                                <input type="tel" id="lead-phone" required class="w-full bg-[#1A1A24] border border-gray-700 rounded-lg pl-10 pr-4 py-3 text-white focus:border-indigo-500 focus:outline-none" placeholder="+506 8888 8888">
                             </div>
                         </div>
                         <div>
@@ -753,7 +781,7 @@
   console.log("[VOICE] phone:", phone);
 
   if (!isValidPhone(phone)) {
-    alert("Por favor, ingresa un número de teléfono válido (idealmente con código de país, ej. +34…).");
+    alert("Por favor, ingresa un número de teléfono válido (idealmente con código de país, ej. +506…).");
     return;
   }
 
@@ -835,7 +863,7 @@ if (overlay) {
             <div class="container mx-auto px-5 sm:px-6">
                 <div class="section-header">
                     <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Ecosistema de <br class="hidden sm:block">Agentes Inteligentes.</h2>
-                    <p class="text-gray-400 text-lg">Una suite completa de soluciones IA que automatizan cada punto de contacto con tus clientes.</p>
+                    <p class="text-gray-400 text-lg">Una suite completa de soluciones de IA que automatiza cada punto de contacto con tus clientes y se integra con tu CRM para inmobiliarias en Costa Rica.</p>
                 </div>
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-green-500/50">
@@ -1328,6 +1356,13 @@ if (overlay) {
                             <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
                         <div class="faq-answer">Sí. En la sección <a href="#voice-demo" class="text-indigo-300 underline hover:text-white">Demo de Voz</a> dejas tu nombre y teléfono, y Sofía —nuestra agente de IA de real estate— te llama en segundos e intenta agendar una visita contigo, igual que lo haría con un lead real.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>
+                            <span>¿Trabajan con inmobiliarias fuera de San José?</span>
+                            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="faq-answer">Sí. Flamia Group da servicio a agencias de bienes raíces en todo Costa Rica: <strong class="text-white">San José, Heredia, Alajuela, Cartago, Guanacaste</strong> y la zona costera. La implementación es remota y los agentes de IA trabajan sobre tu WhatsApp, tu telefonía y tu CRM, sin importar dónde esté tu oficina.</div>
                     </details>
                     <details class="faq-item">
                         <summary>

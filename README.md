@@ -88,3 +88,23 @@ mismo: si editas una, edita la otra.
 2. Probar el marcado en <https://search.google.com/test/rich-results>.
 3. Probar la tarjeta social en <https://www.linkedin.com/post-inspector/>.
 4. Medir Core Web Vitals en <https://pagespeed.web.dev/>.
+
+### SEO local (Costa Rica)
+
+El sitio esta posicionado para Costa Rica: `lang="es-CR"`, `og:locale` `es_CR`,
+y la entidad principal del JSON-LD se declara como `Organization` +
+`ProfessionalService` con `areaServed` Costa Rica, San Jose y Heredia.
+
+Palabras clave secundarias colocadas en el cuerpo: *CRM para inmobiliarias
+Costa Rica* (intro de Soluciones), *automatizacion de WhatsApp para bienes
+raices* y *software inmobiliario San Jose / Heredia / Costa Rica* (hero).
+
+PENDIENTE para que el negocio local rinda de verdad:
+
+- Direccion completa (calle, ciudad, codigo postal) y telefono publico en el
+  nodo `PostalAddress` del JSON-LD. Hoy solo declara `addressCountry: CR`.
+  No inventar estos datos: tienen que coincidir exactamente con los de
+  Google Business Profile o Google los descarta.
+- Ficha de Google Business Profile verificada, con el mismo nombre, telefono
+  y direccion que el sitio.
+- URLs de LinkedIn, Instagram y Facebook en `sameAs`.
