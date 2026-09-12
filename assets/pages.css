@@ -4,6 +4,14 @@
    asi que pintan al instante y no dependen de ningun CDN.
    ========================================================================== */
 
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/assets/fonts/inter-var-latin.woff2') format('woff2');
+}
+
 :root {
   --bg: #050507;
   --surface: rgba(255, 255, 255, 0.03);

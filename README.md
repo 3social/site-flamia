@@ -101,6 +101,31 @@ Los datos estructurados viven en un solo bloque JSON-LD en el `<head>` de
 FAQPage. La seccion visible `#faq` y el bloque FAQPage tienen que decir lo
 mismo: si editas una, edita la otra.
 
+### Rendimiento: sin CDN de terceros
+
+El sitio no carga nada de dominios externos. Antes dependia de dos:
+
+- **Tailwind Play CDN** (`cdn.tailwindcss.com`): ~400 KB de JavaScript que
+  compilaban el CSS **en el navegador de cada visitante**, bloqueando el
+  render. Sustituido por `assets/tailwind.css`, el mismo CSS ya compilado:
+  22 KB, cacheable y sin JavaScript de por medio.
+- **Google Fonts**: Inter ahora se sirve desde `assets/fonts/`, como fuente
+  variable con el subconjunto latino (48 KB, cubre de 100 a 900 y todos los
+  acentos del espanol). Se precarga con `rel="preload"`.
+
+Resultado: la home hace **3 peticiones**, todas al propio dominio.
+
+**IMPORTANTE — `assets/tailwind.css` es un archivo generado.** Si agregas o
+cambias clases de Tailwind en el HTML, hay que regenerarlo o esas clases no
+tendran estilo:
+
+```bash
+npx tailwindcss@3 -i <(printf '@tailwind base;@tailwind components;@tailwind utilities;') \
+  -o assets/tailwind.css --minify --content './*.html'
+```
+
+Y volver a subir `assets/tailwind.css` junto al HTML.
+
 ### Despues de publicar
 
 1. Verificar el dominio en Google Search Console y enviar

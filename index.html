@@ -12,10 +12,9 @@
     <link rel="canonical" href="https://flamiagroup.com/">
     <meta name="author" content="Flamia Group Inc.">
 
-    <!-- Rendimiento: abre las conexiones a los CDN antes de necesitarlas -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <!-- Rendimiento: CSS y tipografia propios, sin CDN de terceros.
+         La fuente se precarga porque es lo que retiene el primer texto. -->
+    <link rel="preload" href="/assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- Open Graph (WhatsApp, LinkedIn, Facebook) -->
     <meta property="og:type" content="website">
@@ -202,9 +201,18 @@
   }
 </style>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/tailwind.css">
     <style>
+        /* Inter, subconjunto latino, fuente variable: una sola peticion
+           cubre de 100 a 900. swap evita el texto invisible mientras carga. */
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url('/assets/fonts/inter-var-latin.woff2') format('woff2');
+        }
+
         :root {
             --bg: #050507;
             --surface: rgba(255, 255, 255, 0.03);
@@ -875,9 +883,9 @@ if (overlay) {
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-green-500/50">
                         <div class="solution-icon" aria-hidden="true">
                             <svg viewBox="0 0 40 40" role="presentation">
-                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
-                                <path d="M8 18l12 6 12-6" />
-                                <path d="M8 24l12 6 12-6" />
+                                <path d="M8 11h24v18H18l-8 6v-6H8z" />
+                                <path d="M15 18h12" />
+                                <path d="M15 23h7" />
                             </svg>
                         </div>
                         <h3 class="text-xl font-bold text-white text-center">Agente de Texto</h3>
@@ -886,9 +894,10 @@ if (overlay) {
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-blue-500/50">
                         <div class="solution-icon" aria-hidden="true">
                             <svg viewBox="0 0 40 40" role="presentation">
-                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
-                                <path d="M8 18l12 6 12-6" />
-                                <path d="M8 24l12 6 12-6" />
+                                <path d="M20 7a4 4 0 014 4v8a4 4 0 01-8 0v-8a4 4 0 014-4z" />
+                                <path d="M11 18v1a9 9 0 0018 0v-1" />
+                                <path d="M20 28v6" />
+                                <path d="M15 34h10" />
                             </svg>
                         </div>
                         <h3 class="text-xl font-bold text-white text-center">Agente de Voz</h3>
@@ -897,9 +906,11 @@ if (overlay) {
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-indigo-500/50">
                         <div class="solution-icon" aria-hidden="true">
                             <svg viewBox="0 0 40 40" role="presentation">
-                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
-                                <path d="M8 18l12 6 12-6" />
-                                <path d="M8 24l12 6 12-6" />
+                                <path d="M7 9h26v20H7z" />
+                                <path d="M7 15h26" />
+                                <path d="M11 12h.02" />
+                                <path d="M15 12h.02" />
+                                <path d="M15 22l3 3 7-7" />
                             </svg>
                         </div>
                         <h3 class="text-xl font-bold text-white text-center">Agente Web</h3>
@@ -908,9 +919,11 @@ if (overlay) {
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-pink-500/50">
                         <div class="solution-icon" aria-hidden="true">
                             <svg viewBox="0 0 40 40" role="presentation">
-                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
-                                <path d="M8 18l12 6 12-6" />
-                                <path d="M8 24l12 6 12-6" />
+                                <path d="M26 13a4 4 0 100-8 4 4 0 000 8z" />
+                                <path d="M12 24a4 4 0 100-8 4 4 0 000 8z" />
+                                <path d="M26 35a4 4 0 100-8 4 4 0 000 8z" />
+                                <path d="M15.5 18.2l7 -4.1" />
+                                <path d="M15.5 21.8l7 4.1" />
                             </svg>
                         </div>
                         <h3 class="text-xl font-bold text-white text-center">Social Media Agent</h3>
@@ -919,9 +932,9 @@ if (overlay) {
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-purple-500/50">
                         <div class="solution-icon" aria-hidden="true">
                             <svg viewBox="0 0 40 40" role="presentation">
-                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
-                                <path d="M8 18l12 6 12-6" />
-                                <path d="M8 24l12 6 12-6" />
+                                <path d="M6 20s5-8 14-8 14 8 14 8-5 8-14 8-14-8-14-8z" />
+                                <path d="M20 24a4 4 0 100-8 4 4 0 000 8z" />
+                                <path d="M28 30l4 4" />
                             </svg>
                         </div>
                         <h3 class="text-xl font-bold text-white text-center">Vision Valuation</h3>
@@ -930,9 +943,11 @@ if (overlay) {
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-orange-500/50">
                         <div class="solution-icon" aria-hidden="true">
                             <svg viewBox="0 0 40 40" role="presentation">
-                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
-                                <path d="M8 18l12 6 12-6" />
-                                <path d="M8 24l12 6 12-6" />
+                                <path d="M20 13c6.6 0 12-1.8 12-4s-5.4-4-12-4-12 1.8-12 4 5.4 4 12 4z" />
+                                <path d="M8 9v10c0 2.2 5.4 4 12 4" />
+                                <path d="M32 9v7" />
+                                <path d="M25 27l4-4 4 4" />
+                                <path d="M35 31l-4 4-4-4" />
                             </svg>
                         </div>
                         <h3 class="text-xl font-bold text-white text-center">CRM Sync</h3>
@@ -941,9 +956,10 @@ if (overlay) {
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-cyan-500/50">
                         <div class="solution-icon" aria-hidden="true">
                             <svg viewBox="0 0 40 40" role="presentation">
-                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
-                                <path d="M8 18l12 6 12-6" />
-                                <path d="M8 24l12 6 12-6" />
+                                <path d="M8 17l12-9 12 9" />
+                                <path d="M11 15v16h18V15" />
+                                <path d="M17 31v-8h6v8" />
+                                <path d="M20 4v3" />
                             </svg>
                         </div>
                         <h3 class="text-xl font-bold text-white text-center">Property DB Connect</h3>
@@ -952,9 +968,9 @@ if (overlay) {
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-yellow-500/50">
                         <div class="solution-icon" aria-hidden="true">
                             <svg viewBox="0 0 40 40" role="presentation">
-                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
-                                <path d="M8 18l12 6 12-6" />
-                                <path d="M8 24l12 6 12-6" />
+                                <path d="M15 12l-7 8 7 8" />
+                                <path d="M25 12l7 8-7 8" />
+                                <path d="M23 9l-6 22" />
                             </svg>
                         </div>
                         <h3 class="text-xl font-bold text-white text-center">Integraciones API</h3>
