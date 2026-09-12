@@ -75,13 +75,16 @@ ErrorDocument 404 /404.html
 # flammeta.json.template). Todo lo que esta en el document root lo sirve el
 # servidor salvo que se bloquee, y esos documentos describen la arquitectura
 # y el flujo de la llamada de voz. Mejor que no sean legibles desde fuera.
-<FilesMatch "\.(md|markdown|template|yml|yaml|ini|log|sh|bak|sql)$">
-  Require all denied
-</FilesMatch>
+# Se usa RedirectMatch (mod_alias) en vez de <FilesMatch>+Require: una sola
+# mecanica, sin depender del proveedor de autorizacion, y si el modulo
+# faltara no tumba el sitio con un 500.
+<IfModule mod_alias.c>
+  RedirectMatch 404 \.(md|markdown|template|yml|yaml|ini|log|sh|bak|sql)$
 
-# Archivos ocultos (.git, .env, .DS_Store...), con .well-known como excepcion
-# porque lo usan los certificados y las verificaciones de dominio.
-RedirectMatch 404 /\.(?!well-known)
+  # Archivos ocultos (.git, .env, .DS_Store...), con .well-known como
+  # excepcion porque lo usan los certificados y la verificacion de dominio.
+  RedirectMatch 404 /\.(?!well-known)
+</IfModule>
 
 # --- 7. Sin listado de directorios ----------------------------------------
 Options -Indexes
