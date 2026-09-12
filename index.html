@@ -4,28 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flamia - Ecosistema de IA para Real Estate</title>
+    <title>Agentes de IA para Inmobiliarias 24/7 | Flamia</title>
 
-    <!-- SEO básico -->
-    <meta name="description" content="Flamia despliega Agentes IA que califican leads, crean listings y gestionan citas 24/7 para tu agencia inmobiliaria. Escala sin contratar más personal.">
-    <meta name="keywords" content="IA inmobiliaria, agentes IA real estate, automatización inmobiliaria, CRM inteligente, leads inmobiliarios, chatbot inmobiliario, agente voz IA">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://flamiagroup.com/"><!-- ⚠️ Reemplaza con tu URL real -->
+    <!-- SEO basico -->
+    <meta name="description" content="Agentes de IA que llaman a tus leads en 15 segundos, los califican y agendan visitas 24/7. Voz, WhatsApp y CRM para tu agencia inmobiliaria.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://flamiagroup.com/">
+    <meta name="author" content="Flamia Group Inc.">
 
-    <!-- Open Graph (redes sociales) -->
+    <!-- Rendimiento: abre las conexiones a los CDN antes de necesitarlas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+
+    <!-- Open Graph (WhatsApp, LinkedIn, Facebook) -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Flamia">
-    <meta property="og:title" content="Flamia - Ecosistema de IA para Real Estate">
-    <meta property="og:description" content="Agentes IA que califican leads, crean listings y gestionan citas 24/7 para tu agencia inmobiliaria. Escala sin límites.">
-    <meta property="og:image" content="https://flamiagroup.com/og-image.jpg"><!-- ⚠️ Crea imagen 1200×630px -->
-    <meta property="og:url" content="https://flamiagroup.com/"><!-- ⚠️ Reemplaza con tu URL real -->
-    <meta property="og:locale" content="es_ES">
+    <meta property="og:title" content="Agentes de IA para Inmobiliarias 24/7 | Flamia">
+    <meta property="og:description" content="Califican leads, agendan citas y llaman en 15 segundos. Trabajando 24/7 para tu agencia inmobiliaria.">
+    <meta property="og:image" content="https://flamiagroup.com/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Flamia - Agentes de IA para agencias inmobiliarias">
+    <meta property="og:url" content="https://flamiagroup.com/">
+    <meta property="og:locale" content="es_LA">
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Flamia - Ecosistema de IA para Real Estate">
-    <meta name="twitter:description" content="Agentes IA que califican leads, crean listings y gestionan citas 24/7 para tu agencia inmobiliaria.">
-    <meta name="twitter:image" content="https://flamiagroup.com/og-image.jpg"><!-- ⚠️ Misma imagen OG 1200×630px -->
+    <meta name="twitter:title" content="Agentes de IA para Inmobiliarias 24/7 | Flamia">
+    <meta name="twitter:description" content="Califican leads, agendan citas y llaman en 15 segundos. Trabajando 24/7 para tu agencia inmobiliaria.">
+    <meta name="twitter:image" content="https://flamiagroup.com/assets/og-image.jpg">
+    <meta name="twitter:image:alt" content="Flamia - Agentes de IA para agencias inmobiliarias">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon.png">
@@ -35,40 +44,119 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.png">
     <meta name="theme-color" content="#050507">
 
-    <!-- Schema Markup: Organización -->
+    <!-- Datos estructurados (un solo grafo: Google los lee mejor relacionados
+         entre si que como bloques sueltos).
+         PENDIENTE: agrega en "sameAs" las URLs reales de LinkedIn / Instagram /
+         Facebook de Flamia. Es la senal mas directa de que la marca existe. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Flamia",
-      "description": "Ecosistema de Agentes IA para agencias inmobiliarias. Automatiza leads, citas y listings 24/7.",
-      "url": "https://flamiagroup.com",
-      "logo": "https://flamiagroup.com/logo.png",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "sales",
-        "availableLanguage": "Spanish"
-      },
-      "legalName": "Flamia Group Inc."
-    }
-    </script>
-    <!-- Schema Markup: Producto SaaS -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Flamia",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web",
-      "description": "Suite de Agentes IA para agencias inmobiliarias: texto, voz, web y social media con integración CRM.",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "USD"
-      },
-      "provider": {
-        "@type": "Organization",
-        "name": "Flamia Group Inc."
-      }
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://flamiagroup.com/#organization",
+          "name": "Flamia",
+          "legalName": "Flamia Group Inc.",
+          "url": "https://flamiagroup.com/",
+          "description": "Ecosistema de Agentes de IA para agencias inmobiliarias: califican leads, agendan citas y actualizan el CRM 24/7.",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://flamiagroup.com/assets/logo.png",
+            "width": 512,
+            "height": 512
+          },
+          "image": "https://flamiagroup.com/assets/og-image.jpg",
+          "knowsLanguage": "es",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "sales",
+            "availableLanguage": ["Spanish", "English"],
+            "url": "https://flamiagroup.com/#contact"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://flamiagroup.com/#website",
+          "url": "https://flamiagroup.com/",
+          "name": "Flamia",
+          "inLanguage": "es",
+          "publisher": { "@id": "https://flamiagroup.com/#organization" }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://flamiagroup.com/#webpage",
+          "url": "https://flamiagroup.com/",
+          "name": "Agentes de IA para Inmobiliarias 24/7 | Flamia",
+          "description": "Agentes de IA que llaman a tus leads en 15 segundos, los califican y agendan visitas 24/7.",
+          "isPartOf": { "@id": "https://flamiagroup.com/#website" },
+          "about": { "@id": "https://flamiagroup.com/#organization" },
+          "primaryImageOfPage": "https://flamiagroup.com/assets/og-image.jpg",
+          "inLanguage": "es"
+        },
+        {
+          "@type": "Service",
+          "@id": "https://flamiagroup.com/#service",
+          "name": "Agentes de IA para agencias inmobiliarias",
+          "serviceType": "Automatizacion con inteligencia artificial para real estate",
+          "description": "Suite de agentes de IA que responden, califican y agendan por voz, WhatsApp, chat web y redes sociales, con sincronizacion al CRM.",
+          "provider": { "@id": "https://flamiagroup.com/#organization" },
+          "audience": {
+            "@type": "BusinessAudience",
+            "name": "Agencias inmobiliarias y agentes de bienes raices"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Ecosistema de Agentes Inteligentes",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Agente de Texto", "description": "Respuesta inmediata en WhatsApp y SMS. Cualifica leads y agenda visitas 24/7." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Agente de Voz", "description": "Llamadas telefonicas naturales para reactivar bases de datos y confirmar citas." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Agente Web", "description": "Chatbot incrustado en tu sitio que guia al usuario y captura datos en tiempo real." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Social Media Agent", "description": "Responde DMs y comentarios en Instagram y Facebook. Convierte seguidores en leads." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vision Valuation", "description": "Valora propiedades analizando fotos: acabados, luz y estado de conservacion." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CRM Sync", "description": "Sincronizacion bidireccional con el CRM de tu preferencia." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Property DB Connect", "description": "Conexion directa con MLS y bases de datos internas para cruce de oferta y demanda." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Integraciones API", "description": "Acceso para desarrolladores: integra la inteligencia de Flamia en tus propias apps." } }
+            ]
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://flamiagroup.com/#faq",
+          "isPartOf": { "@id": "https://flamiagroup.com/#webpage" },
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "\u00bfQue es un agente de IA para inmobiliarias?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Es un asistente automatizado que conversa con tus leads por telefono, WhatsApp, chat web o redes sociales. Responde al instante, hace las preguntas de cualificacion (presupuesto, urgencia, credito), agenda la visita en el calendario del agente y deja todo registrado en el CRM, sin intervencion humana." }
+            },
+            {
+              "@type": "Question",
+              "name": "\u00bfEn cuanto tiempo contacta la IA a un lead nuevo?",
+              "acceptedAnswer": { "@type": "Answer", "text": "El agente contacta al lead en el instante en que se registra: la llamada entra en unos 15 segundos. Esa velocidad sube la tasa de contacto de alrededor del 20% al 95%, porque el 78% de los leads compran con el primer agente que les responde." }
+            },
+            {
+              "@type": "Question",
+              "name": "\u00bfSe integra con mi CRM y con la MLS?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Si. CRM Sync mantiene una sincronizacion bidireccional con el CRM que ya usas, y Property DB Connect se conecta con la MLS y con bases de datos internas para cruzar oferta y demanda. Tambien hay acceso por API para integraciones a medida." }
+            },
+            {
+              "@type": "Question",
+              "name": "\u00bfEn que canales trabajan los agentes de IA?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Llamadas telefonicas, WhatsApp, SMS, chat en tu sitio web y mensajes directos y comentarios en Instagram y Facebook. Cada canal usa el mismo cerebro, asi que la conversacion no se pierde si el cliente cambia de medio." }
+            },
+            {
+              "@type": "Question",
+              "name": "\u00bfPuedo probar el agente de voz antes de contratar?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Si. En la seccion Demo de Voz dejas tu nombre y telefono y Sofia, la agente de IA de real estate, te llama en segundos e intenta agendar una visita contigo, igual que lo haria con un lead real." }
+            },
+            {
+              "@type": "Question",
+              "name": "\u00bfLa IA reemplaza a mi equipo de ventas?",
+              "acceptedAnswer": { "@type": "Answer", "text": "No. Filtra. La IA se queda con el trabajo repetitivo: perseguir leads frios, calificar y coordinar agendas. Tu equipo deja de perder tardes en visitas con curiosos y solo se sienta con compradores reales." }
+            }
+          ]
+        }
+      ]
     }
     </script>
 
@@ -84,7 +172,6 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com" defer></script>
     <style>
         :root {
             --bg: #050507;
@@ -148,6 +235,50 @@
             border-color: rgba(99, 102, 241, 0.3);
             transform: translateY(-4px);
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+        }
+
+        /* FAQ: acordeon nativo, sin JavaScript. El texto vive en el DOM
+           desde el primer render, asi que Google lo indexa aunque este cerrado. */
+        .faq-item {
+            background: rgba(20, 20, 28, 0.85);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+        .faq-item:hover,
+        .faq-item[open] {
+            border-color: rgba(99, 102, 241, 0.3);
+            background: rgba(24, 24, 34, 0.9);
+        }
+        .faq-item summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            list-style: none;
+            font-weight: 600;
+            color: #fff;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: -2px;
+            border-radius: 1rem;
+        }
+        .faq-chevron {
+            flex-shrink: 0;
+            width: 1.25rem;
+            height: 1.25rem;
+            color: #818CF8;
+            transition: transform 0.25s ease;
+        }
+        .faq-item[open] .faq-chevron { transform: rotate(180deg); }
+        .faq-answer {
+            padding: 0 1.5rem 1.35rem;
+            color: #A1A1AA;
+            line-height: 1.7;
         }
 
         .cta-button {
@@ -1155,7 +1286,61 @@ if (overlay) {
         </section>
 
         <!-- CONTACT -->
-<section id="contact" class="section-block bg-gradient-to-t from-indigo-900/20 to-transparent relative">
+        <!-- FAQ -->
+        <section id="faq" class="section-block bg-[#07070c] border-t border-white/5">
+            <div class="container mx-auto px-5 sm:px-6">
+                <div class="section-header">
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Preguntas <span class="hero-gradient-text">frecuentes</span></h2>
+                    <p class="text-gray-400 text-lg">Lo que todo director de agencia pregunta antes de automatizar.</p>
+                </div>
+                <div class="max-w-3xl mx-auto space-y-3">
+                    <details class="faq-item">
+                        <summary>
+                            <span>¿Qué es un agente de IA para inmobiliarias?</span>
+                            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="faq-answer">Es un asistente automatizado que conversa con tus leads por teléfono, WhatsApp, chat web o redes sociales. Responde al instante, hace las preguntas de cualificación —presupuesto, urgencia, crédito—, agenda la visita en el calendario del agente y deja todo registrado en el CRM, sin intervención humana.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>
+                            <span>¿En cuánto tiempo contacta la IA a un lead nuevo?</span>
+                            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="faq-answer">El agente contacta al lead en el instante en que se registra: la llamada entra en unos <strong class="text-white">15 segundos</strong>. Esa velocidad sube la tasa de contacto de alrededor del 20% al 95%, porque el 78% de los leads compran con el primer agente que les responde.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>
+                            <span>¿Se integra con mi CRM y con la MLS?</span>
+                            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="faq-answer">Sí. <strong class="text-white">CRM Sync</strong> mantiene una sincronización bidireccional con el CRM que ya usas, y <strong class="text-white">Property DB Connect</strong> se conecta con la MLS y con bases de datos internas para cruzar oferta y demanda. También hay acceso por API para integraciones a medida.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>
+                            <span>¿En qué canales trabajan los agentes de IA?</span>
+                            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="faq-answer">Llamadas telefónicas, WhatsApp, SMS, chat en tu sitio web y mensajes directos y comentarios en Instagram y Facebook. Cada canal usa el mismo cerebro, así que la conversación no se pierde si el cliente cambia de medio.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>
+                            <span>¿Puedo probar el agente de voz antes de contratar?</span>
+                            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="faq-answer">Sí. En la sección <a href="#voice-demo" class="text-indigo-300 underline hover:text-white">Demo de Voz</a> dejas tu nombre y teléfono, y Sofía —nuestra agente de IA de real estate— te llama en segundos e intenta agendar una visita contigo, igual que lo haría con un lead real.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>
+                            <span>¿La IA reemplaza a mi equipo de ventas?</span>
+                            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="faq-answer">No. Filtra. La IA se queda con el trabajo repetitivo: perseguir leads fríos, calificar y coordinar agendas. Tu equipo deja de perder tardes en visitas con curiosos y solo se sienta con compradores reales.</div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section-block bg-gradient-to-t from-indigo-900/20 to-transparent relative">
   <div class="container mx-auto px-5 sm:px-6 text-center relative">
     
     <h2 class="text-3xl md:text-5xl font-bold text-white mb-3">¿Listo para escalar?</h2> <img 
@@ -1207,6 +1392,8 @@ if (overlay) {
             <div class="font-bold text-white text-lg">Flamia</div>
             <div>&copy; 2026 Flamia Group Inc.</div>
             <div class="flex gap-4 text-xs">
+                <a href="#faq" class="underline hover:text-white">Preguntas frecuentes</a>
+                <span>|</span>
                 <a href="/privacy.html" class="underline hover:text-white">Privacy Policy</a>
                 <span>|</span>
                 <a href="/terms.html" class="underline hover:text-white">Terms of Service</a>

@@ -59,3 +59,32 @@ Ver CLAUDE.md para el detalle completo del incidente y contexto para futuras mod
 ## Variables de Entorno EasyPanel
 
 OPENAI_KEY, VAPI_API_KEY, N8N_DEFAULT_CORS igual TRUE, N8N_CORS_ALLOW_ORIGIN igual http localhost 8000, WEBHOOK_CORS_ALLOWED_ORIGINS igual http localhost 8000, WEBHOOK_CORS_ALLOWED_METHODS igual GET HEAD POST OPTIONS, WEBHOOK_CORS_ALLOWED_HEADERS igual Content-Type Authorization.
+
+## SEO
+
+Archivos que sostienen el SEO del sitio. Todos son estaticos: si publicas
+subiendo archivos a Hostinger, van a `public_html` respetando la misma
+estructura de carpetas.
+
+| Archivo | Para que sirve |
+| --- | --- |
+| `robots.txt` | Permite el rastreo y declara el sitemap. Deja pasar a proposito a los bots de IA (GPTBot, PerplexityBot, ClaudeBot): Flamia vende IA, aparecer en esas respuestas es adquisicion. |
+| `sitemap.xml` | Lista de URLs para Google Search Console. Actualiza `lastmod` cuando cambie el contenido. |
+| `.htaccess` | Una sola URL canonica (https, sin www), compresion, cache, cabeceras de seguridad y pagina 404. Es un archivo oculto: activa "Mostrar archivos ocultos" en el Administrador de archivos de Hostinger. |
+| `404.html` | Pagina de error propia, con enlaces de vuelta al sitio. |
+| `assets/og-image.jpg` | Tarjeta 1200x630 que se ve al compartir el enlace en WhatsApp, LinkedIn o Facebook. |
+| `assets/logo.png` | Logo 512x512 declarado en los datos estructurados (Schema.org). |
+| `assets/pages.css` | Estilos de `privacy.html`, `terms.html` y `404.html`. No dependen de Tailwind. |
+
+Los datos estructurados viven en un solo bloque JSON-LD en el `<head>` de
+`index.html`, como un `@graph` con Organization, WebSite, WebPage, Service y
+FAQPage. La seccion visible `#faq` y el bloque FAQPage tienen que decir lo
+mismo: si editas una, edita la otra.
+
+### Despues de publicar
+
+1. Verificar el dominio en Google Search Console y enviar
+   `https://flamiagroup.com/sitemap.xml`.
+2. Probar el marcado en <https://search.google.com/test/rich-results>.
+3. Probar la tarjeta social en <https://www.linkedin.com/post-inspector/>.
+4. Medir Core Web Vitals en <https://pagespeed.web.dev/>.
