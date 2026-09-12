@@ -102,6 +102,20 @@ body {
 .site-footer a:hover { color: #fff; }
 .site-footer .links { margin-top: 0.75rem; display: flex; gap: 1rem; justify-content: center; }
 
+/* NAP (nombre, direccion, telefono) repetido en cada pagina: la consistencia
+   entre paginas es en si una senal de SEO local. */
+.site-footer .nap {
+  font-style: normal;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  justify-content: center;
+  margin-bottom: 0.85rem;
+  color: #71717A;
+}
+.site-footer .nap a { color: #A1A1AA; text-decoration: none; }
+.site-footer .nap a:hover { color: #fff; text-decoration: underline; }
+
 @media (max-width: 480px) {
   .legal { padding-top: 2.5rem; }
 }

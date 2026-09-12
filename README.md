@@ -99,12 +99,28 @@ Palabras clave secundarias colocadas en el cuerpo: *CRM para inmobiliarias
 Costa Rica* (intro de Soluciones), *automatizacion de WhatsApp para bienes
 raices* y *software inmobiliario San Jose / Heredia / Costa Rica* (hero).
 
-PENDIENTE para que el negocio local rinda de verdad:
+NAP (nombre, direccion, telefono) del negocio, repetido igual en el pie de
+todas las paginas y en el JSON-LD:
 
-- Direccion completa (calle, ciudad, codigo postal) y telefono publico en el
-  nodo `PostalAddress` del JSON-LD. Hoy solo declara `addressCountry: CR`.
-  No inventar estos datos: tienen que coincidir exactamente con los de
-  Google Business Profile o Google los descarta.
-- Ficha de Google Business Profile verificada, con el mismo nombre, telefono
-  y direccion que el sitio.
+- Flamia Group
+- +506 8940 1202
+- contacto@flamiagroup.com
+- Heredia, Costa Rica
+
+Flamia es un negocio digital, sin local con atencion al publico. Por eso el
+nodo `PostalAddress` declara `addressLocality` Heredia y `addressCountry` CR,
+pero **no** una calle: inventar una direccion fisica que no existe rompe la
+coincidencia con Google Business Profile y Google descarta el marcado.
+El alcance real se declara en `areaServed` y `serviceArea`.
+
+Si cambia el telefono o la localidad, hay que cambiarlo en los cuatro sitios
+a la vez (JSON-LD de `index.html` y pie de `index.html`, `privacy.html`,
+`terms.html`, `404.html`). La inconsistencia de NAP es de los errores que mas
+castigan el SEO local.
+
+PENDIENTE:
+
+- Ficha de Google Business Profile como **negocio de area de servicio**
+  (sin direccion visible, con Heredia y las zonas atendidas). Sin ficha
+  verificada no hay paquete local por mas impecable que este el schema.
 - URLs de LinkedIn, Instagram y Facebook en `sameAs`.
