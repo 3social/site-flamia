@@ -1,5 +1,25 @@
 # Flamia Group – AI Website (Chat + Voice Call)
 
+> ## ⚠️ AL SERVIDOR VA `public/`, NUNCA EL REPOSITORIO
+>
+> A `public_html` se sube **unicamente el contenido de la carpeta `public/`**,
+> con los archivos en la raiz. Nada de `CLAUDE.md`, `README.md`,
+> `flammeta.json.template`, `package.sh` ni `.gitignore`.
+>
+> ```bash
+> ./package.sh     # genera flamia-public_html.zip, listo para subir
+> ```
+>
+> Subir el repositorio entero rompe el sitio de dos formas a la vez: deja
+> `index.html` dentro de `public/` en vez de la raiz, con lo que el dominio
+> se queda sin pagina de inicio, y devuelve al servidor la documentacion
+> interna que describe el host de n8n, la ruta del webhook y el nombre del
+> header de autenticacion. Ya paso. Dos veces.
+>
+> Descargar el ZIP desde GitHub (*Code → Download ZIP*) tiene el mismo
+> efecto: ese ZIP es el repositorio, no el sitio.
+
+
 Landing page de Flamia Group con dos funcionalidades clave impulsadas por IA.
 
 Chat Web con IA: asistente conversacional que responde consultas sobre servicios de IA y automatizacion, orientado a conversion (agendar consultoria y calificar leads).
