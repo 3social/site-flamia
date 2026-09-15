@@ -64,6 +64,28 @@ durante un periodo indeterminado; quien lo haya leido conoce la arquitectura
 completa aunque no el valor del secreto, que de todos modos siempre fue
 legible en el HTML del sitio.
 
+## Tercer incidente, septiembre 2026: el repositorio subido al servidor
+
+Tras fusionar a main se subio el repositorio completo a public_html en vez
+del contenido de public. Efecto doble: index.html dejo de estar en la raiz,
+con lo que el dominio se quedo sin pagina de inicio y el sitio estuvo caido,
+y CLAUDE.md, README.md, flammeta.json.template, package.sh y .gitignore
+volvieron al servidor.
+
+La exposicion no llego a producirse porque el .htaccess de la raiz devuelve
+404 ante rutas terminadas en punto md, punto template y punto sh, y ante
+archivos ocultos. La segunda capa aguanto, que es exactamente para lo que
+esta.
+
+Se recupero moviendo el contenido de public a la raiz. Quedaron sin borrar
+CLAUDE.md, README.md, flammeta.json.template, .gitignore, package.sh y una
+carpeta sobrante assets.4171: son inaccesibles desde fuera, pero conviene
+limpiarlos.
+
+REGLA: al servidor va unicamente el contenido de public, con los archivos en
+la raiz del ZIP. Se genera con package.sh. Descargar el ZIP desde GitHub con
+Code y Download ZIP NO sirve: ese ZIP es el repositorio, no el sitio.
+
 ## Estado del sitio, septiembre 2026
 
 Se reescribio el SEO y el rendimiento. Lo relevante para no deshacerlo sin
