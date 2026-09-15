@@ -569,21 +569,23 @@
                 </div>
                 <div class="text-lg sm:text-xl font-bold tracking-tight text-white">Flamia</div>
             </a>
-            <div class="hidden md:flex items-center space-x-8 text-sm font-semibold">
+            <div class="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-semibold">
                 <a href="#pain-points" class="text-gray-300 hover:text-white transition-colors">Problemas vs Solución</a>
                 <a href="#solutions" class="text-gray-300 hover:text-white transition-colors">Soluciones</a>
                 <a href="#voice-demo" class="text-indigo-300 hover:text-white transition-colors flex items-center gap-1"><span>📞 Demo Voz</span></a>
-                <button onclick="openCalendar()" class="cta-button text-white px-6 py-2.5 rounded-full">Agendar Consultoría</button>
+                <a href="https://ghl.flamiagroup.com" class="text-white border border-indigo-400/40 hover:border-indigo-400 hover:bg-indigo-500/10 px-5 py-2.5 rounded-full transition-colors whitespace-nowrap">Obtenga GHL</a>
+                <button onclick="openCalendar()" class="cta-button text-white px-6 py-2.5 rounded-full whitespace-nowrap">Agendar Consultoría</button>
             </div>
-            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg" aria-expanded="false" aria-controls="mobile-menu">
+            <button id="mobile-menu-button" class="lg:hidden text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg" aria-expanded="false" aria-controls="mobile-menu">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </nav>
-        <div id="mobile-menu" class="hidden bg-[#0A0A0F] border-b border-white/10 pb-4 px-6 md:hidden absolute w-full z-30">
+        <div id="mobile-menu" class="hidden bg-[#0A0A0F] border-b border-white/10 pb-4 px-6 lg:hidden absolute w-full z-30">
             <div class="flex flex-col space-y-2 text-sm font-semibold">
                 <a href="#pain-points" class="block py-3 text-gray-300 hover:text-white">Problemas</a>
                 <a href="#solutions" class="block py-3 text-gray-300 hover:text-white">Soluciones</a>
                 <a href="#voice-demo" class="block py-3 text-indigo-300">📞 Demo Voz</a>
+                <a href="https://ghl.flamiagroup.com" class="block w-full text-center py-3 mb-2 rounded-lg text-white font-bold border border-indigo-400/40 hover:bg-indigo-500/10">Obtenga GHL</a>
                 <button onclick="openCalendar()" class="w-full bg-indigo-600 text-center py-3 rounded-lg text-white font-bold">Agendar Consultoría</button>
             </div>
         </div>
