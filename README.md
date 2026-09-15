@@ -80,6 +80,54 @@ Ver CLAUDE.md para el detalle completo del incidente y contexto para futuras mod
 
 OPENAI_KEY, VAPI_API_KEY, N8N_DEFAULT_CORS igual TRUE, N8N_CORS_ALLOW_ORIGIN igual http localhost 8000, WEBHOOK_CORS_ALLOWED_ORIGINS igual http localhost 8000, WEBHOOK_CORS_ALLOWED_METHODS igual GET HEAD POST OPTIONS, WEBHOOK_CORS_ALLOWED_HEADERS igual Content-Type Authorization.
 
+## Estructura del repositorio
+
+Lo que se publica y lo que no estan fisicamente separados. No es una
+convencion: es la unica garantia de que un archivo interno no termine
+servido en produccion por un descuido.
+
+```
+public/          <- esto y solo esto va a public_html
+  .htaccess
+  index.html  privacy.html  terms.html  404.html
+  robots.txt  sitemap.xml
+  assets/      (css, fuentes, imagenes)
+
+CLAUDE.md               <- interno, NUNCA se sube
+README.md               <- interno, NUNCA se sube
+flammeta.json.template  <- interno, NUNCA se sube
+package.sh              <- utilidad local
+```
+
+Motivo: en produccion se detectaron `CLAUDE.md`, `README.md` y
+`flammeta.json.template` servidos publicamente desde `public_html`.
+`CLAUDE.md` describe el host de n8n, la ruta del webhook, el nombre del
+header de autenticacion, que el secreto es legible en el HTML y cual es el
+limite de llamadas: el manual completo del ataque que ya costo dinero una
+vez. Las reglas del `.htaccess` los bloquean, pero una regla se puede
+borrar; una carpeta que no se sube, no.
+
+### Publicar
+
+```bash
+./package.sh     # empaqueta public/ en flamia-public_html.zip
+```
+
+Los archivos quedan en la raiz del ZIP, sin la carpeta `public/` por
+delante, de modo que al extraerlo dentro de `public_html` cada uno cae donde
+debe. Subir el ZIP al Administrador de archivos de Hostinger, extraer,
+reemplazar, y borrar el ZIP.
+
+Dos cosas que se olvidan y cuestan una tarde:
+
+- `.htaccess` empieza con punto. Finder y el Explorador de Windows lo
+  ocultan, asi que si se descomprime en local y se suben los archivos a
+  mano, se queda atras. Extraer **en el servidor**, o subirlo aparte y
+  renombrarlo alli.
+- Hostinger cachea del lado del servidor. Si tras subir no se ve el cambio:
+  hPanel, Rendimiento, Cache, Purgar todo. Para comprobar sin caches de por
+  medio, abrir el sitio con un parametro cualquiera: `?v=2`.
+
 ## SEO
 
 Archivos que sostienen el SEO del sitio. Todos son estaticos: si publicas
@@ -115,16 +163,16 @@ El sitio no carga nada de dominios externos. Antes dependia de dos:
 
 Resultado: la home hace **3 peticiones**, todas al propio dominio.
 
-**IMPORTANTE — `assets/tailwind.css` es un archivo generado.** Si agregas o
+**IMPORTANTE — `public/assets/tailwind.css` es un archivo generado.** Si agregas o
 cambias clases de Tailwind en el HTML, hay que regenerarlo o esas clases no
 tendran estilo:
 
 ```bash
 npx tailwindcss@3 -i <(printf '@tailwind base;@tailwind components;@tailwind utilities;') \
-  -o assets/tailwind.css --minify --content './*.html'
+  -o public/assets/tailwind.css --minify --content './public/*.html'
 ```
 
-Y volver a subir `assets/tailwind.css` junto al HTML.
+Y volver a subir `public/assets/tailwind.css` junto al HTML.
 
 ### Despues de publicar
 
