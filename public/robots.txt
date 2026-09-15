@@ -1,0 +1,24 @@
+# robots.txt - flamiagroup.com
+
+User-agent: *
+Allow: /
+
+# Rastreadores de IA: permitidos a proposito.
+# Flamia vende IA; aparecer en respuestas de ChatGPT, Perplexity y Claude
+# es un canal de adquisicion, no una fuga.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://flamiagroup.com/sitemap.xml

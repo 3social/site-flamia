@@ -1,0 +1,129 @@
+/* ==========================================================================
+   Flamia - hoja de estilos de las paginas legales.
+   Autocontenida a proposito: privacy.html y terms.html no cargan Tailwind,
+   asi que pintan al instante y no dependen de ningun CDN.
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/assets/fonts/inter-var-latin.woff2') format('woff2');
+}
+
+:root {
+  --bg: #050507;
+  --surface: rgba(255, 255, 255, 0.03);
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #A1A1AA;
+  --heading: #FFFFFF;
+  --primary: #818CF8;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1rem;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: #070709;
+}
+
+.site-header .inner,
+.legal,
+.site-footer .inner {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.site-header .inner {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  height: 4rem;
+  color: var(--heading);
+  font-weight: 700;
+  font-size: 1.15rem;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.6rem;
+  background: linear-gradient(140deg, #6366F1, #8B5CF6);
+  color: #fff;
+}
+.brand-mark svg { width: 1.1rem; height: 1.1rem; }
+
+.legal { padding: 3.5rem 1.5rem 4.5rem; }
+
+.legal h1 {
+  color: var(--heading);
+  font-size: clamp(1.9rem, 5vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin: 0 0 0.75rem;
+}
+
+.legal .updated {
+  color: #71717A;
+  font-size: 0.85rem;
+  margin: 0 0 2.5rem;
+}
+
+.legal h2 {
+  color: var(--heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 2.75rem 0 0.5rem;
+}
+
+.legal p, .legal li { margin: 0 0 1rem; }
+.legal ul { padding-left: 1.25rem; }
+.legal li { margin-bottom: 0.5rem; }
+
+.legal a { color: var(--primary); text-decoration: underline; }
+.legal a:hover { color: #fff; }
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 2.5rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #52525B;
+}
+.site-footer a { color: #71717A; text-decoration: underline; }
+.site-footer a:hover { color: #fff; }
+.site-footer .links { margin-top: 0.75rem; display: flex; gap: 1rem; justify-content: center; }
+
+/* NAP (nombre, direccion, telefono) repetido en cada pagina: la consistencia
+   entre paginas es en si una senal de SEO local. */
+.site-footer .nap {
+  font-style: normal;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  justify-content: center;
+  margin-bottom: 0.85rem;
+  color: #71717A;
+}
+.site-footer .nap a { color: #A1A1AA; text-decoration: none; }
+.site-footer .nap a:hover { color: #fff; text-decoration: underline; }
+
+@media (max-width: 480px) {
+  .legal { padding-top: 2.5rem; }
+}

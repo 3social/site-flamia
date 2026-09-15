@@ -1,31 +1,39 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es-CR" class="scroll-smooth">
    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flamia - Ecosistema de IA para Real Estate</title>
+    <title>IA para Inmobiliarias en Costa Rica y LATAM | Flamia Group</title>
 
-    <!-- SEO básico -->
-    <meta name="description" content="Flamia despliega Agentes IA que califican leads, crean listings y gestionan citas 24/7 para tu agencia inmobiliaria. Escala sin contratar más personal.">
-    <meta name="keywords" content="IA inmobiliaria, agentes IA real estate, automatización inmobiliaria, CRM inteligente, leads inmobiliarios, chatbot inmobiliario, agente voz IA">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://flamiagroup.com/"><!-- ⚠️ Reemplaza con tu URL real -->
+    <!-- SEO basico -->
+    <meta name="description" content="Agentes de IA para inmobiliarias en Costa Rica y LATAM. Automatiza llamadas, cualifica leads por WhatsApp y conecta tu CRM en segundos.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://flamiagroup.com/">
+    <meta name="author" content="Flamia Group Inc.">
 
-    <!-- Open Graph (redes sociales) -->
+    <!-- Rendimiento: CSS y tipografia propios, sin CDN de terceros.
+         La fuente se precarga porque es lo que retiene el primer texto. -->
+    <link rel="preload" href="/assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Open Graph (WhatsApp, LinkedIn, Facebook) -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Flamia">
-    <meta property="og:title" content="Flamia - Ecosistema de IA para Real Estate">
-    <meta property="og:description" content="Agentes IA que califican leads, crean listings y gestionan citas 24/7 para tu agencia inmobiliaria. Escala sin límites.">
-    <meta property="og:image" content="https://flamiagroup.com/og-image.jpg"><!-- ⚠️ Crea imagen 1200×630px -->
-    <meta property="og:url" content="https://flamiagroup.com/"><!-- ⚠️ Reemplaza con tu URL real -->
-    <meta property="og:locale" content="es_ES">
+    <meta property="og:title" content="IA para Inmobiliarias en Costa Rica y LATAM | Flamia Group">
+    <meta property="og:description" content="Automatiza llamadas, cualifica leads por WhatsApp y conecta tu CRM en segundos. Agentes de IA para inmobiliarias en Costa Rica y LATAM.">
+    <meta property="og:image" content="https://flamiagroup.com/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Flamia Group - IA para inmobiliarias en Costa Rica y LATAM">
+    <meta property="og:url" content="https://flamiagroup.com/">
+    <meta property="og:locale" content="es_CR">
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Flamia - Ecosistema de IA para Real Estate">
-    <meta name="twitter:description" content="Agentes IA que califican leads, crean listings y gestionan citas 24/7 para tu agencia inmobiliaria.">
-    <meta name="twitter:image" content="https://flamiagroup.com/og-image.jpg"><!-- ⚠️ Misma imagen OG 1200×630px -->
+    <meta name="twitter:title" content="IA para Inmobiliarias en Costa Rica y LATAM | Flamia Group">
+    <meta name="twitter:description" content="Automatiza llamadas, cualifica leads por WhatsApp y conecta tu CRM en segundos. Agentes de IA para inmobiliarias en Costa Rica y LATAM.">
+    <meta name="twitter:image" content="https://flamiagroup.com/assets/og-image.jpg">
+    <meta name="twitter:image:alt" content="Flamia Group - IA para inmobiliarias en Costa Rica y LATAM">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon.png">
@@ -35,40 +43,153 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.png">
     <meta name="theme-color" content="#050507">
 
-    <!-- Schema Markup: Organización -->
+    <!-- Datos estructurados (un solo grafo: Google los lee mejor relacionados
+         entre si que como bloques sueltos).
+         PENDIENTE: agrega en "sameAs" las URLs reales de LinkedIn / Instagram /
+         Facebook de Flamia. Es la senal mas directa de que la marca existe. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Flamia",
-      "description": "Ecosistema de Agentes IA para agencias inmobiliarias. Automatiza leads, citas y listings 24/7.",
-      "url": "https://flamiagroup.com",
-      "logo": "https://flamiagroup.com/logo.png",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "sales",
-        "availableLanguage": "Spanish"
-      },
-      "legalName": "Flamia Group Inc."
-    }
-    </script>
-    <!-- Schema Markup: Producto SaaS -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Flamia",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web",
-      "description": "Suite de Agentes IA para agencias inmobiliarias: texto, voz, web y social media con integración CRM.",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "USD"
-      },
-      "provider": {
-        "@type": "Organization",
-        "name": "Flamia Group Inc."
-      }
+      "@graph": [
+        {
+          "@type": ["Organization", "ProfessionalService"],
+          "@id": "https://flamiagroup.com/#organization",
+          "name": "Flamia Group",
+          "alternateName": "Flamia",
+          "legalName": "Flamia Group Inc.",
+          "url": "https://flamiagroup.com/",
+          "description": "Agencia de inteligencia artificial para inmobiliarias en Costa Rica y toda Latinoamerica: agentes de voz y WhatsApp que califican leads, agendan citas y sincronizan el CRM 24/7.",
+          "telephone": "+50689401202",
+          "email": "contacto@flamiagroup.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Heredia",
+            "addressRegion": "Heredia",
+            "addressCountry": "CR"
+          },
+          "areaServed": [
+            { "@type": "Country", "name": "Costa Rica" },
+            { "@type": "City", "name": "San José" },
+            { "@type": "City", "name": "Heredia" },
+            { "@type": "Place", "name": "América Latina" }
+          ],
+          "serviceArea": {
+            "@type": "AdministrativeArea",
+            "name": "América Latina"
+          },
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://flamiagroup.com/assets/logo.png",
+            "width": 512,
+            "height": 512
+          },
+          "image": "https://flamiagroup.com/assets/og-image.jpg",
+          "knowsLanguage": ["es", "en"],
+          "makesOffer": { "@id": "https://flamiagroup.com/#service" },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "sales",
+            "telephone": "+50689401202",
+            "email": "contacto@flamiagroup.com",
+            "availableLanguage": ["Spanish", "English"],
+            "areaServed": "CR",
+            "url": "https://flamiagroup.com/#contact"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://flamiagroup.com/#website",
+          "url": "https://flamiagroup.com/",
+          "name": "Flamia",
+          "inLanguage": "es",
+          "publisher": { "@id": "https://flamiagroup.com/#organization" }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://flamiagroup.com/#webpage",
+          "url": "https://flamiagroup.com/",
+          "name": "IA para Inmobiliarias en Costa Rica y LATAM | Flamia Group",
+          "description": "Agentes de IA para inmobiliarias en Costa Rica y LATAM. Automatiza llamadas, cualifica leads por WhatsApp y conecta tu CRM en segundos.",
+          "isPartOf": { "@id": "https://flamiagroup.com/#website" },
+          "about": { "@id": "https://flamiagroup.com/#organization" },
+          "primaryImageOfPage": "https://flamiagroup.com/assets/og-image.jpg",
+          "inLanguage": "es"
+        },
+        {
+          "@type": "Service",
+          "@id": "https://flamiagroup.com/#service",
+          "name": "Agentes de IA para agencias inmobiliarias en Costa Rica y LATAM",
+          "serviceType": "Automatizacion con inteligencia artificial para real estate",
+          "areaServed": [
+            { "@type": "Country", "name": "Costa Rica" },
+            { "@type": "City", "name": "San José" },
+            { "@type": "City", "name": "Heredia" },
+            { "@type": "Place", "name": "América Latina" }
+          ],
+          "description": "Suite de agentes de IA que responden, califican y agendan por voz, WhatsApp, chat web y redes sociales, con sincronizacion al CRM.",
+          "provider": { "@id": "https://flamiagroup.com/#organization" },
+          "audience": {
+            "@type": "BusinessAudience",
+            "name": "Agencias inmobiliarias y agentes de bienes raices"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Ecosistema de Agentes Inteligentes",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Agente de Texto", "description": "Respuesta inmediata en WhatsApp y SMS. Cualifica leads y agenda visitas 24/7." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Agente de Voz", "description": "Llamadas telefonicas naturales para reactivar bases de datos y confirmar citas." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Agente Web", "description": "Chatbot incrustado en tu sitio que guia al usuario y captura datos en tiempo real." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Social Media Agent", "description": "Responde DMs y comentarios en Instagram y Facebook. Convierte seguidores en leads." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vision Valuation", "description": "Valora propiedades analizando fotos: acabados, luz y estado de conservacion." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CRM Sync", "description": "Sincronizacion bidireccional con el CRM de tu preferencia." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Property DB Connect", "description": "Conexion directa con MLS y bases de datos internas para cruce de oferta y demanda." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Integraciones API", "description": "Acceso para desarrolladores: integra la inteligencia de Flamia en tus propias apps." } }
+            ]
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://flamiagroup.com/#faq",
+          "isPartOf": { "@id": "https://flamiagroup.com/#webpage" },
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "\u00bfQue es un agente de IA para inmobiliarias?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Es un asistente automatizado que conversa con tus leads por telefono, WhatsApp, chat web o redes sociales. Responde al instante, hace las preguntas de cualificacion (presupuesto, urgencia, credito), agenda la visita en el calendario del agente y deja todo registrado en el CRM, sin intervencion humana." }
+            },
+            {
+              "@type": "Question",
+              "name": "\u00bfEn cuanto tiempo contacta la IA a un lead nuevo?",
+              "acceptedAnswer": { "@type": "Answer", "text": "El agente contacta al lead en el instante en que se registra: la llamada entra en unos 15 segundos. Esa velocidad sube la tasa de contacto de alrededor del 20% al 95%, porque el 78% de los leads compran con el primer agente que les responde." }
+            },
+            {
+              "@type": "Question",
+              "name": "\u00bfSe integra con mi CRM y con la MLS?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Si. CRM Sync mantiene una sincronizacion bidireccional con el CRM que ya usas, y Property DB Connect se conecta con la MLS y con bases de datos internas para cruzar oferta y demanda. Tambien hay acceso por API para integraciones a medida." }
+            },
+            {
+              "@type": "Question",
+              "name": "\u00bfEn que canales trabajan los agentes de IA?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Llamadas telefonicas, WhatsApp, SMS, chat en tu sitio web y mensajes directos y comentarios en Instagram y Facebook. Cada canal usa el mismo cerebro, asi que la conversacion no se pierde si el cliente cambia de medio." }
+            },
+            {
+              "@type": "Question",
+              "name": "\u00bfPuedo probar el agente de voz antes de contratar?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Si. En la seccion Demo de Voz dejas tu nombre y telefono y Sofia, la agente de IA de real estate, te llama en segundos e intenta agendar una visita contigo, igual que lo haria con un lead real." }
+            },
+            {
+              "@type": "Question",
+              "name": "\u00bfTrabajan con inmobiliarias fuera de Costa Rica?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Si. La base esta en Heredia y damos servicio a todo Costa Rica: San Jose, Heredia, Alajuela, Cartago, Guanacaste y la zona costera. Tambien trabajamos con agencias del resto de Latinoamerica. La implementacion es remota y los agentes de IA operan sobre tu WhatsApp, tu telefonia y tu CRM, sin importar donde este tu oficina." }
+            },
+            {
+              "@type": "Question",
+              "name": "\u00bfLa IA reemplaza a mi equipo de ventas?",
+              "acceptedAnswer": { "@type": "Answer", "text": "No. Filtra. La IA se queda con el trabajo repetitivo: perseguir leads frios, calificar y coordinar agendas. Tu equipo deja de perder tardes en visitas con curiosos y solo se sienta con compradores reales." }
+            }
+          ]
+        }
+      ]
     }
     </script>
 
@@ -82,10 +203,18 @@
   }
 </style>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com" defer></script>
+    <link rel="stylesheet" href="/assets/tailwind.css">
     <style>
+        /* Inter, subconjunto latino, fuente variable: una sola peticion
+           cubre de 100 a 900. swap evita el texto invisible mientras carga. */
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url('/assets/fonts/inter-var-latin.woff2') format('woff2');
+        }
+
         :root {
             --bg: #050507;
             --surface: rgba(255, 255, 255, 0.03);
@@ -148,6 +277,50 @@
             border-color: rgba(99, 102, 241, 0.3);
             transform: translateY(-4px);
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+        }
+
+        /* FAQ: acordeon nativo, sin JavaScript. El texto vive en el DOM
+           desde el primer render, asi que Google lo indexa aunque este cerrado. */
+        .faq-item {
+            background: rgba(20, 20, 28, 0.85);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+        .faq-item:hover,
+        .faq-item[open] {
+            border-color: rgba(99, 102, 241, 0.3);
+            background: rgba(24, 24, 34, 0.9);
+        }
+        .faq-item summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            list-style: none;
+            font-weight: 600;
+            color: #fff;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: -2px;
+            border-radius: 1rem;
+        }
+        .faq-chevron {
+            flex-shrink: 0;
+            width: 1.25rem;
+            height: 1.25rem;
+            color: #818CF8;
+            transition: transform 0.25s ease;
+        }
+        .faq-item[open] .faq-chevron { transform: rotate(180deg); }
+        .faq-answer {
+            padding: 0 1.5rem 1.35rem;
+            color: #A1A1AA;
+            line-height: 1.7;
         }
 
         .cta-button {
@@ -396,13 +569,14 @@
                         <path d="M18 32c0 9.941 8.059 18 18 18h14" />
                     </svg>
                 </div>
-                <div class="text-lg sm:text-xl font-bold tracking-tight text-white">Flamia</div>
+                <div class="text-lg sm:text-xl font-bold tracking-tight text-white">Flamiagroup</div>
             </a>
-            <div class="hidden md:flex items-center space-x-8 text-sm font-semibold">
-                <a href="#pain-points" class="text-gray-300 hover:text-white transition-colors">Problemas vs Solución</a>
-                <a href="#solutions" class="text-gray-300 hover:text-white transition-colors">Soluciones</a>
-                <a href="#voice-demo" class="text-indigo-300 hover:text-white transition-colors flex items-center gap-1"><span>📞 Demo Voz</span></a>
-                <button onclick="openCalendar()" class="cta-button text-white px-6 py-2.5 rounded-full">Agendar Consultoría</button>
+            <div class="hidden md:flex items-center gap-3 lg:gap-6 xl:gap-8 text-sm font-semibold">
+                <a href="#pain-points" class="text-gray-300 hover:text-white transition-colors whitespace-nowrap">Problemas<span class="hidden lg:inline"> vs Solución</span></a>
+                <a href="#solutions" class="text-gray-300 hover:text-white transition-colors whitespace-nowrap">Soluciones</a>
+                <a href="#voice-demo" class="text-indigo-300 hover:text-white transition-colors whitespace-nowrap">📞 <span class="hidden lg:inline">Demo </span>Voz</a>
+                <a href="https://ghl.flamiagroup.com" class="text-white border border-indigo-400/40 hover:border-indigo-400 hover:bg-indigo-500/10 px-4 lg:px-5 py-2.5 rounded-full transition-colors whitespace-nowrap">Obtenga GHL</a>
+                <button onclick="openCalendar()" class="cta-button text-white px-4 lg:px-6 py-2.5 rounded-full whitespace-nowrap">Agendar<span class="hidden lg:inline"> Consultoría</span></button>
             </div>
             <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg" aria-expanded="false" aria-controls="mobile-menu">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
@@ -413,6 +587,7 @@
                 <a href="#pain-points" class="block py-3 text-gray-300 hover:text-white">Problemas</a>
                 <a href="#solutions" class="block py-3 text-gray-300 hover:text-white">Soluciones</a>
                 <a href="#voice-demo" class="block py-3 text-indigo-300">📞 Demo Voz</a>
+                <a href="https://ghl.flamiagroup.com" class="block w-full text-center py-3 mb-2 rounded-lg text-white font-bold border border-indigo-400/40 hover:bg-indigo-500/10">Obtenga GHL</a>
                 <button onclick="openCalendar()" class="w-full bg-indigo-600 text-center py-3 rounded-lg text-white font-bold">Agendar Consultoría</button>
             </div>
         </div>
@@ -425,11 +600,11 @@
             <div class="hero-galaxy" aria-hidden="true"></div>
             <div class="container mx-auto px-5 sm:px-6 text-center max-w-5xl">
                 <div class="badge mb-5">✨ Powered by Flamia</div>
-                <h1 class="font-black text-white text-4xl sm:text-5xl lg:text-6xl leading-tight tracking-tight mb-6">
-                    Tu Agencia Inmobiliaria,<br><span class="hero-gradient-text">Ahora con Superpoderes</span>.
+                <h1 class="font-black text-white text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-tight mb-6">
+                    Agencia de Inteligencia Artificial para Inmobiliarias en <span class="hero-gradient-text">Costa Rica y LATAM</span>
                 </h1>
                 <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
-                    Flamia despliega una fuerza laboral digital de Agentes IA que califican leads, crean listings y gestionan citas 24/7. <span class="text-white font-semibold">Escala sin límites.</span>
+                    Flamia Group despliega una fuerza laboral digital de Agentes IA que califican leads, gestionan citas 24/7 y hacen automatización de WhatsApp para bienes raíces. <span class="text-white font-semibold">Software inmobiliario para agencias en Costa Rica y toda Latinoamérica.</span>
                 </p>
                 <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
                     <a href="#voice-demo" class="sparkle-button px-7 py-4 rounded-full text-base sm:text-lg shadow-lg w-full sm:w-auto flex items-center justify-center gap-2">
@@ -465,7 +640,7 @@
         <section id="pain-points" class="section-block bg-gradient-to-b from-[#050507] to-[#0A0A0F]">
             <div class="container mx-auto px-5 sm:px-6">
                 <div class="section-header">
-                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">¿Te suena familiar esta <span class="danger-gradient-text">Pesadilla</span>?</h2>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Los Principales <span class="danger-gradient-text">Desafíos</span> en la Gestión de Leads Inmobiliarios</h2>
                     <p class="text-gray-400 text-lg">El modelo tradicional está roto. Pasa el cursor (o toca) para ver cómo Flamia reescribe las reglas.</p>
                 </div>
                 <div class="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
@@ -475,14 +650,14 @@
                                 <div class="icon-4d-front">
                                     <svg class="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                 </div>
-                                <h3 class="text-2xl font-bold text-white">El "Ghosting" de Leads</h3>
+                                <h3 class="text-2xl font-bold text-white">El "Ghosting" de Leads por Respuesta Tardía</h3>
                                 <p class="text-gray-400 leading-relaxed">Compras leads, llamas 2 horas después y nadie contesta. Tu dinero se va a la basura y tu equipo se frustra llamando a buzones de voz.</p>
                             </div>
                             <div class="flip-card-back flip-card-back-speed">
                                 <div class="icon-4d-back icon-4d-back-green">
                                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5l6 6m0 0l-6 6m6-6h-18" /></svg>
                                 </div>
-                                <h3 class="text-2xl font-bold text-white">Respuesta en 5 Segundos</h3>
+                                <h4 class="text-2xl font-bold text-white">Respuesta en 5 Segundos</h4>
                                 <p class="text-gray-100 leading-relaxed">Nuestra IA contacta al lead en el instante en que se registra. La tasa de contacto sube del 20% al <strong>95%</strong>.</p>
                             </div>
                         </div>
@@ -493,14 +668,14 @@
                                 <div class="icon-4d-front">
                                     <svg class="w-8 h-8 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                 </div>
-                                <h3 class="text-2xl font-bold text-white">Turismo Inmobiliario</h3>
+                                <h3 class="text-2xl font-bold text-white">Pérdida de Tiempo con "Turismo Inmobiliario"</h3>
                                 <p class="text-gray-400 leading-relaxed">Agentes perdiendo tardes enteras enseñando casas a personas que "solo están mirando" o que no tienen pre-aprobación bancaria.</p>
                             </div>
                             <div class="flip-card-back flip-card-back-filter">
                                 <div class="icon-4d-back icon-4d-back-indigo">
                                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" /></svg>
                                 </div>
-                                <h3 class="text-2xl font-bold text-white">Filtro de Cualificación</h3>
+                                <h4 class="text-2xl font-bold text-white">Filtro de Cualificación</h4>
                                 <p class="text-gray-100 leading-relaxed">La IA entrevista al cliente antes de agendar: presupuesto, urgencia y crédito. Tu equipo solo visita con compradores <strong>reales</strong>.</p>
                             </div>
                         </div>
@@ -511,14 +686,14 @@
                                 <div class="icon-4d-front">
                                     <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" /></svg>
                                 </div>
-                                <h3 class="text-2xl font-bold text-white">Caos Administrativo</h3>
+                                <h3 class="text-2xl font-bold text-white">Caos Administrativo y Falta de Seguimiento en CRM</h3>
                                 <p class="text-gray-400 leading-relaxed">Excel desactualizados, notas en servilletas y seguimientos olvidados. El 60% de las ventas se pierden por falta de follow-up.</p>
                             </div>
                             <div class="flip-card-back flip-card-back-automation">
                                 <div class="icon-4d-back icon-4d-back-blue">
                                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
                                 </div>
-                                <h3 class="text-2xl font-bold text-white">CRM Autónomo</h3>
+                                <h4 class="text-2xl font-bold text-white">CRM Autónomo</h4>
                                 <p class="text-gray-100 leading-relaxed">La IA actualiza el CRM automáticamente tras cada conversación. Programa recordatorios y nutre al lead durante meses hasta que compre.</p>
                             </div>
                         </div>
@@ -532,10 +707,10 @@
             <div class="container mx-auto px-5 sm:px-6 grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
                 <div class="space-y-4">
                     <div class="badge">📞 Llamada en Vivo</div>
-                    <h2 class="text-3xl md:text-5xl font-bold text-white">Tu Lead recibe una llamada <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400">en segundos</span>.</h2>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white">Respuesta Inmediata y Cualificación Automática <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400">en Segundos</span></h2>
                     <p class="text-gray-300 text-lg">Experimenta la velocidad de Flamia. Ingresa tus datos como si fueras un cliente potencial y nuestro Agente de Voz te llamará inmediatamente para cualificar tu interés.</p>
                     <div class="p-6 bg-white/5 border border-dashed border-white/10 rounded-2xl space-y-2">
-                        <h4 class="text-white font-semibold">¿Qué sucederá?</h4>
+                        <h3 class="text-white font-semibold text-lg">¿Cómo funciona el Agente de Voz IA de Flamia Group?</h3>
                         <ul class="text-sm text-gray-400 space-y-3">
                             <li class="flex items-center gap-2"><span class="w-2 h-2 bg-green-500 rounded-full"></span>Tu teléfono sonará en aproximadamente 15 segundos.</li>
                             <li class="flex items-center gap-2"><span class="w-2 h-2 bg-green-500 rounded-full"></span>Hablarás con "Sofia", nuestra agente IA de Real Estate.</li>
@@ -548,11 +723,13 @@
                         <div class="w-20 h-20 rounded-full bg-indigo-600 flex items-center justify-center mb-6 pulse-ring">
                             <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                         </div>
-                        <h3 class="text-2xl font-bold text-white mb-2">Iniciando Llamada...</h3>
+                        <div class="text-2xl font-bold text-white mb-2">Iniciando Llamada...</div>
                         <p class="text-indigo-300 mb-6">Conectando Agente IA con <span id="display-phone" class="font-mono text-white">...</span></p>
                         <p class="text-xs text-gray-500">Por favor, mantén tu línea libre.</p>
                         <button onclick="resetCallForm()" class="mt-8 text-sm text-gray-500 hover:text-white underline">Cancelar / Probar otro número</button>
                     </div>
+                    <h3 class="text-xl font-bold text-white mb-1">Simulación de Llamada Automática a Compradores</h3>
+                    <p class="text-sm text-gray-400 mb-6">Deja tus datos como si fueras un lead y recibe la llamada real.</p>
                     <form id="voice-form" class="space-y-5">
                         <div>
                             <label class="block text-xs font-medium text-gray-400 mb-1 uppercase">Nombre Completo</label>
@@ -565,7 +742,7 @@
                             <label class="block text-xs font-medium text-gray-400 mb-1 uppercase">Número de Teléfono</label>
                             <div class="relative">
                                 <span class="absolute left-4 top-3.5 text-gray-500">📱</span>
-                                <input type="tel" id="lead-phone" required class="w-full bg-[#1A1A24] border border-gray-700 rounded-lg pl-10 pr-4 py-3 text-white focus:border-indigo-500 focus:outline-none" placeholder="+34 600 000 000">
+                                <input type="tel" id="lead-phone" required class="w-full bg-[#1A1A24] border border-gray-700 rounded-lg pl-10 pr-4 py-3 text-white focus:border-indigo-500 focus:outline-none" placeholder="+506 8888 8888">
                             </div>
                         </div>
                         <div>
@@ -622,7 +799,7 @@
   console.log("[VOICE] phone:", phone);
 
   if (!isValidPhone(phone)) {
-    alert("Por favor, ingresa un número de teléfono válido (idealmente con código de país, ej. +34…).");
+    alert("Por favor, ingresa un número de teléfono válido (idealmente con código de país, ej. +506…).");
     return;
   }
 
@@ -704,15 +881,15 @@ if (overlay) {
             <div class="container mx-auto px-5 sm:px-6">
                 <div class="section-header">
                     <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Ecosistema de <br class="hidden sm:block">Agentes Inteligentes.</h2>
-                    <p class="text-gray-400 text-lg">Una suite completa de soluciones IA que automatizan cada punto de contacto con tus clientes.</p>
+                    <p class="text-gray-400 text-lg">Una suite completa de soluciones de IA que automatiza cada punto de contacto con tus clientes y se integra con tu CRM para inmobiliarias en Costa Rica.</p>
                 </div>
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-green-500/50">
                         <div class="solution-icon" aria-hidden="true">
                             <svg viewBox="0 0 40 40" role="presentation">
-                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
-                                <path d="M8 18l12 6 12-6" />
-                                <path d="M8 24l12 6 12-6" />
+                                <path d="M8 11h24v18H18l-8 6v-6H8z" />
+                                <path d="M15 18h12" />
+                                <path d="M15 23h7" />
                             </svg>
                         </div>
                         <h3 class="text-xl font-bold text-white text-center">Agente de Texto</h3>
@@ -721,9 +898,10 @@ if (overlay) {
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-blue-500/50">
                         <div class="solution-icon" aria-hidden="true">
                             <svg viewBox="0 0 40 40" role="presentation">
-                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
-                                <path d="M8 18l12 6 12-6" />
-                                <path d="M8 24l12 6 12-6" />
+                                <path d="M20 7a4 4 0 014 4v8a4 4 0 01-8 0v-8a4 4 0 014-4z" />
+                                <path d="M11 18v1a9 9 0 0018 0v-1" />
+                                <path d="M20 28v6" />
+                                <path d="M15 34h10" />
                             </svg>
                         </div>
                         <h3 class="text-xl font-bold text-white text-center">Agente de Voz</h3>
@@ -732,9 +910,11 @@ if (overlay) {
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-indigo-500/50">
                         <div class="solution-icon" aria-hidden="true">
                             <svg viewBox="0 0 40 40" role="presentation">
-                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
-                                <path d="M8 18l12 6 12-6" />
-                                <path d="M8 24l12 6 12-6" />
+                                <path d="M7 9h26v20H7z" />
+                                <path d="M7 15h26" />
+                                <path d="M11 12h.02" />
+                                <path d="M15 12h.02" />
+                                <path d="M15 22l3 3 7-7" />
                             </svg>
                         </div>
                         <h3 class="text-xl font-bold text-white text-center">Agente Web</h3>
@@ -743,9 +923,11 @@ if (overlay) {
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-pink-500/50">
                         <div class="solution-icon" aria-hidden="true">
                             <svg viewBox="0 0 40 40" role="presentation">
-                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
-                                <path d="M8 18l12 6 12-6" />
-                                <path d="M8 24l12 6 12-6" />
+                                <path d="M26 13a4 4 0 100-8 4 4 0 000 8z" />
+                                <path d="M12 24a4 4 0 100-8 4 4 0 000 8z" />
+                                <path d="M26 35a4 4 0 100-8 4 4 0 000 8z" />
+                                <path d="M15.5 18.2l7 -4.1" />
+                                <path d="M15.5 21.8l7 4.1" />
                             </svg>
                         </div>
                         <h3 class="text-xl font-bold text-white text-center">Social Media Agent</h3>
@@ -754,9 +936,9 @@ if (overlay) {
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-purple-500/50">
                         <div class="solution-icon" aria-hidden="true">
                             <svg viewBox="0 0 40 40" role="presentation">
-                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
-                                <path d="M8 18l12 6 12-6" />
-                                <path d="M8 24l12 6 12-6" />
+                                <path d="M6 20s5-8 14-8 14 8 14 8-5 8-14 8-14-8-14-8z" />
+                                <path d="M20 24a4 4 0 100-8 4 4 0 000 8z" />
+                                <path d="M28 30l4 4" />
                             </svg>
                         </div>
                         <h3 class="text-xl font-bold text-white text-center">Vision Valuation</h3>
@@ -765,9 +947,11 @@ if (overlay) {
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-orange-500/50">
                         <div class="solution-icon" aria-hidden="true">
                             <svg viewBox="0 0 40 40" role="presentation">
-                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
-                                <path d="M8 18l12 6 12-6" />
-                                <path d="M8 24l12 6 12-6" />
+                                <path d="M20 13c6.6 0 12-1.8 12-4s-5.4-4-12-4-12 1.8-12 4 5.4 4 12 4z" />
+                                <path d="M8 9v10c0 2.2 5.4 4 12 4" />
+                                <path d="M32 9v7" />
+                                <path d="M25 27l4-4 4 4" />
+                                <path d="M35 31l-4 4-4-4" />
                             </svg>
                         </div>
                         <h3 class="text-xl font-bold text-white text-center">CRM Sync</h3>
@@ -776,9 +960,10 @@ if (overlay) {
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-cyan-500/50">
                         <div class="solution-icon" aria-hidden="true">
                             <svg viewBox="0 0 40 40" role="presentation">
-                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
-                                <path d="M8 18l12 6 12-6" />
-                                <path d="M8 24l12 6 12-6" />
+                                <path d="M8 17l12-9 12 9" />
+                                <path d="M11 15v16h18V15" />
+                                <path d="M17 31v-8h6v8" />
+                                <path d="M20 4v3" />
                             </svg>
                         </div>
                         <h3 class="text-xl font-bold text-white text-center">Property DB Connect</h3>
@@ -787,9 +972,9 @@ if (overlay) {
                     <div class="glass-card p-6 flex flex-col gap-3 hover:border-yellow-500/50">
                         <div class="solution-icon" aria-hidden="true">
                             <svg viewBox="0 0 40 40" role="presentation">
-                                <path d="M20 6l12 6-12 6-12-6 12-6z" />
-                                <path d="M8 18l12 6 12-6" />
-                                <path d="M8 24l12 6 12-6" />
+                                <path d="M15 12l-7 8 7 8" />
+                                <path d="M25 12l7 8-7 8" />
+                                <path d="M23 9l-6 22" />
                             </svg>
                         </div>
                         <h3 class="text-xl font-bold text-white text-center">Integraciones API</h3>
@@ -1155,7 +1340,68 @@ if (overlay) {
         </section>
 
         <!-- CONTACT -->
-<section id="contact" class="section-block bg-gradient-to-t from-indigo-900/20 to-transparent relative">
+        <!-- FAQ -->
+        <section id="faq" class="section-block bg-[#07070c] border-t border-white/5">
+            <div class="container mx-auto px-5 sm:px-6">
+                <div class="section-header">
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Preguntas <span class="hero-gradient-text">frecuentes</span></h2>
+                    <p class="text-gray-400 text-lg">Lo que todo director de agencia pregunta antes de automatizar.</p>
+                </div>
+                <div class="max-w-3xl mx-auto space-y-3">
+                    <details class="faq-item">
+                        <summary>
+                            <span>¿Qué es un agente de IA para inmobiliarias?</span>
+                            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="faq-answer">Es un asistente automatizado que conversa con tus leads por teléfono, WhatsApp, chat web o redes sociales. Responde al instante, hace las preguntas de cualificación —presupuesto, urgencia, crédito—, agenda la visita en el calendario del agente y deja todo registrado en el CRM, sin intervención humana.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>
+                            <span>¿En cuánto tiempo contacta la IA a un lead nuevo?</span>
+                            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="faq-answer">El agente contacta al lead en el instante en que se registra: la llamada entra en unos <strong class="text-white">15 segundos</strong>. Esa velocidad sube la tasa de contacto de alrededor del 20% al 95%, porque el 78% de los leads compran con el primer agente que les responde.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>
+                            <span>¿Se integra con mi CRM y con la MLS?</span>
+                            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="faq-answer">Sí. <strong class="text-white">CRM Sync</strong> mantiene una sincronización bidireccional con el CRM que ya usas, y <strong class="text-white">Property DB Connect</strong> se conecta con la MLS y con bases de datos internas para cruzar oferta y demanda. También hay acceso por API para integraciones a medida.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>
+                            <span>¿En qué canales trabajan los agentes de IA?</span>
+                            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="faq-answer">Llamadas telefónicas, WhatsApp, SMS, chat en tu sitio web y mensajes directos y comentarios en Instagram y Facebook. Cada canal usa el mismo cerebro, así que la conversación no se pierde si el cliente cambia de medio.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>
+                            <span>¿Puedo probar el agente de voz antes de contratar?</span>
+                            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="faq-answer">Sí. En la sección <a href="#voice-demo" class="text-indigo-300 underline hover:text-white">Demo de Voz</a> dejas tu nombre y teléfono, y Sofía —nuestra agente de IA de real estate— te llama en segundos e intenta agendar una visita contigo, igual que lo haría con un lead real.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>
+                            <span>¿Trabajan con inmobiliarias fuera de Costa Rica?</span>
+                            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="faq-answer">Sí. La base está en <strong class="text-white">Heredia</strong> y damos servicio a todo Costa Rica —San José, Heredia, Alajuela, Cartago, Guanacaste y la zona costera—. También trabajamos con agencias del resto de <strong class="text-white">Latinoamérica</strong>. La implementación es remota y los agentes de IA operan sobre tu WhatsApp, tu telefonía y tu CRM, sin importar dónde esté tu oficina.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>
+                            <span>¿La IA reemplaza a mi equipo de ventas?</span>
+                            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="faq-answer">No. Filtra. La IA se queda con el trabajo repetitivo: perseguir leads fríos, calificar y coordinar agendas. Tu equipo deja de perder tardes en visitas con curiosos y solo se sienta con compradores reales.</div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section-block bg-gradient-to-t from-indigo-900/20 to-transparent relative">
   <div class="container mx-auto px-5 sm:px-6 text-center relative">
     
     <h2 class="text-3xl md:text-5xl font-bold text-white mb-3">¿Listo para escalar?</h2> <img 
@@ -1204,9 +1450,21 @@ if (overlay) {
 
     <footer class="border-t border-white/5 py-10 bg-[#050507]">
         <div class="container mx-auto px-5 sm:px-6 flex flex-col items-center justify-center text-center text-gray-500 text-sm gap-3">
-            <div class="font-bold text-white text-lg">Flamia</div>
+            <div class="font-bold text-white text-lg">Flamia Group</div>
+            <address class="not-italic flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-gray-400">
+                <a href="tel:+50689401202" class="hover:text-white transition-colors flex items-center gap-1.5">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    +506 8940 1202
+                </a>
+                <span class="hidden sm:inline text-gray-700">|</span>
+                <a href="mailto:contacto@flamiagroup.com" class="hover:text-white transition-colors">contacto@flamiagroup.com</a>
+                <span class="hidden sm:inline text-gray-700">|</span>
+                <span>Heredia, Costa Rica</span>
+            </address>
             <div>&copy; 2026 Flamia Group Inc.</div>
             <div class="flex gap-4 text-xs">
+                <a href="#faq" class="underline hover:text-white">Preguntas frecuentes</a>
+                <span>|</span>
                 <a href="/privacy.html" class="underline hover:text-white">Privacy Policy</a>
                 <span>|</span>
                 <a href="/terms.html" class="underline hover:text-white">Terms of Service</a>
