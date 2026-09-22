@@ -113,10 +113,14 @@ public/          <- esto y solo esto va a public_html
   robots.txt  sitemap.xml
   assets/      (css, fuentes, imagenes)
 
+deploy/          <- snippets para OTROS document roots, no para public_html
+  subdominios-noindex.htaccess
+
 CLAUDE.md               <- interno, NUNCA se sube
 README.md               <- interno, NUNCA se sube
 flammeta.json.template  <- interno, NUNCA se sube
 package.sh              <- utilidad local
+check-seo.sh            <- utilidad local (la corre package.sh)
 ```
 
 Motivo: en produccion se detectaron `CLAUDE.md`, `README.md` y
@@ -193,6 +197,44 @@ npx tailwindcss@3 -i <(printf '@tailwind base;@tailwind components;@tailwind uti
 ```
 
 Y volver a subir `public/assets/tailwind.css` junto al HTML.
+
+### Verificacion automatica: `check-seo.sh`
+
+Tres invariantes de este README se sostienen a mano y se rompen igual: alguien
+edita una pagina y olvida las otras. `check-seo.sh` las comprueba, y
+`package.sh` lo ejecuta antes de empaquetar, asi que una desincronizacion no
+puede llegar al servidor.
+
+| Comprueba | Por que importa |
+| --- | --- |
+| NAP identico en las 4 paginas y en el JSON-LD | La inconsistencia de NAP es de los errores que mas castigan el SEO local |
+| Ningun otro numero `+506` fuera de los `placeholder` de formulario | Un telefono viejo copiado a medias es NAP divergente |
+| La seccion `#faq` y el bloque `FAQPage` tienen el mismo numero de preguntas | Marcado que promete lo que la pagina no muestra |
+| Toda pagina publicable esta en `sitemap.xml` | Una pagina nueva sin entrada en el sitemap nace invisible |
+
+```bash
+./check-seo.sh     # 0 = todo bien, 1 = hay algo que corregir
+```
+
+El NAP canonico esta declarado en las variables del principio del script: si
+el negocio cambia de telefono, se cambia ahi y el script senala cada archivo
+que falta actualizar.
+
+### Subdominios: `ghl.` e `inmobiliaria.`
+
+Los dos subdominios que cuelgan del mismo `public_html` son hoy indexables.
+Un portal de clientes compitiendo en Google con el dominio principal diluye
+la autoridad y ensucia los resultados de marca.
+
+`deploy/subdominios-noindex.htaccess` tiene el bloque a instalar en el
+document root de cada uno (`public_html/build` y `public_html/inmobiliaria`).
+Usa `X-Robots-Tag: noindex`, no `Disallow` en robots.txt: el bot necesita
+poder leer la pagina para ver la cabecera, mientras que un `Disallow` le
+impide leerla y la URL puede seguir apareciendo sin snippet.
+
+`inmobiliaria/` es una app Laravel y ya trae su propio `.htaccess`: ahi se
+pega solo el bloque `<IfModule mod_headers.c>` al final, no se reemplaza el
+archivo.
 
 ### Despues de publicar
 

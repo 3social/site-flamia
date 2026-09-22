@@ -1,0 +1,24 @@
+# ---------------------------------------------------------------------------
+# NO VA EN flamiagroup.com. Este archivo es para los SUBDOMINIOS.
+#
+# Destino (uno por subdominio, dentro de su propio document root):
+#   public_html/build/.htaccess          -> ghl.flamiagroup.com
+#   public_html/inmobiliaria/.htaccess   -> inmobiliaria.flamiagroup.com
+#
+# Por que: ambos subdominios cuelgan del mismo public_html que el sitio
+# principal y hoy son indexables. Un portal de clientes compitiendo en
+# Google con el dominio principal diluye la autoridad y ensucia los
+# resultados de marca. Si algun dia se quiere que uno rankee, necesita
+# contenido propio y canonical: entonces se borra este archivo, no antes.
+#
+# Si el subdominio ya tiene .htaccess (Laravel trae el suyo en
+# inmobiliaria/), NO reemplazarlo: pegar solo el bloque <IfModule> de abajo
+# al final del archivo existente.
+# ---------------------------------------------------------------------------
+
+# Bloquea la indexacion sin bloquear el rastreo: Google necesita poder leer
+# la pagina para ver la cabecera. Un Disallow en robots.txt haria lo
+# contrario -- impide leerla, y la URL puede seguir apareciendo sin snippet.
+<IfModule mod_headers.c>
+  Header always set X-Robots-Tag "noindex, nofollow, noarchive"
+</IfModule>
