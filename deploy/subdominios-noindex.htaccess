@@ -1,15 +1,18 @@
 # ---------------------------------------------------------------------------
 # NO VA EN flamiagroup.com. Este archivo es para los SUBDOMINIOS.
 #
-# Destino (uno por subdominio, dentro de su propio document root):
-#   public_html/build/.htaccess          -> ghl.flamiagroup.com
+# Destino posible:
 #   public_html/inmobiliaria/.htaccess   -> inmobiliaria.flamiagroup.com
 #
-# Por que: ambos subdominios cuelgan del mismo public_html que el sitio
-# principal y hoy son indexables. Un portal de clientes compitiendo en
-# Google con el dominio principal diluye la autoridad y ensucia los
-# resultados de marca. Si algun dia se quiere que uno rankee, necesita
-# contenido propio y canonical: entonces se borra este archivo, no antes.
+# NO va en public_html/build (ghl.flamiagroup.com): ese subdominio es una
+# pagina de VENTA y debe seguir indexandose. Su problema es otro -- vende
+# desde un subdominio, asi que su autoridad no alimenta al dominio
+# principal -- y se resuelve moviendo el contenido a /gohighlevel y
+# redirigiendo el subdominio con un 301, no con un noindex.
+#
+# Para inmobiliaria. la decision sigue abierta: si es un sitio de cliente
+# con vida propia, no se toca. Si es un entorno interno o una copia, este
+# bloque evita que compita en Google con el dominio principal.
 #
 # Si el subdominio ya tiene .htaccess (Laravel trae el suyo en
 # inmobiliaria/), NO reemplazarlo: pegar solo el bloque <IfModule> de abajo

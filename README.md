@@ -110,6 +110,7 @@ servido en produccion por un descuido.
 public/          <- esto y solo esto va a public_html
   .htaccess
   index.html  privacy.html  terms.html  404.html
+  gohighlevel.html        <- pagina de servicio, se sirve en /gohighlevel
   robots.txt  sitemap.xml
   assets/      (css, fuentes, imagenes)
 
@@ -167,6 +168,7 @@ estructura de carpetas.
 | `assets/og-image.jpg` | Tarjeta 1200x630 que se ve al compartir el enlace en WhatsApp, LinkedIn o Facebook. |
 | `assets/logo.png` | Logo 512x512 declarado en los datos estructurados (Schema.org). |
 | `assets/pages.css` | Estilos de `privacy.html`, `terms.html` y `404.html`. No dependen de Tailwind. |
+| `assets/site.css` | Sistema de diseno del sitio principal: la fuente, los tokens de color y los componentes (`cta-button`, `section-block`, `faq-item`, `hero-gradient-text`). Lo comparten `index.html` y las paginas de servicio. |
 
 Los datos estructurados viven en un solo bloque JSON-LD en el `<head>` de
 `index.html`, como un `@graph` con Organization, WebSite, WebPage, Service y
@@ -220,14 +222,58 @@ El NAP canonico esta declarado en las variables del principio del script: si
 el negocio cambia de telefono, se cambia ahi y el script senala cada archivo
 que falta actualizar.
 
+### Paginas de servicio y URLs sin extension
+
+`gohighlevel.html` se sirve en `https://flamiagroup.com/gohighlevel`, sin la
+extension. Lo hacen dos reglas del `.htaccess`:
+
+- una regla general que sirve `/loquesea` desde `loquesea.html` **solo si ese
+  archivo existe** (la condicion `-f`), de modo que una pagina de servicio
+  nueva funciona sin tocar el `.htaccess`;
+- una redireccion 301 de `/gohighlevel.html` a `/gohighlevel`, para que exista
+  una sola URL indexable.
+
+La segunda se lista pagina por pagina a proposito. Una regla generica que
+quitara la extension a todo arrastraria tambien `privacy.html` y `terms.html`,
+cuyas URLs con extension ya estan indexadas y en el sitemap: cambiarlas solo
+anadiria redirecciones sin ganar nada.
+
+Al crear una pagina de servicio hay cuatro cosas que hacer, y `check-seo.sh`
+verifica las dos ultimas:
+
+1. Enlazarla desde el home (una pagina que solo existe en el sitemap nace huerfana).
+2. Anadir su redireccion 301 desde el `.html` en el `.htaccess`.
+3. Anadirla a `sitemap.xml` con su URL sin extension.
+4. Anadir esa URL al `case` de `check-seo.sh`, que si no la buscara con `.html`.
+
+### El CSS del sitio principal vive en `assets/site.css`
+
+Antes era un bloque `<style>` de 15 KB dentro de `index.html`. Se saco a un
+archivo para que las paginas de servicio compartan el mismo sistema de diseno
+en vez de duplicarlo.
+
+El intercambio conviene tenerlo claro: en la primera visita cuesta una
+peticion mas (la home pasa de 3 a 4), pero en las siguientes se gana, porque
+el HTML se sirve con `no-cache` y el CSS se cachea 30 dias. Con el bloque
+inline, esos 15 KB viajaban enteros en cada visita y en cada pagina.
+
 ### Subdominios: `ghl.` e `inmobiliaria.`
 
-Los dos subdominios que cuelgan del mismo `public_html` son hoy indexables.
-Un portal de clientes compitiendo en Google con el dominio principal diluye
-la autoridad y ensucia los resultados de marca.
+`ghl.flamiagroup.com` es una pagina de VENTA, no un portal de clientes, asi
+que **no se le pone noindex**: se indexa. Lo que si conviene resolver es que
+vende desde un subdominio, y en SEO un subdominio es practicamente otro sitio:
+la autoridad que gane no alimenta a `flamiagroup.com`, y el nav del home le
+manda trafico desde hace dias. Por eso ese contenido empieza a vivir aqui, en
+`/gohighlevel`. El paso siguiente, cuando se confirme que no rompe ningun
+embudo activo, es redirigir el subdominio con un 301 a esa URL y apuntar ahi
+los dos botones "Obtenga GHL" del nav.
 
-`deploy/subdominios-noindex.htaccess` tiene el bloque a instalar en el
-document root de cada uno (`public_html/build` y `public_html/inmobiliaria`).
+`inmobiliaria.flamiagroup.com` queda pendiente de decidir: si es un sitio de
+cliente con vida propia no se toca, y si es un entorno interno conviene que no
+se indexe.
+
+`deploy/subdominios-noindex.htaccess` tiene el bloque por si se decide aplicar
+a `inmobiliaria`.
 Usa `X-Robots-Tag: noindex`, no `Disallow` en robots.txt: el bot necesita
 poder leer la pagina para ver la cabecera, mientras que un `Disallow` le
 impide leerla y la URL puede seguir apareciendo sin snippet.

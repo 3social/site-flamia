@@ -24,6 +24,23 @@
   # /index.html -> / (una sola URL para la home)
   RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
   RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
+
+  # --- URLs sin extension para las paginas de servicio --------------------
+  # Sirve /gohighlevel desde gohighlevel.html. La condicion -f es lo que lo
+  # hace seguro: solo reescribe cuando el .html existe de verdad, asi que no
+  # se come el 404 ni interfiere con nada. Las paginas de servicio que se
+  # agreguen despues funcionan sin tocar esta regla.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.+?)/?$ /$1.html [L]
+
+  # Y al reves, para que exista UNA sola URL indexable: /gohighlevel.html
+  # redirige a /gohighlevel. Se listan una por una a proposito: una regla
+  # genarica arrastraria tambien privacy.html y terms.html, cuyas URLs con
+  # extension ya estan indexadas y en el sitemap.
+  RewriteCond %{THE_REQUEST} \s/+gohighlevel\.html[\s?] [NC]
+  RewriteRule ^ /gohighlevel [R=301,L]
 </IfModule>
 
 # --- 2. Pagina 404 propia --------------------------------------------------
