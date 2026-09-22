@@ -110,7 +110,9 @@ servido en produccion por un descuido.
 public/          <- esto y solo esto va a public_html
   .htaccess
   index.html  privacy.html  terms.html  404.html
-  gohighlevel.html        <- pagina de servicio, se sirve en /gohighlevel
+  gohighlevel.html         <- /gohighlevel
+  agente-de-voz-ia.html    <- /agente-de-voz-ia
+  agentes-ia-whatsapp.html <- /agentes-ia-whatsapp
   robots.txt  sitemap.xml
   assets/      (css, fuentes, imagenes)
 
@@ -238,13 +240,29 @@ quitara la extension a todo arrastraria tambien `privacy.html` y `terms.html`,
 cuyas URLs con extension ya estan indexadas y en el sitemap: cambiarlas solo
 anadiria redirecciones sin ganar nada.
 
-Al crear una pagina de servicio hay cuatro cosas que hacer, y `check-seo.sh`
-verifica las dos ultimas:
+Al crear una pagina de servicio hay cuatro cosas que hacer:
 
-1. Enlazarla desde el home (una pagina que solo existe en el sitemap nace huerfana).
-2. Anadir su redireccion 301 desde el `.html` en el `.htaccess`.
-3. Anadirla a `sitemap.xml` con su URL sin extension.
-4. Anadir esa URL al `case` de `check-seo.sh`, que si no la buscara con `.html`.
+1. Anadir su slug al array `SIN_EXTENSION` de `check-seo.sh`. Eso hace que el
+   script sepa cual es su URL canonica y verifique los dos puntos siguientes.
+2. Anadir el slug a la lista de la `RewriteCond` del `.htaccess`, para que
+   `/pagina.html` redirija a `/pagina`. Sin eso quedan dos URLs indexables
+   sirviendo lo mismo. **Lo verifica `check-seo.sh`.**
+3. Anadirla a `sitemap.xml` con su URL sin extension. **Lo verifica `check-seo.sh`.**
+4. Enlazarla desde el home. Esto **no** se puede verificar solo, y es lo que
+   mas cuesta si se olvida: una pagina que solo existe en el sitemap nace
+   huerfana y Google le da poco peso.
+
+El NAP del pie tambien lo verifica el script, y las paginas se descubren
+solas, asi que una pagina nueva entra en la comprobacion desde que se crea.
+
+Las tres paginas de servicio se enlazan entre si ademas de al home. Ese
+entramado interno es parte del trabajo: reparte autoridad y le dice a Google
+que son un grupo tematico y no tres paginas sueltas.
+
+Las paginas de servicio comparten el mismo encabezado, pie y navegacion.
+Estan duplicados en cada archivo, porque el sitio no tiene build step a
+proposito; lo que no puede divergir en silencio -- el NAP del pie -- lo
+verifica `check-seo.sh`. Si algun dia son ocho paginas, tocara plantillas.
 
 ### El CSS del sitio principal vive en `assets/site.css`
 

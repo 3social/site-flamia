@@ -21,6 +21,10 @@ NAP_EMAIL="contacto@flamiagroup.com"
 NAP_LOCALIDAD="Heredia, Costa Rica"
 
 PAGINAS=(*.html)   # se descubren solas: una pagina nueva entra sin tocar el script
+
+# Paginas de servicio: se sirven sin extension (ver .htaccess), asi que su URL
+# canonica no es la del archivo. Al crear una, se agrega aqui.
+SIN_EXTENSION=(gohighlevel agente-de-voz-ia agentes-ia-whatsapp)
 fallos=0
 
 fallo() { printf '  \033[31mFALLA\033[0m  %s\n' "$1"; fallos=$((fallos + 1)); }
@@ -70,14 +74,20 @@ echo "4. Paginas en sitemap.xml"
 for pagina in *.html; do
   # 404.html no se indexa a proposito: es la respuesta a una URL que no existe.
   [ "$pagina" = "404.html" ] && continue
-  # Las paginas de servicio se sirven sin extension (ver .htaccess), asi que
-  # su URL canonica no es la del archivo.
-  case "$pagina" in
-    index.html)       url="https://flamiagroup.com/" ;;
-    gohighlevel.html) url="https://flamiagroup.com/gohighlevel" ;;
-    *)                url="https://flamiagroup.com/$pagina" ;;
-  esac
+  base="${pagina%.html}"
+  if [ "$pagina" = "index.html" ]; then
+    url="https://flamiagroup.com/"
+  elif printf '%s\n' "${SIN_EXTENSION[@]}" | grep -qx "$base"; then
+    url="https://flamiagroup.com/$base"
+  else
+    url="https://flamiagroup.com/$pagina"
+  fi
   if grep -qF "<loc>$url</loc>" sitemap.xml; then ok "$pagina"; else fallo "$pagina no esta en sitemap.xml ($url)"; fi
+done
+
+echo "5. Redireccion .html -> URL limpia en .htaccess"
+for base in "${SIN_EXTENSION[@]}"; do
+  if grep -q "$base" .htaccess; then ok "$base"; else fallo ".htaccess sin la redireccion 301 de $base.html"; fi
 done
 
 echo

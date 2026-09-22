@@ -35,12 +35,13 @@
   RewriteCond %{DOCUMENT_ROOT}/$1.html -f
   RewriteRule ^(.+?)/?$ /$1.html [L]
 
-  # Y al reves, para que exista UNA sola URL indexable: /gohighlevel.html
-  # redirige a /gohighlevel. Se listan una por una a proposito: una regla
-  # genarica arrastraria tambien privacy.html y terms.html, cuyas URLs con
-  # extension ya estan indexadas y en el sitemap.
-  RewriteCond %{THE_REQUEST} \s/+gohighlevel\.html[\s?] [NC]
-  RewriteRule ^ /gohighlevel [R=301,L]
+  # Y al reves, para que exista UNA sola URL indexable: gohighlevel.html
+  # redirige a /gohighlevel. Las paginas se listan una por una a proposito:
+  # una regla generica arrastraria tambien privacy.html y terms.html, cuyas
+  # URLs con extension ya estan indexadas y en el sitemap. Al crear una
+  # pagina de servicio hay que sumarla aqui; check-seo.sh avisa si falta.
+  RewriteCond %{THE_REQUEST} \s/+(gohighlevel|agente-de-voz-ia|agentes-ia-whatsapp)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L]
 </IfModule>
 
 # --- 2. Pagina 404 propia --------------------------------------------------
