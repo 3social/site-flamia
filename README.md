@@ -60,6 +60,29 @@ En produccion hay ademas un `data-deletion.html` (pagina de solicitud de
 eliminacion de datos, requisito de la app de Meta) que **no esta en este
 repositorio**. Conviene versionarlo antes de que se pierda.
 
+## Estado en produccion
+
+Publicado el 22 de septiembre de 2026. El dominio sirve seis paginas:
+
+| URL | Que es |
+| --- | --- |
+| `/` | Home |
+| `/gohighlevel` | Servicio: implementacion de GoHighLevel |
+| `/agente-de-voz-ia` | Servicio: agente de voz |
+| `/agentes-ia-whatsapp` | Servicio: agentes de WhatsApp |
+| `/privacy.html`, `/terms.html` | Legales |
+
+Pendientes que no son de codigo, en orden de impacto:
+
+1. **Ficha de Google Business Profile** como negocio de area de servicio. Es
+   la palanca local mas grande que falta y no depende del repositorio.
+2. **El 301 de `ghl.flamiagroup.com`**, con el snippet de `deploy/`.
+3. **`inmobiliaria.flamiagroup.com`**: decidir si se indexa o no.
+4. **No tocar el title ni la meta del home.** El sitio es nuevo para Google y
+   la muestra es demasiado pequena para concluir nada de ella; reescribirlos
+   ahora reinicia el poco aprendizaje acumulado y deja sin linea base para
+   medir si algo funciono.
+
 ## Endpoints
 
 Base n8n: https://personaldev-n8n.aaqnec.easypanel.host
@@ -146,7 +169,25 @@ delante, de modo que al extraerlo dentro de `public_html` cada uno cae donde
 debe. Subir el ZIP al Administrador de archivos de Hostinger, extraer,
 reemplazar, y borrar el ZIP.
 
-Dos cosas que se olvidan y cuestan una tarde:
+Al extraer, el Administrador de archivos pide una ruta. **Es la ruta de
+destino, no el nombre de una carpeta nueva.** Hay que pegar la ruta completa:
+
+```
+/home/u783834143/domains/flamiagroup.com/public_html
+```
+
+Si se escribe un nombre cualquiera, el sitio queda dentro de
+`public_html/ese-nombre/` y el dominio se queda sin `index.html` en la raiz.
+Es el tercer incidente que documenta CLAUDE.md, y se repite porque el campo
+parece pedir un nombre. Si el desplegable ya trae una ruta que termina en
+`public_html`, no se toca.
+
+Si alguna version del panel no deja confirmar sin nombre: extraer en una
+carpeta temporal, activar "Mostrar archivos ocultos" **antes** de seleccionar
+(si no, `.htaccess` se queda atras), mover todo a `public_html` sobrescribiendo,
+y borrar la temporal.
+
+Dos cosas mas que se olvidan y cuestan una tarde:
 
 - `.htaccess` empieza con punto. Finder y el Explorador de Windows lo
   ocultan, asi que si se descomprime en local y se suben los archivos a
