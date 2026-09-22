@@ -100,9 +100,11 @@ se sirve desde public barra assets barra fonts.
 
 El posicionamiento es local para Costa Rica. El NAP del negocio, Flamia
 Group, telefono mas 506 8940 1202, correo contacto arroba flamiagroup.com,
-Heredia Costa Rica, aparece identico en el pie de las cuatro paginas y en el
-JSON-LD. Si cambia, hay que cambiarlo en los cinco sitios a la vez: la
-inconsistencia de NAP castiga el SEO local.
+Heredia Costa Rica, aparece identico en el pie de TODAS las paginas y en el
+JSON-LD. Si cambia, hay que cambiarlo en todas a la vez: la inconsistencia de
+NAP castiga el SEO local. Ya no hace falta recordarlo de memoria: el valor
+canonico esta declarado en las variables del principio de check-seo.sh, y el
+script señala cada archivo que falte actualizar.
 
 Los datos estructurados son un unico bloque JSON-LD en el head de index.html,
 con Organization mas ProfessionalService, WebSite, WebPage, Service y
@@ -120,3 +122,71 @@ Antes de probar cambios en el flujo de llamada de voz, desactivar el nodo Llamar
 
 
 Antes de probar cambios en el flujo de llamada de voz, desactivar el nodo Llamar Vapi para evitar disparar llamadas reales a numeros de prueba o de ataque durante pruebas. Usar datos de prueba fijados, pin data, en el nodo Webhook en vez de invocar el webhook real de produccion. Nunca commitear valores reales de secretos, API keys o tokens en este repositorio, ni siquiera en archivos de documentacion como este. Cualquier cambio de seguridad, borrado de credenciales, o publicacion de workflows debe confirmarse explicitamente con el usuario antes de ejecutarse.
+
+## Cuarta tanda, septiembre 2026: paginas de servicio y consolidacion
+
+Se trabajo sobre una auditoria SEO externa. Dos de sus recomendaciones no se
+aplicaron, y conviene saber por que antes de que alguien las retome:
+
+Reescribir el title y la meta del home. Se descarto. La auditoria lo pedia
+por un CTR de cero, pero la muestra en la que se apoyaba era de 19
+impresiones en nueve dias: con ese volumen, cero clics es el resultado
+esperado y no dice nada del snippet. Ademas el H1 y el title ya contenian lo
+que la auditoria proponia anadir. Reescribirlos reinicia el poco aprendizaje
+acumulado y deja sin linea base. NO TOCAR hasta tener varios cientos de
+impresiones.
+
+Abrir un blog con dos articulos al mes. Se descarto por realismo operativo:
+el sitio se publica subiendo un ZIP a mano, sin CMS, y un blog abandonado con
+tres entradas es peor señal que no tener blog. En su lugar se amplio el
+FAQPage que ya existia, de 7 a 12 preguntas, cubriendo las mismas busquedas
+long-tail con cero infraestructura nueva.
+
+Lo que si se hizo. El sitio pasa de una pagina indexable util a cuatro: se
+crearon /gohighlevel, /agente-de-voz-ia y /agentes-ia-whatsapp, de unas 900 a
+1000 palabras cada una, con JSON-LD propio (WebPage, BreadcrumbList, Service)
+que referencia por @id la Organization que declara el home. Se sirven sin
+extension mediante dos reglas del .htaccess, y se enlazan entre si y desde el
+home: una pagina de servicio que solo existe en el sitemap nace huerfana.
+
+El bloque style de 15 KB que vivia dentro de index.html se extrajo a
+public/assets/site.css para que las paginas de servicio compartan el sistema
+de diseño en vez de duplicarlo.
+
+Sobre ghl.flamiagroup.com: NO es un portal de clientes, es una pagina de
+VENTA. Por eso no lleva noindex. Su problema es que vende desde un
+subdominio, y para Google un subdominio es practicamente otro sitio, asi que
+su autoridad no alimenta al dominio principal. La decision fue consolidar: el
+contenido vive ahora en /gohighlevel, los botones del nav apuntan ahi, y el
+subdominio debe redirigir con un 301. El snippet esta en
+deploy/ghl-301-a-gohighlevel.htaccess y empieza en 302 a proposito, porque un
+301 se cachea en el navegador de forma casi permanente y haria irreversible
+un error. AL ESCRIBIR ESTO EL 301 AUN NO ESTABA APLICADO.
+
+inmobiliaria.flamiagroup.com sigue sin decidir: si es un sitio de cliente con
+vida propia no se toca; si es un entorno interno, conviene que no se indexe.
+
+## check-seo.sh: las invariantes dejaron de depender de la memoria
+
+Varias reglas de este documento y del README se sostenian a mano y se rompian
+igual. check-seo.sh las verifica y package.sh lo ejecuta antes de empaquetar,
+de modo que una desincronizacion no puede llegar al servidor: NAP identico en
+todas las paginas y en el JSON-LD, ningun otro numero mas 506 fuera de los
+placeholder de formulario, la seccion faq visible y el bloque FAQPage con el
+mismo numero de preguntas, toda pagina publicable en sitemap.xml, cada pagina
+servida sin extension con su redireccion 301, y ninguna pagina enlazando a
+ghl.flamiagroup.com.
+
+Al crear una pagina de servicio nueva hay cuatro pasos, detallados en el
+README. El script verifica tres; el cuarto, enlazarla desde el home, no se
+puede automatizar y es el que mas duele olvidar.
+
+## Despliegue, septiembre 2026: la trampa del campo de carpeta
+
+Al extraer el ZIP, el Administrador de archivos de Hostinger pide una ruta.
+Es la ruta de DESTINO, no el nombre de una carpeta nueva. Hay que pegar
+barra home barra u783834143 barra domains barra flamiagroup.com barra
+public_html. Escribir un nombre cualquiera deja el sitio dentro de una
+subcarpeta y el dominio sin index.html en la raiz, que es exactamente el
+tercer incidente de este documento. Se repite porque el campo parece pedir un
+nombre.

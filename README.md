@@ -60,6 +60,29 @@ En produccion hay ademas un `data-deletion.html` (pagina de solicitud de
 eliminacion de datos, requisito de la app de Meta) que **no esta en este
 repositorio**. Conviene versionarlo antes de que se pierda.
 
+## Estado en produccion
+
+Publicado el 22 de septiembre de 2026. El dominio sirve seis paginas:
+
+| URL | Que es |
+| --- | --- |
+| `/` | Home |
+| `/gohighlevel` | Servicio: implementacion de GoHighLevel |
+| `/agente-de-voz-ia` | Servicio: agente de voz |
+| `/agentes-ia-whatsapp` | Servicio: agentes de WhatsApp |
+| `/privacy.html`, `/terms.html` | Legales |
+
+Pendientes que no son de codigo, en orden de impacto:
+
+1. **Ficha de Google Business Profile** como negocio de area de servicio. Es
+   la palanca local mas grande que falta y no depende del repositorio.
+2. **El 301 de `ghl.flamiagroup.com`**, con el snippet de `deploy/`.
+3. **`inmobiliaria.flamiagroup.com`**: decidir si se indexa o no.
+4. **No tocar el title ni la meta del home.** El sitio es nuevo para Google y
+   la muestra es demasiado pequena para concluir nada de ella; reescribirlos
+   ahora reinicia el poco aprendizaje acumulado y deja sin linea base para
+   medir si algo funciono.
+
 ## Endpoints
 
 Base n8n: https://personaldev-n8n.aaqnec.easypanel.host
@@ -110,13 +133,21 @@ servido en produccion por un descuido.
 public/          <- esto y solo esto va a public_html
   .htaccess
   index.html  privacy.html  terms.html  404.html
+  gohighlevel.html         <- /gohighlevel
+  agente-de-voz-ia.html    <- /agente-de-voz-ia
+  agentes-ia-whatsapp.html <- /agentes-ia-whatsapp
   robots.txt  sitemap.xml
   assets/      (css, fuentes, imagenes)
+
+deploy/          <- snippets para OTROS document roots, no para public_html
+  ghl-301-a-gohighlevel.htaccess
+  subdominios-noindex.htaccess
 
 CLAUDE.md               <- interno, NUNCA se sube
 README.md               <- interno, NUNCA se sube
 flammeta.json.template  <- interno, NUNCA se sube
 package.sh              <- utilidad local
+check-seo.sh            <- utilidad local (la corre package.sh)
 ```
 
 Motivo: en produccion se detectaron `CLAUDE.md`, `README.md` y
@@ -138,7 +169,25 @@ delante, de modo que al extraerlo dentro de `public_html` cada uno cae donde
 debe. Subir el ZIP al Administrador de archivos de Hostinger, extraer,
 reemplazar, y borrar el ZIP.
 
-Dos cosas que se olvidan y cuestan una tarde:
+Al extraer, el Administrador de archivos pide una ruta. **Es la ruta de
+destino, no el nombre de una carpeta nueva.** Hay que pegar la ruta completa:
+
+```
+/home/u783834143/domains/flamiagroup.com/public_html
+```
+
+Si se escribe un nombre cualquiera, el sitio queda dentro de
+`public_html/ese-nombre/` y el dominio se queda sin `index.html` en la raiz.
+Es el tercer incidente que documenta CLAUDE.md, y se repite porque el campo
+parece pedir un nombre. Si el desplegable ya trae una ruta que termina en
+`public_html`, no se toca.
+
+Si alguna version del panel no deja confirmar sin nombre: extraer en una
+carpeta temporal, activar "Mostrar archivos ocultos" **antes** de seleccionar
+(si no, `.htaccess` se queda atras), mover todo a `public_html` sobrescribiendo,
+y borrar la temporal.
+
+Dos cosas mas que se olvidan y cuestan una tarde:
 
 - `.htaccess` empieza con punto. Finder y el Explorador de Windows lo
   ocultan, asi que si se descomprime en local y se suben los archivos a
@@ -163,6 +212,7 @@ estructura de carpetas.
 | `assets/og-image.jpg` | Tarjeta 1200x630 que se ve al compartir el enlace en WhatsApp, LinkedIn o Facebook. |
 | `assets/logo.png` | Logo 512x512 declarado en los datos estructurados (Schema.org). |
 | `assets/pages.css` | Estilos de `privacy.html`, `terms.html` y `404.html`. No dependen de Tailwind. |
+| `assets/site.css` | Sistema de diseno del sitio principal: la fuente, los tokens de color y los componentes (`cta-button`, `section-block`, `faq-item`, `hero-gradient-text`). Lo comparten `index.html` y las paginas de servicio. |
 
 Los datos estructurados viven en un solo bloque JSON-LD en el `<head>` de
 `index.html`, como un `@graph` con Organization, WebSite, WebPage, Service y
@@ -193,6 +243,117 @@ npx tailwindcss@3 -i <(printf '@tailwind base;@tailwind components;@tailwind uti
 ```
 
 Y volver a subir `public/assets/tailwind.css` junto al HTML.
+
+### Verificacion automatica: `check-seo.sh`
+
+Tres invariantes de este README se sostienen a mano y se rompen igual: alguien
+edita una pagina y olvida las otras. `check-seo.sh` las comprueba, y
+`package.sh` lo ejecuta antes de empaquetar, asi que una desincronizacion no
+puede llegar al servidor.
+
+| Comprueba | Por que importa |
+| --- | --- |
+| NAP identico en las 4 paginas y en el JSON-LD | La inconsistencia de NAP es de los errores que mas castigan el SEO local |
+| Ningun otro numero `+506` fuera de los `placeholder` de formulario | Un telefono viejo copiado a medias es NAP divergente |
+| La seccion `#faq` y el bloque `FAQPage` tienen el mismo numero de preguntas | Marcado que promete lo que la pagina no muestra |
+| Toda pagina publicable esta en `sitemap.xml` | Una pagina nueva sin entrada en el sitemap nace invisible |
+
+```bash
+./check-seo.sh     # 0 = todo bien, 1 = hay algo que corregir
+```
+
+El NAP canonico esta declarado en las variables del principio del script: si
+el negocio cambia de telefono, se cambia ahi y el script senala cada archivo
+que falta actualizar.
+
+### Paginas de servicio y URLs sin extension
+
+`gohighlevel.html` se sirve en `https://flamiagroup.com/gohighlevel`, sin la
+extension. Lo hacen dos reglas del `.htaccess`:
+
+- una regla general que sirve `/loquesea` desde `loquesea.html` **solo si ese
+  archivo existe** (la condicion `-f`), de modo que una pagina de servicio
+  nueva funciona sin tocar el `.htaccess`;
+- una redireccion 301 de `/gohighlevel.html` a `/gohighlevel`, para que exista
+  una sola URL indexable.
+
+La segunda se lista pagina por pagina a proposito. Una regla generica que
+quitara la extension a todo arrastraria tambien `privacy.html` y `terms.html`,
+cuyas URLs con extension ya estan indexadas y en el sitemap: cambiarlas solo
+anadiria redirecciones sin ganar nada.
+
+Al crear una pagina de servicio hay cuatro cosas que hacer:
+
+1. Anadir su slug al array `SIN_EXTENSION` de `check-seo.sh`. Eso hace que el
+   script sepa cual es su URL canonica y verifique los dos puntos siguientes.
+2. Anadir el slug a la lista de la `RewriteCond` del `.htaccess`, para que
+   `/pagina.html` redirija a `/pagina`. Sin eso quedan dos URLs indexables
+   sirviendo lo mismo. **Lo verifica `check-seo.sh`.**
+3. Anadirla a `sitemap.xml` con su URL sin extension. **Lo verifica `check-seo.sh`.**
+4. Enlazarla desde el home. Esto **no** se puede verificar solo, y es lo que
+   mas cuesta si se olvida: una pagina que solo existe en el sitemap nace
+   huerfana y Google le da poco peso.
+
+El NAP del pie tambien lo verifica el script, y las paginas se descubren
+solas, asi que una pagina nueva entra en la comprobacion desde que se crea.
+
+Las tres paginas de servicio se enlazan entre si ademas de al home. Ese
+entramado interno es parte del trabajo: reparte autoridad y le dice a Google
+que son un grupo tematico y no tres paginas sueltas.
+
+Las paginas de servicio comparten el mismo encabezado, pie y navegacion.
+Estan duplicados en cada archivo, porque el sitio no tiene build step a
+proposito; lo que no puede divergir en silencio -- el NAP del pie -- lo
+verifica `check-seo.sh`. Si algun dia son ocho paginas, tocara plantillas.
+
+### El CSS del sitio principal vive en `assets/site.css`
+
+Antes era un bloque `<style>` de 15 KB dentro de `index.html`. Se saco a un
+archivo para que las paginas de servicio compartan el mismo sistema de diseno
+en vez de duplicarlo.
+
+El intercambio conviene tenerlo claro: en la primera visita cuesta una
+peticion mas (la home pasa de 3 a 4), pero en las siguientes se gana, porque
+el HTML se sirve con `no-cache` y el CSS se cachea 30 dias. Con el bloque
+inline, esos 15 KB viajaban enteros en cada visita y en cada pagina.
+
+### Subdominios: `ghl.` e `inmobiliaria.`
+
+`ghl.flamiagroup.com` es una pagina de VENTA, no un portal de clientes, asi
+que **no lleva noindex**. Su problema es otro: para Google un subdominio es
+practicamente otro sitio, de modo que el posicionamiento y los enlaces que
+gane ghl. no suman a `flamiagroup.com`, que es el dominio que se quiere
+levantar.
+
+La decision tomada es consolidar. El contenido de venta vive ahora en
+`/gohighlevel`, los dos botones "Obtenga GHL" del nav apuntan ahi, y el
+subdominio redirige con un 301. El snippet esta en
+`deploy/ghl-301-a-gohighlevel.htaccess`, para instalar en
+`public_html/build/.htaccess`.
+
+Dos advertencias que estan tambien dentro del archivo:
+
+- **Empezar con 302 y pasar a 301 uno o dos dias despues.** Un 301 se cachea
+  en el navegador de forma casi permanente: si hay que revertir, quien ya lo
+  visito seguira yendo a la pagina nueva aunque se arregle el servidor.
+- **Comprobar antes que `/gohighlevel` cubre lo que ofrece el subdominio**, y
+  que ningun anuncio, firma de correo o QR impreso depende de una ruta
+  concreta de ghl.: todas caen en la misma pagina.
+
+Una vez redirigido, ninguna pagina del sitio debe enlazar al subdominio;
+`check-seo.sh` lo verifica.
+
+`inmobiliaria.flamiagroup.com` queda pendiente de decidir: si es un sitio de
+cliente con vida propia no se toca, y si es un entorno interno conviene que no
+se indexe. `deploy/subdominios-noindex.htaccess` tiene el bloque por si se
+decide aplicar a `inmobiliaria`.
+Usa `X-Robots-Tag: noindex`, no `Disallow` en robots.txt: el bot necesita
+poder leer la pagina para ver la cabecera, mientras que un `Disallow` le
+impide leerla y la URL puede seguir apareciendo sin snippet.
+
+`inmobiliaria/` es una app Laravel y ya trae su propio `.htaccess`: ahi se
+pega solo el bloque `<IfModule mod_headers.c>` al final, no se reemplaza el
+archivo.
 
 ### Despues de publicar
 
