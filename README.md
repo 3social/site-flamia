@@ -117,6 +117,7 @@ public/          <- esto y solo esto va a public_html
   assets/      (css, fuentes, imagenes)
 
 deploy/          <- snippets para OTROS document roots, no para public_html
+  ghl-301-a-gohighlevel.htaccess
   subdominios-noindex.htaccess
 
 CLAUDE.md               <- interno, NUNCA se sube
@@ -278,20 +279,33 @@ inline, esos 15 KB viajaban enteros en cada visita y en cada pagina.
 ### Subdominios: `ghl.` e `inmobiliaria.`
 
 `ghl.flamiagroup.com` es una pagina de VENTA, no un portal de clientes, asi
-que **no se le pone noindex**: se indexa. Lo que si conviene resolver es que
-vende desde un subdominio, y en SEO un subdominio es practicamente otro sitio:
-la autoridad que gane no alimenta a `flamiagroup.com`, y el nav del home le
-manda trafico desde hace dias. Por eso ese contenido empieza a vivir aqui, en
-`/gohighlevel`. El paso siguiente, cuando se confirme que no rompe ningun
-embudo activo, es redirigir el subdominio con un 301 a esa URL y apuntar ahi
-los dos botones "Obtenga GHL" del nav.
+que **no lleva noindex**. Su problema es otro: para Google un subdominio es
+practicamente otro sitio, de modo que el posicionamiento y los enlaces que
+gane ghl. no suman a `flamiagroup.com`, que es el dominio que se quiere
+levantar.
+
+La decision tomada es consolidar. El contenido de venta vive ahora en
+`/gohighlevel`, los dos botones "Obtenga GHL" del nav apuntan ahi, y el
+subdominio redirige con un 301. El snippet esta en
+`deploy/ghl-301-a-gohighlevel.htaccess`, para instalar en
+`public_html/build/.htaccess`.
+
+Dos advertencias que estan tambien dentro del archivo:
+
+- **Empezar con 302 y pasar a 301 uno o dos dias despues.** Un 301 se cachea
+  en el navegador de forma casi permanente: si hay que revertir, quien ya lo
+  visito seguira yendo a la pagina nueva aunque se arregle el servidor.
+- **Comprobar antes que `/gohighlevel` cubre lo que ofrece el subdominio**, y
+  que ningun anuncio, firma de correo o QR impreso depende de una ruta
+  concreta de ghl.: todas caen en la misma pagina.
+
+Una vez redirigido, ninguna pagina del sitio debe enlazar al subdominio;
+`check-seo.sh` lo verifica.
 
 `inmobiliaria.flamiagroup.com` queda pendiente de decidir: si es un sitio de
 cliente con vida propia no se toca, y si es un entorno interno conviene que no
-se indexe.
-
-`deploy/subdominios-noindex.htaccess` tiene el bloque por si se decide aplicar
-a `inmobiliaria`.
+se indexe. `deploy/subdominios-noindex.htaccess` tiene el bloque por si se
+decide aplicar a `inmobiliaria`.
 Usa `X-Robots-Tag: noindex`, no `Disallow` en robots.txt: el bot necesita
 poder leer la pagina para ver la cabecera, mientras que un `Disallow` le
 impide leerla y la URL puede seguir apareciendo sin snippet.

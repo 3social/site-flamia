@@ -1,0 +1,53 @@
+# ---------------------------------------------------------------------------
+# 301 de ghl.flamiagroup.com -> https://flamiagroup.com/gohighlevel
+#
+# Destino: public_html/build/.htaccess   (document root de ghl.flamiagroup.com)
+# NO va en public_html: ahi vive el sitio principal y este bloque lo mandaria
+# a redirigirse a si mismo.
+#
+# Por que: el subdominio vende GoHighLevel, pero para Google un subdominio es
+# practicamente otro sitio. Todo el posicionamiento y los enlaces que gane
+# ghl. no suman a flamiagroup.com, que es el dominio que se quiere levantar.
+# Consolidando, esa autoridad pasa a contar donde importa.
+#
+# ANTES DE APLICARLO, dos comprobaciones que cuestan cinco minutos y evitan
+# un disgusto:
+#
+#   1. Que /gohighlevel cubra lo que hoy ofrece el subdominio. Si la pagina
+#      de ghl. tiene un formulario, un registro, un video o una oferta que
+#      no esta en /gohighlevel, ese contenido se pierde el dia del cambio.
+#   2. Que ningun anuncio, firma de correo, perfil de red social, QR impreso
+#      o campana activa dependa de una ruta concreta del subdominio. Con la
+#      regla de abajo, TODAS las rutas caen en la misma pagina.
+#
+# EMPIEZA CON 302, NO CON 301. Un 301 lo cachea el navegador de forma
+# practicamente permanente: si te equivocas, los que ya lo visitaron seguiran
+# yendo a la pagina nueva aunque revirtieras el servidor. Deja el 302 un dia
+# o dos, comprueba que no se rompio ningun embudo, y solo entonces cambia el
+# 302 por 301, que es el que transfiere la autoridad.
+# ---------------------------------------------------------------------------
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Evita el bucle si alguna vez este archivo acaba en el sitio equivocado.
+  RewriteCond %{HTTP_HOST} ^ghl\.flamiagroup\.com$ [NC]
+
+  # PASO 1 (dejar activo un par de dias): temporal, no se cachea.
+  RewriteRule ^ https://flamiagroup.com/gohighlevel [R=302,L]
+
+  # PASO 2 (cuando este confirmado): comenta la linea de arriba y descomenta
+  # esta. Es la que consolida el posicionamiento.
+  # RewriteRule ^ https://flamiagroup.com/gohighlevel [R=301,L]
+</IfModule>
+
+# Nota: la query string se conserva sola, asi que los ?utm_source=... de las
+# campanas siguen llegando y se pueden medir en Analytics.
+#
+# Si el subdominio tuviera varias paginas distintas y quisieras conservar la
+# ruta en vez de mandarlo todo a /gohighlevel, la regla seria:
+#
+#   RewriteRule ^(.*)$ https://flamiagroup.com/$1 [R=301,L]
+#
+# pero solo tiene sentido si esas rutas existen en el dominio principal. Si
+# no existen, cada una daria un 404, que es peor que la redireccion unica.

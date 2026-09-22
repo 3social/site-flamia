@@ -90,6 +90,19 @@ for base in "${SIN_EXTENSION[@]}"; do
   if grep -q "$base" .htaccess; then ok "$base"; else fallo ".htaccess sin la redireccion 301 de $base.html"; fi
 done
 
+# ghl.flamiagroup.com redirige a /gohighlevel. Un enlace al subdominio manda
+# al visitante por un salto de mas y devuelve al subdominio un trafico que se
+# quiso consolidar en el dominio principal.
+echo "6. Sin enlaces al subdominio que redirige"
+enlaces_subdominio=0
+for pagina in "${PAGINAS[@]}"; do
+  if grep -q 'ghl\.flamiagroup\.com' "$pagina"; then
+    fallo "$pagina enlaza a ghl.flamiagroup.com; deberia enlazar a /gohighlevel"
+    enlaces_subdominio=1
+  fi
+done
+[ "$enlaces_subdominio" -eq 0 ] && ok "ninguna pagina enlaza al subdominio"
+
 echo
 if [ "$fallos" -eq 0 ]; then
   echo "Todo en orden."
