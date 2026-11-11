@@ -218,6 +218,16 @@ desactivado. Ademas el agente del chat no pide consentimiento para SMS: si
 llega a recoger telefonos por conversacion, hay que instruirlo en n8n para que
 lo pida de forma explicita.
 
-Los textos legales y los valores del registro (razon social, nombre del
-programa, caso de uso, frecuencia) se redactaron con supuestos razonables que el
-usuario debe contrastar con su registro real. No son asesoria legal.
+La razon social del remitente es Flamiagroup, confirmada por el usuario, con
+Flamia Group como nombre comercial; check-seo.sh la verifica en la casilla y en
+las dos secciones sms. El pie de las paginas sigue diciendo Flamia Group Inc.,
+que con esa razon social no coincide: no se cambio porque toca siete paginas y
+el NAP, y es una decision del usuario. El nombre del programa, el caso de uso y
+la frecuencia siguen siendo supuestos a contrastar con el registro real. Los
+textos legales no son asesoria legal. La version vigente del texto de
+consentimiento es 2026-11-v2: se sube cada vez que cambia el texto.
+
+Al escribir esto el consentimiento TODAVIA NO SE GUARDA en n8n: las herramientas
+de n8n no estaban autorizadas en esa sesion, asi que el workflow no se pudo
+tocar. La especificacion exacta de lo que falta esta en la seccion SMS del
+README. Hasta que se haga, la casilla se envia pero no deja prueba.

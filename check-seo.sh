@@ -106,6 +106,10 @@ done
 # El consentimiento para SMS (A2P 10DLC) se rompe igual que el NAP: alguien
 # edita el formulario y lo deja marcado de antemano o lo hace obligatorio, y
 # los operadores rechazan la campana. Estas son las reglas que revisan.
+# Razon social con la que se registro la campana A2P. El revisor compara el
+# remitente que ve en el consentimiento con el del registro: si no coincide
+# letra por letra, rechaza. Si cambia, se cambia AQUI y el script senala donde.
+RAZON_SOCIAL="Flamiagroup"
 echo "7. Consentimiento SMS (A2P)"
 casilla=$(grep -E 'id="sms-consent"' index.html || true)
 if [ -z "$casilla" ]; then
@@ -128,6 +132,12 @@ done
 grep -q 'smsConsent,' index.html && ok "el consentimiento viaja en el payload del lead" || fallo "el payload ya no envia smsConsent"
 for pagina in privacy.html terms.html; do
   grep -q 'id="sms"' "$pagina" && ok "$pagina tiene la seccion #sms" || fallo "$pagina no tiene la seccion id=\"sms\""
+done
+grep -q 'for="sms-consent"' index.html && sed -n '/for="sms-consent"/,/<\/label>/p' index.html | grep -q "$RAZON_SOCIAL" \
+  && ok "la casilla nombra al remitente: $RAZON_SOCIAL" || fallo "la casilla de consentimiento no nombra a $RAZON_SOCIAL"
+for pagina in privacy.html terms.html; do
+  sed -n '/id="sms"/,/<h2>/p' "$pagina" | grep -q "$RAZON_SOCIAL" \
+    && ok "$pagina#sms nombra al remitente: $RAZON_SOCIAL" || fallo "$pagina#sms no nombra a $RAZON_SOCIAL"
 done
 grep -q 'No compartimos el número de teléfono móvil' privacy.html \
   && ok "privacy.html declara que el numero movil no se comparte con fines de marketing" \

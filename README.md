@@ -382,10 +382,36 @@ deja de enviar `smsConsent`, o si desaparecen las secciones `#sms` o la
 clausula de no comparticion. Son las ediciones que hacen rechazar una campana
 sin que nadie lo note.
 
-Valores que se **asumieron** y hay que contrastar con el registro real antes de
-enviarlo: la razon social (el pie dice "Flamia Group Inc." y debe coincidir
-letra por letra), el nombre del programa ("Mensajes de Flamia Group"), el caso
-de uso (confirmaciones, recordatorios y seguimiento) y la frecuencia ("variable").
+Razon social del remitente: **Flamiagroup**, confirmada por el usuario. Es la
+que nombran la casilla y las secciones `#sms`, con "Flamia Group" como nombre
+comercial; `check-seo.sh` verifica los tres sitios (variable `RAZON_SOCIAL` al
+inicio de la comprobacion 7). Sigue siendo **supuesto** y hay que contrastarlo
+con el registro: el nombre del programa ("Mensajes de Flamiagroup"), el caso de
+uso (confirmaciones, recordatorios y seguimiento) y la frecuencia ("variable").
+El pie de todas las paginas dice "Flamia Group Inc."; con esa razon social el
+"Inc." no coincide, y no se cambio porque toca siete paginas y el NAP.
+
+La version del texto vigente es `2026-11-v2` (subio al cambiar el remitente).
+
+#### Lo que n8n debe hacer con el consentimiento (pendiente)
+
+El formulario ya envia `smsConsent`, `smsConsentVersion` y `createdAt`; falta
+que el workflow *Flamia Voice Call Vapi* los guarde. Especificacion:
+
+1. **Normalizar Lead** debe dejar pasar esos tres campos, con `smsConsent`
+   comparado de forma estricta (`=== true`): una cadena `"false"` es truthy.
+2. **Una rama paralela a Llamar Vapi**, con `continueOnFail`, que registre cada
+   envio: telefono, nombre, correo, `smsConsent`, version, `createdAt`, origen,
+   y de las cabeceras del webhook la IP (`x-forwarded-for`) y el user-agent. Va
+   **despues** del Rate Limit Check, para que quien inunde el webhook no pueda
+   inflar el registro, y en paralelo, para que un fallo al guardar no impida la
+   llamada. Una Data Table de n8n basta como registro de prueba.
+3. **Si `smsConsent` es true**, marcar el contacto en GHL (etiqueta
+   `sms-consent` y campos con la version y la fecha). Requiere una credencial de
+   GHL en n8n; no se verifico que exista.
+4. Probar con el nodo **Llamar Vapi desactivado** y datos fijados en el Webhook,
+   y confirmar antes de publicar: es un workflow en produccion que ya costo
+   dinero una vez.
 
 Si GHL rechaza por no encontrar *su* widget, el plan B es cargar el script
 solo en una pagina dedicada (por ejemplo `/sms`), nunca en el home: el chat
