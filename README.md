@@ -398,46 +398,55 @@ la version del consentimiento. El revisor compara el remitente con el registro.
 
 La version del texto vigente es `2026-11-v2` (subio al cambiar el remitente).
 
-#### Como se guarda el consentimiento en n8n (hecho, sin publicar)
+#### Como se guarda el consentimiento (estado al 11 de noviembre de 2026)
 
-El workflow *Flamia – Voice Call Vapi* (id `aqGzQrGEMU40OR9j`) ya guarda el
-consentimiento. **Esta en borrador: el workflow sigue inactivo y sin version
-publicada**, asi que el webhook `/webhook/flamia-voice-call` no responde hasta
-que se publique (ver mas abajo). Lo que se anadio:
+Workflow *Flamia – Voice Call Vapi* (id `aqGzQrGEMU40OR9j`), **activo** desde las
+20:15 del 11 de noviembre (lo publico el usuario).
 
-- **Normalizar Lead** deja pasar `smsConsent` con comparacion estricta
-  (`=== true`) y `smsConsentVersion`. `createdAt` es la hora del servidor, no la
-  del navegador. Verificado: el texto `"true"` cuenta como *no* consentimiento.
-- **¿Aceptó SMS?** (IF estricto) y **Guardar Consentimiento SMS** (Data Table,
-  insert), en una rama **paralela** a Llamar Vapi y con `onError` continuar:
-  si guardar falla, la llamada no se detiene.
-- Tabla `sms_consents` (id `fJwWN7d8DsT0v1ts`): `created_at`, `name`, `email`,
-  `phone` (normalizado), `phone_raw` (lo que escribio la persona),
-  `sms_consent`, `consent_version`, `source`. **Solo se guardan los que aceptan.**
+**Version publicada (en vivo).** *Normalizar Lead* deja pasar `smsConsent` con
+comparacion estricta (`=== true`; el texto `"true"` cuenta como *no*) y la
+version, y pone `createdAt` con la hora del servidor. Despues, *¿Aceptó SMS?* (IF
+estricto) **sin ninguna conexion de salida**: el nodo *Guardar Consentimiento SMS*
+(tabla `sms_consents`) ya no esta en el workflow. Se quito en la interfaz de n8n,
+no desde el repositorio ni desde las herramientas de esta sesion, y no se sabe si
+fue a proposito. La tabla (`fJwWN7d8DsT0v1ts`) sigue existiendo con una fila de
+prueba "PRUEBA-NO-REAL", que hay que borrar a mano.
 
-Decisiones respecto al plan inicial: no se guarda IP ni user-agent, porque la
-politica de privacidad lista solo "fecha y version del texto"; si se quisieran,
-primero hay que ampliar la politica y subir `smsConsentVersion`. Y el marcado en
-GHL (etiqueta o campo) **no se hizo**: se pidio guardar en n8n. Para hacerlo
-existe la credencial `ghl-n8n-site-web`, la que usa el flujo del chat.
+**Borrador (sin publicar).** Anade *GHL – Registrar Consentimiento*:
+`POST /contacts/upsert` en la cuenta **Flamiagroup** (`locationId`
+`Mzmr9yxQ2iMapPYViK1B`), colgado de la salida "si" de *¿Aceptó SMS?*, con
+`onError` continuar y timeout de 6 s, de modo que si GHL falla o tarda la llamada
+no se detiene. Escribe tres campos de contacto, todos de texto:
 
-Probado con `test_workflow` y `Llamar Vapi` simulado (cero llamadas reales):
-casilla sin marcar no guarda nada; `smsConsent: "true"` como texto no guarda
-nada; `smsConsent: true` guarda una fila y la respuesta al formulario sale igual.
-Cada fila de prueba se marca `PRUEBA-NO-REAL`: hay que borrarla a mano.
+| Campo en GHL | Clave | Valor |
+| --- | --- | --- |
+| Consentimiento SMS | `contact.consentimiento_sms` | `Sí` |
+| Consentimiento SMS - Versión | `contact.consentimiento_sms__versin` | `2026-11-v2` |
+| Consentimiento SMS - Fecha | `contact.consentimiento_sms__fecha` | fecha y hora UTC |
 
-**Antes de publicar el workflow** (es una decision aparte, y CLAUDE.md pide
-confirmarla):
+**El nodo no envia `tags` ni `source`, a proposito:** en un upsert de GHL, `tags`
+**sobrescribe** todas las etiquetas que el contacto ya tenga. Si se quiere una
+etiqueta, hay que usar el endpoint de anadir etiqueta, no el upsert.
 
-1. Hoy esta inactivo, asi que **el formulario de la demo de voz del sitio no
-   puede hacer llamadas**. Publicarlo es lo que lo reactiva.
-2. Sigue pendiente rotar `X-Flamia-Secret` (CLAUDE.md, segundo incidente). Ya
-   tiene limite global (5 por 10 min) y por IP (3 por 10 min), pero el secreto es
-   visible en el HTML.
-3. `Normalizar Lead` antepone `+1` a cualquier numero sin `+`, y el formulario
-   acepta numeros sin prefijo: un visitante de Costa Rica que escriba `8940 1202`
-   marcaria un numero de EE. UU. Hay que exigir el `+` en el formulario o cambiar
-   `defaultCountryCode`.
+Para terminarlo faltan dos pasos manuales:
+
+1. En el nodo, *Credential for Bearer Auth*: elegir `ghl-n8n-site-web`. El
+   conector de n8n no puede asignar credenciales Bearer a nodos HTTP, por eso esta
+   sin asignar. Mientras no se haga, el nodo falla en silencio (`onError`).
+2. Publicar el borrador. Es una decision aparte y CLAUDE.md pide confirmarla.
+
+Probado: el enrutado con `test_workflow` (nodo HTTP simulado, cero escrituras) y
+la expresion del cuerpo con Node sobre cuatro casos, incluido el correo vacio y un
+nombre de 5000 caracteres.
+
+**Antes de que esto sirva de extremo a extremo:**
+
+- Subir el ZIP: el sitio publicado no tiene todavia la casilla de consentimiento.
+- `Normalizar Lead` antepone `+1` a cualquier numero sin `+`, y el formulario no
+  exige el `+`: un visitante de Costa Rica que escriba `8940 1202` marcaria un
+  numero de EE. UU. y, con el nodo de GHL, crearia ahi un contacto con ese
+  telefono equivocado.
+- Sigue pendiente rotar `X-Flamia-Secret`.
 
 Si GHL rechaza por no encontrar *su* widget, el plan B es cargar el script
 solo en una pagina dedicada (por ejemplo `/sms`), nunca en el home: el chat

@@ -207,20 +207,30 @@ de rechazo, y check-seo.sh lo verifica. Las secciones con identificador sms de
 privacy.html y terms.html tienen que seguir diciendo que el numero movil no se
 comparte con terceros ni afiliados con fines de marketing.
 
-El consentimiento YA SE GUARDA en n8n, pero el cambio esta en borrador: el
-workflow Flamia Voice Call Vapi (id aqGzQrGEMU40OR9j) esta INACTIVO y sin version
-publicada, asi que su webhook no responde y el formulario de la demo de voz no
-puede hacer llamadas hasta que se publique. Publicarlo es una decision aparte que
-se confirma con el usuario. Detalle de lo construido, de como se probo y de los
-tres puntos a revisar antes de publicar, en la seccion SMS del README. Resumen:
-Normalizar Lead deja pasar smsConsent con comparacion estricta, y una rama paralela
-con onError continuar guarda en la tabla sms_consents solo a quien acepta. El
-agente del chat sigue sin pedir consentimiento para SMS: si llega a recoger
-telefonos por conversacion, hay que instruirlo en n8n para que lo pida.
+Estado del registro del consentimiento, 11 de noviembre de 2026. El workflow
+Flamia Voice Call Vapi (id aqGzQrGEMU40OR9j) esta ACTIVO desde las 20:15, publicado
+por el usuario. En la version publicada, Normalizar Lead deja pasar smsConsent con
+comparacion estricta y el nodo IF Aceptó SMS no tiene salida: el nodo que guardaba
+en la tabla sms_consents ya no esta, se quito en la interfaz de n8n y no se sabe
+si a proposito. En un BORRADOR sin publicar hay un nodo HTTP que registra el
+consentimiento en tres campos de contacto de la cuenta GHL Flamiagroup (location
+Mzmr9yxQ2iMapPYViK1B): Consentimiento SMS, su Version y su Fecha. Faltan dos pasos
+manuales, asignar la credencial ghl-n8n-site-web en el nodo y publicar; detalle en
+la seccion SMS del README.
 
-Dos correcciones a lo que dice este documento mas arriba, vistas al abrir el
-workflow en esta sesion: el rate limiting ya tiene limite POR IP (3 por 10
-minutos) ademas del global (5), y el workflow figura inactivo.
+LECCION DE GHL, importante: en un upsert de contacto el campo tags SOBRESCRIBE las
+etiquetas existentes. Por eso el nodo no envia tags ni source. Antes de anadir
+cualquiera de los dos a una llamada de upsert, pensar en los contactos que ya
+existen. Y el conector de n8n no puede asignar credenciales Bearer a nodos HTTP:
+esa asignacion se hace a mano en la interfaz.
+
+Otras correcciones a lo que dice este documento mas arriba: el rate limiting ya
+tiene limite POR IP (3 por 10 minutos) ademas del global (5). Quedan pendientes el
++1 por defecto de Normalizar Lead (un numero sin + se marca como de EE. UU.), la
+rotacion del secreto del header, y subir el ZIP, porque el sitio publicado aun no
+tiene la casilla de consentimiento. El agente del chat sigue sin pedir
+consentimiento para SMS: si llega a recoger telefonos por conversacion, hay que
+instruirlo en n8n para que lo pida.
 
 El nombre del negocio en todo el sitio es solo Flamia Group, sin Inc.: pie,
 meta author y legalName del JSON-LD, decision del usuario que check-seo.sh
