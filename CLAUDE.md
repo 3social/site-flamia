@@ -190,3 +190,34 @@ public_html. Escribir un nombre cualquiera deja el sitio dentro de una
 subcarpeta y el dominio sin index.html en la raiz, que es exactamente el
 tercer incidente de este documento. Se repite porque el campo parece pedir un
 nombre.
+
+## Quinta tanda, noviembre 2026: consentimiento SMS para el registro A2P
+
+Para registrar un numero de EE. UU. en GoHighLevel se pidio incrustar el
+widget de chat de GHL. Se decidio NO hacerlo: el sitio ya tiene un chat propio
+conectado a n8n y no carga nada de terceros, que fue una decision de
+rendimiento. El consentimiento se anadio a lo que ya existe. Detalle y razones
+en la seccion SMS del README.
+
+Lo que conviene saber antes de tocarlo. La casilla de consentimiento esta en el
+formulario de la demo de voz porque es el unico lugar donde el sitio captura un
+telefono; el chat solo tiene un aviso, no un opt-in. La casilla debe seguir
+siendo opcional y sin marcar: premarcada u obligatoria es el motivo mas comun
+de rechazo, y check-seo.sh lo verifica. Las secciones con identificador sms de
+privacy.html y terms.html tienen que seguir diciendo que el numero movil no se
+comparte con terceros ni afiliados con fines de marketing.
+
+PENDIENTE FUERA DEL REPOSITORIO, y es lo que mas importa. El payload del
+formulario ahora lleva smsConsent, smsConsentVersion y createdAt, pero el
+workflow de n8n no esta tocado: su nodo Normalizar Lead puede estar descartando
+esos campos, y sin guardarlos la casilla no deja prueba de nada. Hay que
+persistirlos en el contacto de GHL, con una etiqueta o un campo personalizado.
+Es un cambio del workflow, asi que por las reglas de este documento se confirma
+con el usuario antes de hacerlo, y se prueba con el nodo Llamar Vapi
+desactivado. Ademas el agente del chat no pide consentimiento para SMS: si
+llega a recoger telefonos por conversacion, hay que instruirlo en n8n para que
+lo pida de forma explicita.
+
+Los textos legales y los valores del registro (razon social, nombre del
+programa, caso de uso, frecuencia) se redactaron con supuestos razonables que el
+usuario debe contrastar con su registro real. No son asesoria legal.

@@ -355,6 +355,42 @@ impide leerla y la URL puede seguir apareciendo sin snippet.
 pega solo el bloque `<IfModule mod_headers.c>` al final, no se reemplaza el
 archivo.
 
+### SMS y registro A2P (10DLC)
+
+Para registrar un numero de EE. UU. en GoHighLevel, los operadores revisan que
+el sitio muestre un consentimiento claro. GHL sugiere pegar su widget de chat,
+pero el sitio ya tiene uno propio (conectado a n8n) y no carga scripts de
+terceros a proposito, asi que **el consentimiento se anadio al sitio existente**
+en lugar de incrustar el de GHL:
+
+| Donde | Que hay |
+| --- | --- |
+| Formulario de la demo de voz (`index.html`) | Casilla `#sms-consent`: **opcional y sin marcar**, con frecuencia, tarifas, STOP/HELP y enlaces. Es el unico punto del sitio que captura un telefono. |
+| Chat (`index.html`) | Aviso fijo bajo el campo de texto. No es un opt-in (el chat no pide numero): dice que el numero solo se usa para SMS si el usuario lo autoriza. |
+| `privacy.html#sms` | Que se recopila, que **no se comparte con terceros ni afiliados con fines de marketing**, y como retirar el consentimiento. |
+| `terms.html#sms` | Programa, descripcion, frecuencia, tarifas, STOP/HELP, contacto y operadores. Con resumen en ingles, que es lo que lee el revisor. |
+
+El consentimiento viaja con el lead: el payload del formulario lleva
+`smsConsent` (booleano), `smsConsentVersion` y `createdAt`. **Si se cambia el
+texto de la casilla o de las secciones `#sms`, hay que subir
+`smsConsentVersion`** en `index.html`, para poder demostrar que texto acepto
+cada persona.
+
+`check-seo.sh` (comprobacion 7) falla si la casilla queda marcada de antemano u
+obligatoria, si el texto pierde STOP, HELP o la frase de tarifas, si el payload
+deja de enviar `smsConsent`, o si desaparecen las secciones `#sms` o la
+clausula de no comparticion. Son las ediciones que hacen rechazar una campana
+sin que nadie lo note.
+
+Valores que se **asumieron** y hay que contrastar con el registro real antes de
+enviarlo: la razon social (el pie dice "Flamia Group Inc." y debe coincidir
+letra por letra), el nombre del programa ("Mensajes de Flamia Group"), el caso
+de uso (confirmaciones, recordatorios y seguimiento) y la frecuencia ("variable").
+
+Si GHL rechaza por no encontrar *su* widget, el plan B es cargar el script
+solo en una pagina dedicada (por ejemplo `/sms`), nunca en el home: el chat
+propio tambien vive ahi y quedarian dos burbujas en la misma esquina.
+
 ### Despues de publicar
 
 1. Verificar el dominio en Google Search Console y enviar

@@ -426,6 +426,12 @@
                                 <input type="email" id="lead-email" required class="w-full bg-[#1A1A24] border border-gray-700 rounded-lg pl-10 pr-4 py-3 text-white focus:border-indigo-500 focus:outline-none" placeholder="laura@empresa.com">
                             </div>
                         </div>
+                        <div class="flex items-start gap-3">
+                            <input type="checkbox" id="sms-consent" name="sms-consent" class="mt-1 h-4 w-4 shrink-0 accent-indigo-500">
+                            <label for="sms-consent" class="text-xs text-gray-400 leading-relaxed">
+                                Quiero recibir mensajes de texto (SMS) de Flamia Group con confirmaciones, recordatorios y seguimiento de mi consulta. Frecuencia variable. Pueden aplicar tarifas de mensajes y datos (Msg &amp; data rates may apply). Responde STOP para cancelar o HELP para ayuda. Es opcional y no es condición para recibir la llamada ni ningún servicio. Consulta la <a href="/privacy.html#sms" class="text-indigo-300 underline hover:text-white">Política de Privacidad</a> y los <a href="/terms.html#sms" class="text-indigo-300 underline hover:text-white">Términos</a>.
+                            </label>
+                        </div>
                         <button type="submit" class="w-full sparkle-button py-4 rounded-lg text-white font-bold text-lg shadow-lg flex justify-center items-center gap-2 group">
                             <span class="group-hover:animate-pulse">📞 Solicitar Llamada Ahora</span>
                         </button>
@@ -469,6 +475,7 @@
   const name  = document.getElementById("lead-name")?.value?.trim() || "";
   const phone = document.getElementById("lead-phone")?.value?.trim() || "";
   const email = document.getElementById("lead-email")?.value?.trim() || "";
+  const smsConsent = !!document.getElementById("sms-consent")?.checked;
 
   console.log("[VOICE] phone:", phone);
 
@@ -495,6 +502,8 @@
           phone,
           email,
           source: "landing-flamia",
+          smsConsent,
+          smsConsentVersion: "2026-11-v1",
           createdAt: new Date().toISOString()
         })
       });
@@ -1202,6 +1211,7 @@ if (overlay) {
                     <input type="text" id="chat-input" placeholder="Pregunta sobre automatización..." class="w-full bg-[#0A0A0F] text-white text-sm rounded-lg px-3 py-2 border border-white/10 focus:outline-none focus:border-indigo-500" onkeypress="if(event.key === 'Enter') sendChatMessage()">
                     <button onclick="sendChatMessage()" class="bg-indigo-600 text-white rounded-lg px-3 hover:bg-indigo-700" aria-label="Enviar">➤</button>
                 </div>
+                <p class="mt-2 text-[11px] leading-snug text-gray-400">Tu número solo se usará para SMS si lo autorizas. STOP para cancelar · HELP para ayuda · Msg &amp; data rates may apply · <a href="/privacy.html#sms" class="underline hover:text-white">Privacidad</a> · <a href="/terms.html#sms" class="underline hover:text-white">Términos</a></p>
             </div>
         </div>
         <button id="chat-toggle" class="chat-float w-14 h-14 bg-indigo-600 hover:bg-indigo-500 rounded-full shadow-lg flex items-center justify-center text-white transition-colors relative group" aria-label="Abrir chat">
