@@ -398,25 +398,46 @@ la version del consentimiento. El revisor compara el remitente con el registro.
 
 La version del texto vigente es `2026-11-v2` (subio al cambiar el remitente).
 
-#### Lo que n8n debe hacer con el consentimiento (pendiente)
+#### Como se guarda el consentimiento en n8n (hecho, sin publicar)
 
-El formulario ya envia `smsConsent`, `smsConsentVersion` y `createdAt`; falta
-que el workflow *Flamia Voice Call Vapi* los guarde. Especificacion:
+El workflow *Flamia – Voice Call Vapi* (id `aqGzQrGEMU40OR9j`) ya guarda el
+consentimiento. **Esta en borrador: el workflow sigue inactivo y sin version
+publicada**, asi que el webhook `/webhook/flamia-voice-call` no responde hasta
+que se publique (ver mas abajo). Lo que se anadio:
 
-1. **Normalizar Lead** debe dejar pasar esos tres campos, con `smsConsent`
-   comparado de forma estricta (`=== true`): una cadena `"false"` es truthy.
-2. **Una rama paralela a Llamar Vapi**, con `continueOnFail`, que registre cada
-   envio: telefono, nombre, correo, `smsConsent`, version, `createdAt`, origen,
-   y de las cabeceras del webhook la IP (`x-forwarded-for`) y el user-agent. Va
-   **despues** del Rate Limit Check, para que quien inunde el webhook no pueda
-   inflar el registro, y en paralelo, para que un fallo al guardar no impida la
-   llamada. Una Data Table de n8n basta como registro de prueba.
-3. **Si `smsConsent` es true**, marcar el contacto en GHL (etiqueta
-   `sms-consent` y campos con la version y la fecha). Requiere una credencial de
-   GHL en n8n; no se verifico que exista.
-4. Probar con el nodo **Llamar Vapi desactivado** y datos fijados en el Webhook,
-   y confirmar antes de publicar: es un workflow en produccion que ya costo
-   dinero una vez.
+- **Normalizar Lead** deja pasar `smsConsent` con comparacion estricta
+  (`=== true`) y `smsConsentVersion`. `createdAt` es la hora del servidor, no la
+  del navegador. Verificado: el texto `"true"` cuenta como *no* consentimiento.
+- **¿Aceptó SMS?** (IF estricto) y **Guardar Consentimiento SMS** (Data Table,
+  insert), en una rama **paralela** a Llamar Vapi y con `onError` continuar:
+  si guardar falla, la llamada no se detiene.
+- Tabla `sms_consents` (id `fJwWN7d8DsT0v1ts`): `created_at`, `name`, `email`,
+  `phone` (normalizado), `phone_raw` (lo que escribio la persona),
+  `sms_consent`, `consent_version`, `source`. **Solo se guardan los que aceptan.**
+
+Decisiones respecto al plan inicial: no se guarda IP ni user-agent, porque la
+politica de privacidad lista solo "fecha y version del texto"; si se quisieran,
+primero hay que ampliar la politica y subir `smsConsentVersion`. Y el marcado en
+GHL (etiqueta o campo) **no se hizo**: se pidio guardar en n8n. Para hacerlo
+existe la credencial `ghl-n8n-site-web`, la que usa el flujo del chat.
+
+Probado con `test_workflow` y `Llamar Vapi` simulado (cero llamadas reales):
+casilla sin marcar no guarda nada; `smsConsent: "true"` como texto no guarda
+nada; `smsConsent: true` guarda una fila y la respuesta al formulario sale igual.
+Cada fila de prueba se marca `PRUEBA-NO-REAL`: hay que borrarla a mano.
+
+**Antes de publicar el workflow** (es una decision aparte, y CLAUDE.md pide
+confirmarla):
+
+1. Hoy esta inactivo, asi que **el formulario de la demo de voz del sitio no
+   puede hacer llamadas**. Publicarlo es lo que lo reactiva.
+2. Sigue pendiente rotar `X-Flamia-Secret` (CLAUDE.md, segundo incidente). Ya
+   tiene limite global (5 por 10 min) y por IP (3 por 10 min), pero el secreto es
+   visible en el HTML.
+3. `Normalizar Lead` antepone `+1` a cualquier numero sin `+`, y el formulario
+   acepta numeros sin prefijo: un visitante de Costa Rica que escriba `8940 1202`
+   marcaria un numero de EE. UU. Hay que exigir el `+` en el formulario o cambiar
+   `defaultCountryCode`.
 
 Si GHL rechaza por no encontrar *su* widget, el plan B es cargar el script
 solo en una pagina dedicada (por ejemplo `/sms`), nunca en el home: el chat

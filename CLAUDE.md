@@ -207,16 +207,20 @@ de rechazo, y check-seo.sh lo verifica. Las secciones con identificador sms de
 privacy.html y terms.html tienen que seguir diciendo que el numero movil no se
 comparte con terceros ni afiliados con fines de marketing.
 
-PENDIENTE FUERA DEL REPOSITORIO, y es lo que mas importa. El payload del
-formulario ahora lleva smsConsent, smsConsentVersion y createdAt, pero el
-workflow de n8n no esta tocado: su nodo Normalizar Lead puede estar descartando
-esos campos, y sin guardarlos la casilla no deja prueba de nada. Hay que
-persistirlos en el contacto de GHL, con una etiqueta o un campo personalizado.
-Es un cambio del workflow, asi que por las reglas de este documento se confirma
-con el usuario antes de hacerlo, y se prueba con el nodo Llamar Vapi
-desactivado. Ademas el agente del chat no pide consentimiento para SMS: si
-llega a recoger telefonos por conversacion, hay que instruirlo en n8n para que
-lo pida de forma explicita.
+El consentimiento YA SE GUARDA en n8n, pero el cambio esta en borrador: el
+workflow Flamia Voice Call Vapi (id aqGzQrGEMU40OR9j) esta INACTIVO y sin version
+publicada, asi que su webhook no responde y el formulario de la demo de voz no
+puede hacer llamadas hasta que se publique. Publicarlo es una decision aparte que
+se confirma con el usuario. Detalle de lo construido, de como se probo y de los
+tres puntos a revisar antes de publicar, en la seccion SMS del README. Resumen:
+Normalizar Lead deja pasar smsConsent con comparacion estricta, y una rama paralela
+con onError continuar guarda en la tabla sms_consents solo a quien acepta. El
+agente del chat sigue sin pedir consentimiento para SMS: si llega a recoger
+telefonos por conversacion, hay que instruirlo en n8n para que lo pida.
+
+Dos correcciones a lo que dice este documento mas arriba, vistas al abrir el
+workflow en esta sesion: el rate limiting ya tiene limite POR IP (3 por 10
+minutos) ademas del global (5), y el workflow figura inactivo.
 
 El nombre del negocio en todo el sitio es solo Flamia Group, sin Inc.: pie,
 meta author y legalName del JSON-LD, decision del usuario que check-seo.sh
@@ -228,8 +232,3 @@ registro y rechaza si no coincide. El nombre del programa, el caso de uso y la
 frecuencia siguen siendo supuestos a contrastar con el registro real. Los textos
 legales no son asesoria legal. La version vigente del texto de consentimiento es
 2026-11-v2: se sube cada vez que cambia el texto.
-
-Al escribir esto el consentimiento TODAVIA NO SE GUARDA en n8n: las herramientas
-de n8n no estaban autorizadas en esa sesion, asi que el workflow no se pudo
-tocar. La especificacion exacta de lo que falta esta en la seccion SMS del
-README. Hasta que se haga, la casilla se envia pero no deja prueba.
