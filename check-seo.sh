@@ -54,6 +54,13 @@ for pagina in "${PAGINAS[@]}"; do
   done < <(grep -v 'placeholder="' "$pagina" | grep -oE '\+506[0-9 ]{8,12}')
 done
 
+# El nombre del negocio es "Flamia Group", sin "Inc.": decision del usuario, y
+# legalName del JSON-LD lo afirma ante Google. Una pagina nueva copiada de una
+# plantilla vieja puede reintroducirlo sin que nadie lo vea.
+for pagina in "${PAGINAS[@]}"; do
+  grep -q 'Flamia Group Inc' "$pagina" && fallo "$pagina dice \"Flamia Group Inc\": el nombre es solo \"Flamia Group\""
+done
+
 # El JSON-LD declara su propio NAP, y Google compara ese con la ficha de
 # Google Business Profile: si se va de sincronia, el marcado no sirve.
 echo "2. NAP del JSON-LD"

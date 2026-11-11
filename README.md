@@ -388,8 +388,13 @@ comercial; `check-seo.sh` verifica los tres sitios (variable `RAZON_SOCIAL` al
 inicio de la comprobacion 7). Sigue siendo **supuesto** y hay que contrastarlo
 con el registro: el nombre del programa ("Mensajes de Flamiagroup"), el caso de
 uso (confirmaciones, recordatorios y seguimiento) y la frecuencia ("variable").
-El pie de todas las paginas dice "Flamia Group Inc."; con esa razon social el
-"Inc." no coincide, y no se cambio porque toca siete paginas y el NAP.
+El pie de todas las paginas, el `meta author` y el `legalName` del JSON-LD dicen
+solo "Flamia Group", sin "Inc." (decision del usuario; `check-seo.sh` lo
+verifica). **Punto abierto:** los textos de SMS nombran al remitente como
+"Flamiagroup", la razon social que el usuario dio, con "Flamia Group" como
+nombre comercial. Si el registro A2P dice "Flamia Group", hay que unificar: se
+cambia la variable `RAZON_SOCIAL` de `check-seo.sh`, los tres textos, y se sube
+la version del consentimiento. El revisor compara el remitente con el registro.
 
 La version del texto vigente es `2026-11-v2` (subio al cambiar el remitente).
 
