@@ -54,6 +54,13 @@ for pagina in "${PAGINAS[@]}"; do
   done < <(grep -v 'placeholder="' "$pagina" | grep -oE '\+506[0-9 ]{8,12}')
 done
 
+# El nombre del negocio es "Flamia Group", sin "Inc.": decision del usuario, y
+# legalName del JSON-LD lo afirma ante Google. Una pagina nueva copiada de una
+# plantilla vieja puede reintroducirlo sin que nadie lo vea.
+for pagina in "${PAGINAS[@]}"; do
+  grep -q 'Flamia Group Inc' "$pagina" && fallo "$pagina dice \"Flamia Group Inc\": el nombre es solo \"Flamia Group\""
+done
+
 # El JSON-LD declara su propio NAP, y Google compara ese con la ficha de
 # Google Business Profile: si se va de sincronia, el marcado no sirve.
 echo "2. NAP del JSON-LD"
@@ -102,6 +109,46 @@ for pagina in "${PAGINAS[@]}"; do
   fi
 done
 [ "$enlaces_subdominio" -eq 0 ] && ok "ninguna pagina enlaza al subdominio"
+
+# El consentimiento para SMS (A2P 10DLC) se rompe igual que el NAP: alguien
+# edita el formulario y lo deja marcado de antemano o lo hace obligatorio, y
+# los operadores rechazan la campana. Estas son las reglas que revisan.
+# Razon social con la que se registro la campana A2P. El revisor compara el
+# remitente que ve en el consentimiento con el del registro: si no coincide
+# letra por letra, rechaza. Si cambia, se cambia AQUI y el script senala donde.
+RAZON_SOCIAL="Flamiagroup"
+echo "7. Consentimiento SMS (A2P)"
+casilla=$(grep -E 'id="sms-consent"' index.html || true)
+if [ -z "$casilla" ]; then
+  fallo "index.html no tiene la casilla id=\"sms-consent\""
+else
+  ok "casilla de consentimiento presente"
+  if printf '%s' "$casilla" | grep -qE '[[:space:]](checked|required)([[:space:]=>]|$)'; then
+    fallo "la casilla sms-consent esta marcada de antemano u obligatoria: debe ser opcional y sin marcar"
+  else
+    ok "opcional y sin marcar por defecto"
+  fi
+fi
+for frase in 'STOP' 'HELP' 'data rates may apply'; do
+  if grep -q 'for="sms-consent"' index.html && sed -n '/for="sms-consent"/,/<\/label>/p' index.html | grep -q "$frase"; then
+    ok "el texto del consentimiento menciona: $frase"
+  else
+    fallo "el texto del consentimiento no menciona: $frase"
+  fi
+done
+grep -q 'smsConsent,' index.html && ok "el consentimiento viaja en el payload del lead" || fallo "el payload ya no envia smsConsent"
+for pagina in privacy.html terms.html; do
+  grep -q 'id="sms"' "$pagina" && ok "$pagina tiene la seccion #sms" || fallo "$pagina no tiene la seccion id=\"sms\""
+done
+grep -q 'for="sms-consent"' index.html && sed -n '/for="sms-consent"/,/<\/label>/p' index.html | grep -q "$RAZON_SOCIAL" \
+  && ok "la casilla nombra al remitente: $RAZON_SOCIAL" || fallo "la casilla de consentimiento no nombra a $RAZON_SOCIAL"
+for pagina in privacy.html terms.html; do
+  sed -n '/id="sms"/,/<h2>/p' "$pagina" | grep -q "$RAZON_SOCIAL" \
+    && ok "$pagina#sms nombra al remitente: $RAZON_SOCIAL" || fallo "$pagina#sms no nombra a $RAZON_SOCIAL"
+done
+grep -q 'No compartimos el número de teléfono móvil' privacy.html \
+  && ok "privacy.html declara que el numero movil no se comparte con fines de marketing" \
+  || fallo "privacy.html perdio la clausula de no comparticion del numero movil"
 
 echo
 if [ "$fallos" -eq 0 ]; then

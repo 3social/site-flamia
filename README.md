@@ -355,6 +355,103 @@ impide leerla y la URL puede seguir apareciendo sin snippet.
 pega solo el bloque `<IfModule mod_headers.c>` al final, no se reemplaza el
 archivo.
 
+### SMS y registro A2P (10DLC)
+
+Para registrar un numero de EE. UU. en GoHighLevel, los operadores revisan que
+el sitio muestre un consentimiento claro. GHL sugiere pegar su widget de chat,
+pero el sitio ya tiene uno propio (conectado a n8n) y no carga scripts de
+terceros a proposito, asi que **el consentimiento se anadio al sitio existente**
+en lugar de incrustar el de GHL:
+
+| Donde | Que hay |
+| --- | --- |
+| Formulario de la demo de voz (`index.html`) | Casilla `#sms-consent`: **opcional y sin marcar**, con frecuencia, tarifas, STOP/HELP y enlaces. Es el unico punto del sitio que captura un telefono. |
+| Chat (`index.html`) | Aviso fijo bajo el campo de texto. No es un opt-in (el chat no pide numero): dice que el numero solo se usa para SMS si el usuario lo autoriza. |
+| `privacy.html#sms` | Que se recopila, que **no se comparte con terceros ni afiliados con fines de marketing**, y como retirar el consentimiento. |
+| `terms.html#sms` | Programa, descripcion, frecuencia, tarifas, STOP/HELP, contacto y operadores. Con resumen en ingles, que es lo que lee el revisor. |
+
+El consentimiento viaja con el lead: el payload del formulario lleva
+`smsConsent` (booleano), `smsConsentVersion` y `createdAt`. **Si se cambia el
+texto de la casilla o de las secciones `#sms`, hay que subir
+`smsConsentVersion`** en `index.html`, para poder demostrar que texto acepto
+cada persona.
+
+`check-seo.sh` (comprobacion 7) falla si la casilla queda marcada de antemano u
+obligatoria, si el texto pierde STOP, HELP o la frase de tarifas, si el payload
+deja de enviar `smsConsent`, o si desaparecen las secciones `#sms` o la
+clausula de no comparticion. Son las ediciones que hacen rechazar una campana
+sin que nadie lo note.
+
+Razon social del remitente: **Flamiagroup**, confirmada por el usuario. Es la
+que nombran la casilla y las secciones `#sms`, con "Flamia Group" como nombre
+comercial; `check-seo.sh` verifica los tres sitios (variable `RAZON_SOCIAL` al
+inicio de la comprobacion 7). Sigue siendo **supuesto** y hay que contrastarlo
+con el registro: el nombre del programa ("Mensajes de Flamiagroup"), el caso de
+uso (confirmaciones, recordatorios y seguimiento) y la frecuencia ("variable").
+El pie de todas las paginas, el `meta author` y el `legalName` del JSON-LD dicen
+solo "Flamia Group", sin "Inc." (decision del usuario; `check-seo.sh` lo
+verifica). **Punto abierto:** los textos de SMS nombran al remitente como
+"Flamiagroup", la razon social que el usuario dio, con "Flamia Group" como
+nombre comercial. Si el registro A2P dice "Flamia Group", hay que unificar: se
+cambia la variable `RAZON_SOCIAL` de `check-seo.sh`, los tres textos, y se sube
+la version del consentimiento. El revisor compara el remitente con el registro.
+
+La version del texto vigente es `2026-11-v2` (subio al cambiar el remitente).
+
+#### Como se guarda el consentimiento (estado al 11 de noviembre de 2026)
+
+Workflow *Flamia – Voice Call Vapi* (id `aqGzQrGEMU40OR9j`), **activo** desde las
+20:15 del 11 de noviembre (lo publico el usuario).
+
+**Version publicada (en vivo).** *Normalizar Lead* deja pasar `smsConsent` con
+comparacion estricta (`=== true`; el texto `"true"` cuenta como *no*) y la
+version, y pone `createdAt` con la hora del servidor. Despues, *¿Aceptó SMS?* (IF
+estricto) **sin ninguna conexion de salida**: el nodo *Guardar Consentimiento SMS*
+(tabla `sms_consents`) ya no esta en el workflow. Se quito en la interfaz de n8n,
+no desde el repositorio ni desde las herramientas de esta sesion, y no se sabe si
+fue a proposito. La tabla (`fJwWN7d8DsT0v1ts`) sigue existiendo con una fila de
+prueba "PRUEBA-NO-REAL", que hay que borrar a mano.
+
+**Borrador (sin publicar).** Anade *GHL – Registrar Consentimiento*:
+`POST /contacts/upsert` en la cuenta **Flamiagroup** (`locationId`
+`Mzmr9yxQ2iMapPYViK1B`), colgado de la salida "si" de *¿Aceptó SMS?*, con
+`onError` continuar y timeout de 6 s, de modo que si GHL falla o tarda la llamada
+no se detiene. Escribe tres campos de contacto, todos de texto:
+
+| Campo en GHL | Clave | Valor |
+| --- | --- | --- |
+| Consentimiento SMS | `contact.consentimiento_sms` | `Sí` |
+| Consentimiento SMS - Versión | `contact.consentimiento_sms__versin` | `2026-11-v2` |
+| Consentimiento SMS - Fecha | `contact.consentimiento_sms__fecha` | fecha y hora UTC |
+
+**El nodo no envia `tags` ni `source`, a proposito:** en un upsert de GHL, `tags`
+**sobrescribe** todas las etiquetas que el contacto ya tenga. Si se quiere una
+etiqueta, hay que usar el endpoint de anadir etiqueta, no el upsert.
+
+Para terminarlo faltan dos pasos manuales:
+
+1. En el nodo, *Credential for Bearer Auth*: elegir `ghl-n8n-site-web`. El
+   conector de n8n no puede asignar credenciales Bearer a nodos HTTP, por eso esta
+   sin asignar. Mientras no se haga, el nodo falla en silencio (`onError`).
+2. Publicar el borrador. Es una decision aparte y CLAUDE.md pide confirmarla.
+
+Probado: el enrutado con `test_workflow` (nodo HTTP simulado, cero escrituras) y
+la expresion del cuerpo con Node sobre cuatro casos, incluido el correo vacio y un
+nombre de 5000 caracteres.
+
+**Antes de que esto sirva de extremo a extremo:**
+
+- Subir el ZIP: el sitio publicado no tiene todavia la casilla de consentimiento.
+- `Normalizar Lead` antepone `+1` a cualquier numero sin `+`, y el formulario no
+  exige el `+`: un visitante de Costa Rica que escriba `8940 1202` marcaria un
+  numero de EE. UU. y, con el nodo de GHL, crearia ahi un contacto con ese
+  telefono equivocado.
+- Sigue pendiente rotar `X-Flamia-Secret`.
+
+Si GHL rechaza por no encontrar *su* widget, el plan B es cargar el script
+solo en una pagina dedicada (por ejemplo `/sms`), nunca en el home: el chat
+propio tambien vive ahi y quedarian dos burbujas en la misma esquina.
+
 ### Despues de publicar
 
 1. Verificar el dominio en Google Search Console y enviar

@@ -190,3 +190,55 @@ public_html. Escribir un nombre cualquiera deja el sitio dentro de una
 subcarpeta y el dominio sin index.html en la raiz, que es exactamente el
 tercer incidente de este documento. Se repite porque el campo parece pedir un
 nombre.
+
+## Quinta tanda, noviembre 2026: consentimiento SMS para el registro A2P
+
+Para registrar un numero de EE. UU. en GoHighLevel se pidio incrustar el
+widget de chat de GHL. Se decidio NO hacerlo: el sitio ya tiene un chat propio
+conectado a n8n y no carga nada de terceros, que fue una decision de
+rendimiento. El consentimiento se anadio a lo que ya existe. Detalle y razones
+en la seccion SMS del README.
+
+Lo que conviene saber antes de tocarlo. La casilla de consentimiento esta en el
+formulario de la demo de voz porque es el unico lugar donde el sitio captura un
+telefono; el chat solo tiene un aviso, no un opt-in. La casilla debe seguir
+siendo opcional y sin marcar: premarcada u obligatoria es el motivo mas comun
+de rechazo, y check-seo.sh lo verifica. Las secciones con identificador sms de
+privacy.html y terms.html tienen que seguir diciendo que el numero movil no se
+comparte con terceros ni afiliados con fines de marketing.
+
+Estado del registro del consentimiento, 11 de noviembre de 2026. El workflow
+Flamia Voice Call Vapi (id aqGzQrGEMU40OR9j) esta ACTIVO desde las 20:15, publicado
+por el usuario. En la version publicada, Normalizar Lead deja pasar smsConsent con
+comparacion estricta y el nodo IF Aceptó SMS no tiene salida: el nodo que guardaba
+en la tabla sms_consents ya no esta, se quito en la interfaz de n8n y no se sabe
+si a proposito. En un BORRADOR sin publicar hay un nodo HTTP que registra el
+consentimiento en tres campos de contacto de la cuenta GHL Flamiagroup (location
+Mzmr9yxQ2iMapPYViK1B): Consentimiento SMS, su Version y su Fecha. Faltan dos pasos
+manuales, asignar la credencial ghl-n8n-site-web en el nodo y publicar; detalle en
+la seccion SMS del README.
+
+LECCION DE GHL, importante: en un upsert de contacto el campo tags SOBRESCRIBE las
+etiquetas existentes. Por eso el nodo no envia tags ni source. Antes de anadir
+cualquiera de los dos a una llamada de upsert, pensar en los contactos que ya
+existen. Y el conector de n8n no puede asignar credenciales Bearer a nodos HTTP:
+esa asignacion se hace a mano en la interfaz.
+
+Otras correcciones a lo que dice este documento mas arriba: el rate limiting ya
+tiene limite POR IP (3 por 10 minutos) ademas del global (5). Quedan pendientes el
++1 por defecto de Normalizar Lead (un numero sin + se marca como de EE. UU.), la
+rotacion del secreto del header, y subir el ZIP, porque el sitio publicado aun no
+tiene la casilla de consentimiento. El agente del chat sigue sin pedir
+consentimiento para SMS: si llega a recoger telefonos por conversacion, hay que
+instruirlo en n8n para que lo pida.
+
+El nombre del negocio en todo el sitio es solo Flamia Group, sin Inc.: pie,
+meta author y legalName del JSON-LD, decision del usuario que check-seo.sh
+verifica. La razon social del remitente en los textos de SMS es Flamiagroup,
+dada por el usuario, con Flamia Group como nombre comercial; tambien la verifica
+el script. PUNTO ABIERTO: si el registro A2P dice Flamia Group y no
+Flamiagroup, hay que unificar, porque el revisor compara el remitente con el
+registro y rechaza si no coincide. El nombre del programa, el caso de uso y la
+frecuencia siguen siendo supuestos a contrastar con el registro real. Los textos
+legales no son asesoria legal. La version vigente del texto de consentimiento es
+2026-11-v2: se sube cada vez que cambia el texto.
